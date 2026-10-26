@@ -1,0 +1,32 @@
+{
+  "base": "https://cloud-1de12d.becdn.net/media",
+  "outDir": "src/assets/img",
+  "images": [
+    { "file": "logo.svg", "hash": "69b594a41156fdebb314ed8a2b194d28", "name": "image.svg" },
+    { "file": "logo-svetle.svg", "hash": "6d2f3b2b0bf95e36e15c4fbb6b66a82a", "name": "image.svg" },
+    { "file": "uvod-portret.jpg", "hash": "0722c1c97fafd1a680abe7483335bf9c", "name": "image.jpg" },
+    { "file": "sluzba-osetreni-pleti.png", "hash": "1f4fcbb5700029a494c55865bcf72cdc", "name": "pece-o-oblicej-Myskin.png" },
+    { "file": "sluzba-permanentni-make-up.png", "hash": "8e1f1c6d607639a5363cd027bbac91b0", "name": "983ff316-63c9-46d4-ac94-1920d17e7f08.png" },
+    { "file": "sluzba-depilace.png", "hash": "0b2a3ca32e12b0042b6f8e9bf13ee722", "name": "842efab1-b404-4490-a52b-05a976c5af43.png" },
+    { "file": "sluzba-rasy-oboci.png", "hash": "bd3c99767836b8b02b896396d8f6f680", "name": "rasy-a-obo-.png" },
+    { "file": "sluzba-liceni.jpg", "hash": "6f3d1f71fa3f22de621463e905306a50", "name": "38249b96-e482-4a22-9c85-774db534f28d.jpg" },
+    { "file": "sluzba-pedikura.png", "hash": "f3977332562a3516cbc1542382af7787", "name": "f5c2f52c-700e-4254-a80f-45ab21d3bec5.png" },
+    { "file": "tym.jpg", "hash": "e8feeff88202e8b1eecb0944f5ff3668", "name": "myskin-team.jpg" },
+    { "file": "salon-lehatko.jpg", "hash": "0685fca213d85e26116bdde55bfc6f7e", "name": "image.jpg" },
+    { "file": "salon-osetreni-obliceje.jpg", "hash": "48e0b2e02791f53cbcd70061ef7cfdd7", "name": "image.jpg" },
+    { "file": "salon-pletova-maska.jpg", "hash": "c418a398d04f27601b2c1eb179728ca1", "name": "image.jpg" },
+    { "file": "salon-kosmetika-phyts.jpg", "hash": "a4b55c427d55113287de4b4c17708afd", "name": "DSCF1500.jpg" },
+    { "file": "salon-cekarna.jpg", "hash": "53b0f50e0c538f1de4912319ec2eb9af", "name": "image.jpg" },
+    { "file": "salon-klientka.jpg", "hash": "c3d821c7dfc0e22a1c2cc31cbaa770dd", "name": "DSCF1546.jpg" },
+    { "file": "znacka-phyts.png", "hash": "85c0119e7f9708150d5fa068ad5d9695", "name": "Serum-Anti-Phyts.png" },
+    { "file": "znacka-gm-collin.png", "hash": "f2a65ae28ae29979afe06250968a6d0d", "name": "collin-produkt.png" },
+    { "file": "znacka-noon.webp", "hash": "23da123e14fa95b425b636e851ef4af8", "name": "Noon.webp" },
+    { "file": "logo-phyts.png", "hash": "8025be216ff8a82ab6206b9158dfba21", "name": "image.png" },
+    { "file": "logo-gm-collin.png", "hash": "4f5938d350a647df9fd7cbcab68e71e2", "name": "collin-logo.png" },
+    { "file": "logo-noon.png", "hash": "72b600f66eb3dfd13d4b1c10ecd1da16", "name": "noon-logo.png" },
+    { "file": "noona-qr.webp", "hash": "c6563e69514bebd7f38943af7bb68378", "name": "app-qr.webp" },
+    { "file": "noona-telefony.webp", "hash": "c1e3864e44824d42ce7fc3d9e4b95f5b", "name": "app-promotion.webp" },
+    { "file": "mapa.jpg", "hash": "42a2e6f0f4a1b02c5eca30c23244a769", "name": "webmapa.jpg" },
+    { "file": "og-myskin.jpg", "url": "https://cloud-1de12d.becdn.net/media/iW=1200&iH=630/825b6f8e421191ddd5c1875eee08421e.jpg" }
+  ]
+}
