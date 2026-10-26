@@ -40,12 +40,14 @@ const isCurrent = (href: string) => href === path;
 <style>
   .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color var(--t); }
   :global(.hdr.scrolled) { border-bottom-color: var(--line); }
-  .hdr__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 84px; }
-  .logo :global(img) { width: 138px; height: auto; }
-  .nav { display: flex; align-items: center; gap: 22px; }
+  .hdr { transition: border-color var(--t), transform .5s var(--ease); }
+  :global(.hdr.hidden) { transform: translateY(-100%); }
+  .hdr__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: clamp(72px, 3vw + 40px, 120px); }
+  .logo :global(img) { width: clamp(116px, 5vw + 66px, 220px); height: auto; }
+  .nav { display: flex; align-items: center; gap: clamp(14px, 1.4vw, 36px); }
   .menu { display: flex; align-items: center; }
   .menu > li { position: relative; }
-  .menu > li > a { display: flex; align-items: center; gap: 4px; min-height: 48px; padding: 0 11px; font-size: var(--fs-sm); font-weight: 500; white-space: nowrap; }
+  .menu > li > a { display: flex; align-items: center; gap: 4px; min-height: 48px; padding: 0 clamp(8px, .7vw, 18px); font-size: var(--fs-sm); font-weight: 500; white-space: nowrap; }
   .menu > li > a:hover, .menu > li > a[aria-current] { text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 6px; }
   .menu :global(.chev) { width: 14px; height: 14px; opacity: .6; transition: transform var(--t-fast); }
   .has-sub:hover :global(.chev), .has-sub:focus-within :global(.chev) { transform: rotate(180deg); }
@@ -54,7 +56,7 @@ const isCurrent = (href: string) => href === path;
   .sub a { display: block; padding: 9px 12px; border-radius: 6px; font-size: var(--fs-sm); }
   .sub a:hover, .sub a[aria-current] { background: var(--skin); }
   .m-only { display: none; }
-  .book { min-height: 46px; padding: 10px 22px; font-size: var(--fs-sm); }
+  .book { min-height: clamp(44px, 1vw + 32px, 58px); padding: 10px clamp(18px, 1.2vw, 30px); font-size: var(--fs-sm); }
   .burger { display: none; width: 48px; height: 48px; border: 0; background: none; cursor: pointer; position: relative; z-index: 60; }
   .burger span { display: block; height: 2px; margin: 7px 11px; background: var(--cocoa); transition: transform var(--t-fast); }
   .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }

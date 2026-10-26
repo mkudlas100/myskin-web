@@ -51,7 +51,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script is:inline>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){d.classList.add('motion');setTimeout(function(){if(!window.__rv)d.classList.add('motion-safe')},4000)}})(document.documentElement)</script>
     <script type="application/ld+json" set:html={jsonLd} />
     <slot name="head" />
   </head>
@@ -69,14 +69,52 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
       const hdr = document.getElementById('hdr');
       const fab = document.getElementById('fab');
       let tick = false;
+      let lastY = window.scrollY;
       const onScroll = () => {
         const y = window.scrollY;
         hdr?.classList.toggle('scrolled', y > 30);
+        // hlavička se při scrollu dolů schová a při scrollu nahoru vrátí
+        const down = y > lastY + 4, up = y < lastY - 4;
+        if (down && y > 480 && !document.getElementById('nav')?.classList.contains('open') && !hdr?.contains(document.activeElement)) hdr?.classList.add('hidden');
+        if (up || y < 480) hdr?.classList.remove('hidden');
+        if (down || up) lastY = y;
         fab?.classList.toggle('show', y > window.innerHeight * 0.8);
         tick = false;
       };
       addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(onScroll); tick = true; } }, { passive: true });
       onScroll();
+
+      // Odhalení při scrollu: [data-reveal] a .split (slova nadpisu).
+      const splitWords = (el: Element) => {
+        if (el.querySelector('.w')) return;
+        let i = 0;
+        const walk = (node: Node) => {
+          for (const child of Array.from(node.childNodes)) {
+            if (child.nodeType === 3) {
+              const parts = (child.textContent || '').split(/([ \n\t]+)/);
+              const frag = document.createDocumentFragment();
+              for (const part of parts) {
+                if (!part) continue;
+                if (/^[ \n\t]+$/.test(part)) { frag.append(' '); continue; }
+                const w = document.createElement('span'); w.className = 'w';
+                const inner = document.createElement('span'); inner.textContent = part;
+                inner.style.setProperty('--i', String(i++));
+                w.append(inner); frag.append(w);
+              }
+              child.replaceWith(frag);
+            } else if (child.nodeType === 1) walk(child);
+          }
+        };
+        walk(el);
+      };
+      if (document.documentElement.classList.contains('motion')) {
+        (window as any).__rv = true;
+        document.querySelectorAll('.split').forEach(splitWords);
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        document.querySelectorAll('[data-reveal], .split').forEach((el) => io.observe(el));
+      }
 
       const burger = document.getElementById('burger');
       const nav = document.getElementById('nav');

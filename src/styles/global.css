@@ -20,14 +20,22 @@
   --sand-soft: #FBF1E0; --night: var(--cocoa); --on-night-muted: var(--on-cocoa-muted);
 
   --font: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  /* stupnice 14 / 17 / 21 / 28 / 37 / 50 / 67 */
-  --fs-xs: 14px; --fs-sm: 15px; --fs-base: 17px; --fs-md: 21px;
-  --fs-lg: 28px; --fs-xl: 37px; --fs-2xl: 50px; --fs-hero: 67px;
+  /* plynulá stupnice: mobil 320 px → velký monitor 2560 px (na 1440 px zhruba 15 / 17 / 22 / 31 / 43 / 60 / 80) */
+  --fs-xs: clamp(13px, .12vw + 12.6px, 15px);
+  --fs-sm: clamp(14px, .15vw + 13.4px, 16.5px);
+  --fs-base: clamp(16px, .2vw + 15px, 19.5px);
+  --fs-md: clamp(18px, .45vw + 15.6px, 25px);
+  --fs-lg: clamp(22px, .85vw + 18.6px, 36px);
+  --fs-xl: clamp(27px, 1.45vw + 21.5px, 52px);
+  --fs-2xl: clamp(33px, 2.4vw + 25px, 76px);
+  --fs-hero: clamp(39px, 4.3vw + 18px, 122px);
+  --pad: clamp(20px, 4vw, 88px);
 
   --r-pill: 100px; --r-img: 6px;
   --sh-2: 0 24px 48px -24px rgba(59, 39, 33, .35);
-  --sec: 128px;
+  --sec: clamp(72px, 6vw + 46px, 210px);
   --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
   --t-fast: .2s; --t: .45s;
   color-scheme: light;
 }
@@ -45,7 +53,7 @@ ul { list-style: none; }
 h1, h2, h3 { text-wrap: balance; font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.022em; line-height: 1.04; }
 p { text-wrap: pretty; }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: calc(1680px + 2 * var(--pad)); margin: 0 auto; padding-left: max(var(--pad), env(safe-area-inset-left, 0px)); padding-right: max(var(--pad), env(safe-area-inset-right, 0px)); }
 .sec { padding-block: var(--sec); }
 .center { text-align: center; }
 
@@ -61,21 +69,34 @@ p { text-wrap: pretty; }
 .txt-link:hover { text-decoration-color: currentColor; }
 
 /* tlačítka: plné kakao, obrysové kakao */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 28px; border-radius: var(--r-pill); border: 1.5px solid var(--cocoa); color: var(--cocoa); background: transparent; font: 600 var(--fs-base)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: clamp(48px, 1.2vw + 34px, 64px); padding: 12px clamp(22px, 1.2vw + 12px, 38px); border-radius: var(--r-pill); border: 1.5px solid var(--cocoa); color: var(--cocoa); background: transparent; font: 600 var(--fs-base)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
 .btn:hover { background: var(--cocoa); color: #fff; }
 .btn--primary { background: var(--cocoa); color: #fff; }
 .btn--primary:hover { background: var(--pigment); border-color: var(--pigment); }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* bez odhalování sekcí – třída zůstává jen kvůli starším šablonám */
+/* ---------- pohyb ----------
+   Skryté stavy platí jen se zapnutým JS (.js) a bez prefers-reduced-motion (.motion).
+   [data-reveal] odhalí prvek při vstupu do obrazovky, --i určuje pořadí ve skupině. */
+.motion [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform 1.1s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+.motion [data-reveal].in { opacity: 1; transform: none; }
+/* ořez je na potomkovi: IntersectionObserver v Chromu bere v úvahu clip-path sledovaného prvku */
+.motion [data-reveal="clip"] { opacity: 1; transform: none; }
+.motion [data-reveal="clip"] > * { clip-path: inset(100% 0 0 0); transition: clip-path 1.3s var(--ease-out); transition-delay: calc(var(--i, 0) * 120ms); }
+.motion [data-reveal="clip"].in > * { clip-path: inset(0 0 0 0); }
+.motion [data-reveal="clip"] img { transform: scale(1.12); transition: transform 1.8s var(--ease-out); }
+.motion [data-reveal="clip"].in img { transform: scale(1); }
+/* slova nadpisu vyjedou zpod linky */
+.motion .split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.motion .split .w > span { display: inline-block; transform: translateY(105%); transition: transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 55ms + var(--d, 0ms)); }
+.motion .split.in .w > span { transform: none; }
 .rv { opacity: 1; }
 
-@media (max-width: 960px) {
-  :root { --sec: 96px; --fs-hero: 52px; --fs-2xl: 40px; --fs-xl: 32px; }
-}
-@media (max-width: 600px) {
-  :root { --sec: 72px; --fs-hero: 40px; --fs-2xl: 34px; --fs-xl: 28px; --fs-lg: 24px; }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* pojistka: kdyby se odhalení nespustilo (skript, tisk), obsah se po chvíli ukáže */
+.motion-safe [data-reveal]:not(.in), .motion-safe [data-reveal]:not(.in) > * { opacity: 1; transform: none; clip-path: none; }
+.motion-safe .split:not(.in) .w > span { transform: none; }
+@media print { .motion [data-reveal], .motion .split .w > span { opacity: 1 !important; transform: none !important; clip-path: none !important; } }
