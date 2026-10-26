@@ -52,10 +52,9 @@ const timeline = [
 ];
 
 const more = [
-  { href: '/rasy-oboci', name: 'Řasy a obočí', text: 'Lash lifting, laminace obočí, prodlužování řas' },
+  { href: '/rasy-oboci', name: 'Řasy a obočí', text: 'Lash lifting a laminace obočí' },
   { href: '/liceni', name: 'Líčení', text: 'Denní, plesové i svatební' },
   { href: '/depilace', name: 'Depilace', text: 'Teplým včelím voskem' },
-  { href: '/pedikura', name: 'Pedikúra', text: 'Suchá přístrojová pedikúra' },
 ];
 
 // Pigment ve vzduchu kolem fotky v úvodu – pevně daná náhoda, ať se při buildu nemění.
@@ -69,7 +68,7 @@ const dust = Array.from({ length: 46 }, (_, i) => {
     x: (50 + Math.cos(a) * r * 100).toFixed(1),
     y: (52 + Math.sin(a) * r * 92).toFixed(1),
     s: (2.5 + rnd() * 6.5).toFixed(1),
-    c: i % 5 === 0 ? 'var(--coral)' : i % 3 === 0 ? 'var(--pigment)' : 'var(--cocoa)',
+    c: i % 5 === 0 ? 'var(--coral)' : i % 3 === 0 ? 'var(--graphite)' : 'var(--ink)',
     o: (0.35 + rnd() * 0.6).toFixed(2),
     t: (9 + rnd() * 10).toFixed(1),
     d: (-rnd() * 18).toFixed(1),
@@ -187,7 +186,6 @@ const posts = [
         </ol>
         <div class="team" data-reveal>
           <p><strong>Michaela Benešová</strong> kosmetička a&nbsp;vizážistka, víc než deset let praxe</p>
-          <p><strong>Monika Vratná</strong> pedikérka, suchá pedikúra a&nbsp;péče o&nbsp;nohy</p>
         </div>
         <a class="txt-link" href="/o-mne" data-reveal style="--i: 1">Více o&nbsp;nás</a>
       </div>
@@ -358,7 +356,7 @@ const posts = [
   /* =========== úvod =========== */
   .hero { overflow-x: clip; padding-block: clamp(16px, 2vw, 48px) clamp(72px, 7vw, 160px); }
   .hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(40px, 5vw, 120px); align-items: center; min-height: min(calc(100svh - 84px), 1100px); }
-  .hero__brow { width: min(100%, clamp(300px, 34vw, 860px)); margin: 0 0 clamp(4px, .6vw, 16px) -.4%; color: var(--cocoa); }
+  .hero__brow { width: min(100%, clamp(300px, 34vw, 860px)); margin: 0 0 clamp(4px, .6vw, 16px) -.4%; color: var(--ink); }
   @media (prefers-reduced-motion: no-preference) {
     .hero__brow :global(svg) {
       -webkit-mask-image: linear-gradient(90deg, #000 42%, transparent 58%); mask-image: linear-gradient(90deg, #000 42%, transparent 58%);
@@ -370,9 +368,9 @@ const posts = [
   @keyframes powder { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
   .hero__brow :global(svg) { width: 100%; height: auto; display: block; }
   h1 { font-size: var(--fs-hero); max-width: 13ch; }
-  .hero__lead { font-size: var(--fs-md); line-height: 1.5; max-width: 34ch; margin: clamp(20px, 2vw, 44px) 0 clamp(28px, 2.6vw, 56px); color: var(--pigment); }
+  .hero__lead { font-size: var(--fs-md); line-height: 1.5; max-width: 34ch; margin: clamp(20px, 2vw, 44px) 0 clamp(28px, 2.6vw, 56px); color: var(--graphite); }
   .facts { display: flex; flex-wrap: wrap; gap: 20px clamp(32px, 4vw, 80px); margin-top: clamp(32px, 3.4vw, 72px); padding-top: 24px; border-top: 1px solid var(--line); font-size: var(--fs-sm); }
-  .facts dt { color: var(--pigment); }
+  .facts dt { color: var(--graphite); }
   .facts dd a { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
 
   .hero__visual { position: relative; aspect-ratio: 4 / 4.8; width: 100%; max-height: calc(100svh - 120px); justify-self: end; max-width: 860px; }
@@ -386,14 +384,14 @@ const posts = [
   /* =========== permanentní make-up =========== */
   .pmu__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 40px clamp(40px, 5vw, 120px); }
   .pmu__head { align-self: start; position: sticky; top: 120px; }
-  .pmu__head p { margin: 20px 0 24px; color: var(--pigment); max-width: 36ch; }
+  .pmu__head p { margin: 20px 0 24px; color: var(--graphite); max-width: 36ch; }
   .pmu__list { border-top: 1px solid var(--line); }
   .pmu__list li { border-bottom: 1px solid var(--line); }
   .pmu__list a { display: grid; grid-template-columns: clamp(96px, 13vw, 300px) minmax(0, 1fr); grid-template-areas: "art name" "art text"; column-gap: clamp(20px, 3vw, 64px); align-items: center; padding: clamp(24px, 2.6vw, 52px) 0; }
-  .pmu__list :global(.pmu__art) { grid-area: art; width: 100%; height: auto; color: var(--cocoa); transition: transform var(--t) var(--ease); }
+  .pmu__list :global(.pmu__art) { grid-area: art; width: 100%; height: auto; color: var(--ink); transition: transform var(--t) var(--ease); }
   .pmu__list :global(.stipple--lips) { color: var(--coral-deep); }
   .pmu__name { grid-area: name; align-self: end; font-size: var(--fs-xl); font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; line-height: 1.1; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: 7px; transition: text-decoration-color var(--t-fast); }
-  .pmu__text { grid-area: text; align-self: start; margin-top: 8px; color: var(--pigment); max-width: 48ch; }
+  .pmu__text { grid-area: text; align-self: start; margin-top: 8px; color: var(--graphite); max-width: 48ch; }
   .pmu__list a:hover .pmu__name { text-decoration-color: var(--coral); }
   .pmu__list a:hover :global(.pmu__art) { transform: translateX(8px) scale(1.04); }
   .pmu__list li { position: relative; }
@@ -407,18 +405,18 @@ const posts = [
   .pmu__fit h3 { grid-column: 1 / -1; font-size: var(--fs-md); font-variation-settings: 'opsz' 24; letter-spacing: 0; }
   .pmu__fit ul li { padding-left: 22px; position: relative; margin-bottom: 6px; }
   .pmu__fit ul li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
-  .pmu__fit p { color: var(--pigment); }
+  .pmu__fit p { color: var(--graphite); }
 
   /* =========== péče o pleť =========== */
-  .care { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); background: var(--skin); }
+  .care { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); background: var(--mist-light); }
   .care__photo { overflow: hidden; }
   .care__photo :global(img) { width: 100%; height: 100%; min-height: clamp(560px, 50vw, 1200px); object-fit: cover; object-position: 50% 72%; }
   .care__text { padding: var(--sec) max(var(--pad), calc((100vw - 1680px) / 2)) var(--sec) clamp(40px, 5vw, 120px); }
   .care__text > * { max-width: 40rem; }
   .quote { margin: clamp(24px, 2.4vw, 48px) 0; padding-left: 24px; border-left: 3px solid var(--coral); }
   .quote p { font-size: var(--fs-lg); line-height: 1.3; font-variation-settings: 'opsz' 48; letter-spacing: -0.01em; }
-  .quote footer { margin-top: 12px; font-size: var(--fs-sm); color: var(--pigment); }
-  .care__text > p { color: var(--pigment); }
+  .quote footer { margin-top: 12px; font-size: var(--fs-sm); color: var(--graphite); }
+  .care__text > p { color: var(--graphite); }
   .care__list { margin: 28px 0 32px; border-top: 1px solid var(--line); }
   .care__list li { border-bottom: 1px solid var(--line); }
   .care__list a { display: flex; justify-content: space-between; align-items: center; padding: clamp(12px, 1vw, 20px) 0; font-weight: 500; transition: padding var(--t) var(--ease); }
@@ -427,25 +425,25 @@ const posts = [
   .care__list a:hover::after { transform: scale(1); }
 
   /* =========== Karina =========== */
-  .karina { background: var(--cocoa); color: var(--on-cocoa); }
+  .karina { background: var(--ink); color: var(--on-ink); }
   .karina__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(48px, 6vw, 140px); align-items: start; }
   .karina__img { overflow: hidden; border-radius: var(--r-img); }
   .karina__img :global(img) { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 72%; }
-  .karina__photo figcaption, .studio__note { margin-top: 10px; font-size: var(--fs-xs); color: var(--on-cocoa-muted); }
+  .karina__photo figcaption, .studio__note { margin-top: 10px; font-size: var(--fs-xs); color: var(--on-ink-muted); }
   .karina__role { margin: 12px 0 24px; color: var(--sand); }
-  .karina__text > p:not(.karina__role) { color: var(--on-cocoa-muted); max-width: 52ch; }
-  .timeline { list-style: none; margin: clamp(28px, 2.6vw, 52px) 0; border-top: 1px solid rgba(244, 230, 217, .18); }
-  .timeline li { display: grid; grid-template-columns: clamp(64px, 5vw, 110px) minmax(0, 1fr); gap: 16px; padding: clamp(10px, .9vw, 18px) 0; border-bottom: 1px solid rgba(244, 230, 217, .18); }
+  .karina__text > p:not(.karina__role) { color: var(--on-ink-muted); max-width: 52ch; }
+  .timeline { list-style: none; margin: clamp(28px, 2.6vw, 52px) 0; border-top: 1px solid rgba(243, 243, 244, .18); }
+  .timeline li { display: grid; grid-template-columns: clamp(64px, 5vw, 110px) minmax(0, 1fr); gap: 16px; padding: clamp(10px, .9vw, 18px) 0; border-bottom: 1px solid rgba(243, 243, 244, .18); }
   .timeline { position: relative; }
   .timeline::after { content: ""; position: absolute; left: calc(-1 * clamp(14px, 1.6vw, 32px)); top: 0; bottom: 0; width: 2px; background: var(--coral); transform: scaleY(var(--tp, 1)); transform-origin: top; }
-  :global(.motion) .timeline li .timeline__y { color: var(--on-cocoa-muted); transition: color .5s var(--ease); }
+  :global(.motion) .timeline li .timeline__y { color: var(--on-ink-muted); transition: color .5s var(--ease); }
   :global(.motion) .timeline li:global(.on) .timeline__y { color: var(--sand); }
   .timeline__y { color: var(--sand); font-variant-numeric: tabular-nums; font-weight: 600; }
-  .timeline strong { font-weight: 600; color: var(--on-cocoa); }
-  .timeline li span:last-child { color: var(--on-cocoa-muted); }
-  .team { display: grid; gap: 10px; margin-bottom: 28px; color: var(--on-cocoa-muted); }
-  .team strong { display: block; color: var(--on-cocoa); font-weight: 600; }
-  .karina .txt-link { color: var(--on-cocoa); }
+  .timeline strong { font-weight: 600; color: var(--on-ink); }
+  .timeline li span:last-child { color: var(--on-ink-muted); }
+  .team { display: grid; gap: 10px; margin-bottom: 28px; color: var(--on-ink-muted); }
+  .team strong { display: block; color: var(--on-ink); font-weight: 600; }
+  .karina .txt-link { color: var(--on-ink); }
 
   /* =========== další služby =========== */
   .more__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(48px, 5vw, 120px); }
@@ -453,17 +451,17 @@ const posts = [
   .more__list li { border-bottom: 1px solid var(--line); }
   .more__list a { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 24px; align-items: baseline; padding: clamp(18px, 1.6vw, 32px) 0; transition: padding var(--t) var(--ease); }
   .more__name { font-size: var(--fs-lg); font-weight: 600; font-variation-settings: 'opsz' 48; letter-spacing: -0.015em; }
-  .more__text { color: var(--pigment); }
+  .more__text { color: var(--graphite); }
   .more__list a:hover { padding-left: 12px; }
   .more__list a:hover .more__name { text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 6px; }
   .more__side { display: grid; gap: 48px; align-content: start; padding-top: 12px; }
   .more__side h3 { font-size: var(--fs-md); font-variation-settings: 'opsz' 24; letter-spacing: 0; margin-bottom: 8px; }
-  .more__side p { color: var(--pigment); margin-bottom: 12px; }
+  .more__side p { color: var(--graphite); margin-bottom: 12px; }
 
   /* =========== atmosféra =========== */
   .studio__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(24px, 2.4vw, 48px); }
   .studio__h { font-size: var(--fs-xl); }
-  .studio__note { color: var(--pigment); margin: 0; }
+  .studio__note { color: var(--graphite); margin: 0; }
   .studio__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 27vw, 640px); gap: clamp(10px, 1.1vw, 24px); }
   .studio__grid > div { overflow: hidden; border-radius: var(--r-img); }
   .studio__grid :global(img) { width: 100%; height: 100%; object-fit: cover; }
@@ -473,19 +471,19 @@ const posts = [
   /* =========== blog =========== */
   .blog__grid > div { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .blog__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 3vw, 72px); margin-top: clamp(32px, 3vw, 64px); }
-  .blog__list a { display: block; padding-top: 24px; border-top: 3px solid var(--cocoa); position: relative; }
+  .blog__list a { display: block; padding-top: 24px; border-top: 3px solid var(--ink); position: relative; }
   .blog__list a::before { content: ""; position: absolute; left: 0; top: -3px; height: 3px; width: 100%; background: var(--coral); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out); }
   .blog__list a:hover::before { transform: scaleX(1); }
   .blog__list h3 { font-size: var(--fs-lg); letter-spacing: -0.015em; line-height: 1.15; font-variation-settings: 'opsz' 48; }
-  .blog__list p { margin-top: 8px; color: var(--pigment); max-width: 60ch; }
+  .blog__list p { margin-top: 8px; color: var(--graphite); max-width: 60ch; }
 
   /* =========== rezervace =========== */
   .booking { background: var(--sand); }
   .book__motto { font-size: var(--fs-hero); font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.025em; line-height: 1.02; max-width: 14ch; margin-bottom: clamp(48px, 5vw, 120px); }
   .book__motto :global(.mw) { transition: color .5s var(--ease); }
-  :global(.motion) .book__motto :global(.mw) { color: rgba(59, 39, 33, .62); } /* 3,6 : 1 na písku – velký text */
-  :global(.motion) .book__motto :global(.mw.lit) { color: var(--cocoa); }
-  .book__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr); gap: clamp(32px, 3.4vw, 80px); padding-top: 40px; border-top: 1px solid rgba(59, 39, 33, .25); }
+  :global(.motion) .book__motto :global(.mw) { color: rgba(42, 42, 44, .62); } /* 3,6 : 1 na písku – velký text */
+  :global(.motion) .book__motto :global(.mw.lit) { color: var(--ink); }
+  .book__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr); gap: clamp(32px, 3.4vw, 80px); padding-top: 40px; border-top: 1px solid rgba(42, 42, 44, .25); }
   .book__h { font-size: var(--fs-xl); margin-bottom: 14px; }
   .book__grid p { margin-bottom: 20px; max-width: 40ch; }
   .book__grid h3 { font-size: var(--fs-md); font-variation-settings: 'opsz' 24; letter-spacing: 0; margin-bottom: 10px; }
@@ -493,7 +491,7 @@ const posts = [
   .book__grid address + p { margin-bottom: 14px; }
   .book__qr :global(img) { width: clamp(110px, 8vw, 160px); height: auto; border-radius: 6px; background: #fff; padding: 6px; margin-bottom: 16px; }
   .book__qr p { font-size: var(--fs-sm); }
-  .booking .txt-link { text-decoration-color: var(--cocoa); }
+  .booking .txt-link { text-decoration-color: var(--ink); }
 
   /* =========== pohyb =========== */
   @media (prefers-reduced-motion: no-preference) {

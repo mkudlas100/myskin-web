@@ -4,17 +4,51 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/pedikura-2", "destination": "/pedikura", "permanent": true },
-    { "source": "/bricho-radiofrekvencni-pece", "destination": "/radiofrekvence", "permanent": true },
-    { "source": "/hyzde-radiofrekvencni-pece", "destination": "/radiofrekvence", "permanent": true },
-    { "source": "/paze-radiofrekvencni-pece", "destination": "/radiofrekvence", "permanent": true },
-    { "source": "/stehna-radiofrekvencni-pece", "destination": "/radiofrekvence", "permanent": true },
-    { "source": "/jak-pecovat-o-pmu", "destination": "/pudrove-oboci-den-po-dni", "permanent": true }
+    {
+      "source": "/pedikura",
+      "destination": "/kosmeticke-sluzby",
+      "permanent": true
+    },
+    {
+      "source": "/pedikura-2",
+      "destination": "/kosmeticke-sluzby",
+      "permanent": true
+    },
+    {
+      "source": "/bricho-radiofrekvencni-pece",
+      "destination": "/radiofrekvence",
+      "permanent": true
+    },
+    {
+      "source": "/hyzde-radiofrekvencni-pece",
+      "destination": "/radiofrekvence",
+      "permanent": true
+    },
+    {
+      "source": "/paze-radiofrekvencni-pece",
+      "destination": "/radiofrekvence",
+      "permanent": true
+    },
+    {
+      "source": "/stehna-radiofrekvencni-pece",
+      "destination": "/radiofrekvence",
+      "permanent": true
+    },
+    {
+      "source": "/jak-pecovat-o-pmu",
+      "destination": "/pudrove-oboci-den-po-dni",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/_astro/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }

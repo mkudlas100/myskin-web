@@ -29,7 +29,6 @@ export const menu: NavItem[] = [
       { label: 'Řasy a obočí', href: '/rasy-oboci' },
       { label: 'Líčení', href: '/liceni' },
       { label: 'Depilace', href: '/depilace' },
-      { label: 'Pedikúra', href: '/pedikura' },
     ],
   },
   { label: 'O nás', href: '/o-mne' },
@@ -45,7 +44,6 @@ export const footerServices = [
   { label: 'Řasy a obočí', href: '/rasy-oboci' },
   { label: 'Líčení', href: '/liceni' },
   { label: 'Depilace', href: '/depilace' },
-  { label: 'Pedikúra', href: '/pedikura' },
 ];
 
 export const footerMore = [

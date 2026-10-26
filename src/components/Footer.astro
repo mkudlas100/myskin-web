@@ -45,12 +45,12 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .ftr { background: var(--cocoa); color: var(--on-cocoa); padding-block: 88px 36px; font-size: var(--fs-sm); }
+  .ftr { background: var(--ink); color: var(--on-ink); padding-block: 88px 36px; font-size: var(--fs-sm); }
   .ftr__top { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 56px; }
   .ftr__brand :global(img) { width: 170px; height: auto; }
   .soc { display: flex; gap: 10px; margin-top: 28px; }
-  .soc a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(244, 230, 217, .3); transition: background var(--t-fast), color var(--t-fast); }
-  .soc a:hover { background: var(--sand); color: var(--cocoa); }
+  .soc a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(243, 243, 244, .3); transition: background var(--t-fast), color var(--t-fast); }
+  .soc a:hover { background: var(--sand); color: var(--ink); }
   .soc :global(svg) { width: 20px; height: 20px; }
   .f-title { font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0; color: var(--sand); margin-bottom: 14px; font-variation-settings: 'opsz' 14; line-height: 1.4; }
   .ftr__col li a { display: inline-block; padding: 5px 0; }
@@ -59,7 +59,7 @@ const year = new Date().getFullYear();
   .ftr__col p { margin-top: 12px; }
   .ftr__col a { display: inline-block; padding: 3px 0; }
   .u { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
-  .legal { border-top: 1px solid rgba(244, 230, 217, .18); padding-top: 28px; font-size: var(--fs-xs); color: var(--on-cocoa-muted); display: grid; gap: 6px; }
+  .legal { border-top: 1px solid rgba(243, 243, 244, .18); padding-top: 28px; font-size: var(--fs-xs); color: var(--on-ink-muted); display: grid; gap: 6px; }
   .legal ul { display: flex; flex-wrap: wrap; gap: 0 22px; }
   .legal a { display: inline-block; padding: 6px 0; }
   @media (max-width: 960px) { .ftr__top { grid-template-columns: 1fr 1fr; } }

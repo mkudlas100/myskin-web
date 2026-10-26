@@ -1,23 +1,25 @@
 /* =========================================================
    MySkin – úvod v2 (experiment). Záměr: docs/design-uvod-v2.md
-   Kakao = pigment tmavě hnědé barvy, písek = barva značky,
+   Šedé tóny, písek = barva značky,
    korál jen na tečky a dekor (na bílé nemá kontrast pro text).
    ========================================================= */
 :root {
-  --cocoa: #3B2721;      /* text, tmavý pás */
-  --pigment: #6E4E43;    /* vedlejší text */
-  --sand: #EFD19F;       /* značka, rezervace */
-  --skin: #F5E4DC;       /* pás péče o pleť */
-  --coral: #FF9C86;      /* tečky rtů, dekor – nikdy text */
+  /* Šedá paleta (26. 10. 2026): tmavá a světlá šedá místo hnědé, písek a korál z loga zůstávají. */
+  --ink: #2A2A2C;        /* text, tmavý pás */
+  --graphite: #57585C;   /* vedlejší text (7 : 1 na bílé) */
+  --mist: #D7D7D9;       /* šedá ze značky – linky, plochy */
+  --mist-light: #EEEEEF; /* světle šedý pás */
+  --sand: #EFD19F;       /* značka, rezervace, tvar v úvodu */
+  --coral: #FF9C86;      /* tečky, dekor – nikdy text */
   --coral-deep: #E8705A; /* tečky rtů na bílé */
   --paper: #FFFFFF;
-  --line: rgba(59, 39, 33, .16);
-  --on-cocoa: #F4E6D9;
-  --on-cocoa-muted: #CDB7A8;
+  --line: rgba(42, 42, 44, .14);
+  --on-ink: #F3F3F4;
+  --on-ink-muted: #B9BABE;
 
-  /* kompatibilita se sdílenými šablonami (404 apod.) */
-  --ink: var(--cocoa); --muted: var(--pigment); --brown: var(--cocoa); --brown-deep: var(--cocoa);
-  --sand-soft: #FBF1E0; --night: var(--cocoa); --on-night-muted: var(--on-cocoa-muted);
+  /* kompatibilita se staršími šablonami */
+  --muted: var(--graphite); --brown: var(--ink); --brown-deep: var(--ink);
+  --sand-soft: #FBF1E0; --night: var(--ink); --on-night-muted: var(--on-ink-muted);
 
   --font: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
   /* plynulá stupnice: mobil 320 px → velký monitor 2560 px (na 1440 px zhruba 15 / 17 / 22 / 31 / 43 / 60 / 80) */
@@ -32,7 +34,7 @@
   --pad: clamp(20px, 4vw, 88px);
 
   --r-pill: 100px; --r-img: 6px;
-  --sh-2: 0 24px 48px -24px rgba(59, 39, 33, .35);
+  --sh-2: 0 24px 48px -24px rgba(42, 42, 44, .35);
   --sec: clamp(72px, 6vw + 46px, 210px);
   --ease: cubic-bezier(.22, .61, .36, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
@@ -44,7 +46,7 @@
 html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font); font-optical-sizing: auto; font-variation-settings: 'opsz' 14;
-  color: var(--cocoa); background: var(--paper); font-size: var(--fs-base); line-height: 1.6;
+  color: var(--ink); background: var(--paper); font-size: var(--fs-base); line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
@@ -58,21 +60,21 @@ p { text-wrap: pretty; }
 .center { text-align: center; }
 
 /* přístupnost */
-:focus-visible { outline: 2px solid var(--cocoa); outline-offset: 3px; border-radius: 3px; }
-.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--cocoa); color: #fff; padding: 10px 18px; border-radius: var(--r-pill); font-weight: 600; font-size: var(--fs-sm); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: var(--r-pill); font-weight: 600; font-size: var(--fs-sm); }
 .skip:focus { top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .h2 { font-size: var(--fs-2xl); }
-.lead { max-width: 60ch; margin: 18px auto 0; color: var(--pigment); }
+.lead { max-width: 60ch; margin: 18px auto 0; color: var(--graphite); }
 .txt-link { font-weight: 600; text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-decoration-color var(--t-fast); }
 .txt-link:hover { text-decoration-color: currentColor; }
 
-/* tlačítka: plné kakao, obrysové kakao */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: clamp(48px, 1.2vw + 34px, 64px); padding: 12px clamp(22px, 1.2vw + 12px, 38px); border-radius: var(--r-pill); border: 1.5px solid var(--cocoa); color: var(--cocoa); background: transparent; font: 600 var(--fs-base)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
-.btn:hover { background: var(--cocoa); color: #fff; }
-.btn--primary { background: var(--cocoa); color: #fff; }
-.btn--primary:hover { background: var(--pigment); border-color: var(--pigment); }
+/* tlačítka: plné tmavě šedé, obrysové tmavě šedé */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: clamp(48px, 1.2vw + 34px, 64px); padding: 12px clamp(22px, 1.2vw + 12px, 38px); border-radius: var(--r-pill); border: 1.5px solid var(--ink); color: var(--ink); background: transparent; font: 600 var(--fs-base)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.btn:hover { background: var(--ink); color: #fff; }
+.btn--primary { background: var(--ink); color: #fff; }
+.btn--primary:hover { background: var(--graphite); border-color: var(--graphite); }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---------- pohyb ----------

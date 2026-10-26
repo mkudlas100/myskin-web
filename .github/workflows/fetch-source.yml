@@ -1,0 +1,32 @@
+name: Stažení obsahu současného webu
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/source-urls.txt
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stáhnout HTML stránek z myskin.cz
+        run: |
+          mkdir -p data/zdroj/html
+          while read -r u; do
+            [ -z "$u" ] && continue
+            name=$(echo "$u" | sed 's#^/##; s#/#_#g'); [ -z "$name" ] && name=index
+            curl -sSL --retry 3 -A "Mozilla/5.0 (MySkin migrace)" "https://www.myskin.cz$u" -o "data/zdroj/html/$name.html" || echo "chyba $u"
+            sleep 1
+          done < scripts/source-urls.txt
+          ls -la data/zdroj/html | head -80
+      - name: Uložit do repozitáře
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/zdroj/html
+          if git diff --cached --quiet; then echo "Nic nového."; else git commit -m "Obsah současného webu (automaticky staženo)"; git push; fi
