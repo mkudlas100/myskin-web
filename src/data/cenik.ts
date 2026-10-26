@@ -77,7 +77,21 @@ export const cenik: PriceGroup[] = [
       { name: 'Fitness procedura (brazilská depilace a podpaží)', price: 1600, href: '/depilace' },
     ],
   },
+  {
+    id: 'kurzy', title: 'Kurzy', href: '/kurzy-a-workshopy',
+    items: [
+      { name: 'Mini kurz líčení', price: 2500, duration: '3 hodiny', note: 'skupina do 3 osob', href: '/mini-kurz-liceni' },
+      { name: 'Refresh kurz pro kosmetičky', price: 18000, duration: '3 dny', note: 'individuálně, s certifikátem MySkin', href: '/refresh-kurz-pro-kosmetiky' },
+    ],
+  },
 ];
 
 export const kc = (n: number) => `${n.toLocaleString('cs-CZ').replace(/ /g, ' ')} Kč`;
 export const pricesFor = (href: string) => cenik.flatMap((g) => g.items).filter((i) => i.href?.split('#')[0] === href);
+
+/** Nejnižší cena služby bez korekcí (korekce není samostatná služba). */
+export const fromPrice = (items: PriceItem[]) => {
+  const base = items.filter((i) => !/^Korekce/i.test(i.name));
+  const list = (base.length ? base : items).map((i) => i.price);
+  return list.length ? Math.min(...list) : 0;
+};

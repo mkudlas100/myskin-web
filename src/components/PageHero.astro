@@ -1,0 +1,110 @@
+---
+// Úvodní blok podstránky: drobečky, nadpis (slova vyjedou), perex, tlačítka, fakta
+// a vpravo fotka v pískovém tvaru, který pomalu mění obrys; u PMU navíc ilustrace z teček.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Breadcrumbs from './Breadcrumbs.astro';
+import Stipple from './Stipple.astro';
+import { salon } from '../data/salon';
+
+interface Props {
+  crumbs: { name: string; href: string }[];
+  h1: string;
+  perex?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  stipple?: 'brow' | 'lips' | 'liner';
+  facts?: { label: string; value: string }[];
+  ctas?: boolean;
+  secondary?: { label: string; href: string };
+  shape?: 'blob' | 'frame';
+}
+const { crumbs, h1, perex, image, imageAlt = '', stipple, facts = [], ctas = true, secondary = { label: 'Ceník', href: '/cenik' }, shape = 'blob' } = Astro.props;
+
+// tečky pigmentu kolem fotky – náhoda odvozená z nadpisu, aby se při buildu neměnila
+let seed = [...h1].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 2147483647, 7) || 7;
+const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+const dust = Array.from({ length: 22 }, (_, i) => {
+  const a = rnd() * Math.PI * 2, r = 0.44 + rnd() * 0.12;
+  return { x: (50 + Math.cos(a) * r * 100).toFixed(1), y: (50 + Math.sin(a) * r * 96).toFixed(1), s: (2.5 + rnd() * 6).toFixed(1), c: i % 5 === 0 ? 'var(--coral)' : i % 3 === 0 ? 'var(--graphite)' : 'var(--ink)', o: (0.35 + rnd() * 0.55).toFixed(2), t: (9 + rnd() * 9).toFixed(1), d: (-rnd() * 16).toFixed(1), dx: ((rnd() - 0.5) * 30).toFixed(0), dy: ((rnd() - 0.5) * 30).toFixed(0) };
+});
+---
+<section class:list={['ph', !image && 'ph--text']} data-depth-root>
+  <div class="wrap ph__grid">
+    <div class="ph__text">
+      <Breadcrumbs items={crumbs} />
+      <h1 class="split" style="--d: 150ms">{h1}</h1>
+      {perex && <p class="ph__perex" data-reveal style="--i: 4">{perex}</p>}
+      <slot name="meta" />
+      {ctas && (
+        <div class="btns" data-reveal style="--i: 5">
+          <a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a>
+          <a class="btn" href={secondary.href}>{secondary.label}</a>
+        </div>
+      )}
+      {facts.length > 0 && (
+        <dl class="ph__facts" data-reveal style="--i: 6">
+          {facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+        </dl>
+      )}
+    </div>
+    {image && (
+      <figure class:list={['ph__visual', `ph__visual--${shape}`]}>
+        <div class="ph__shape" data-depth="4">
+          <Image src={image} widths={[420, 640, 900, 1200, 1500]} sizes="(max-width: 860px) 92vw, 44vw" alt={imageAlt} loading="eager" fetchpriority="high" />
+        </div>
+        <div class="ph__dust" data-depth="-14" aria-hidden="true">
+          {dust.map((d) => <i style={`--x:${d.x}%;--y:${d.y}%;--s:${d.s}px;--c:${d.c};--o:${d.o};--t:${d.t}s;--d:${d.d}s;--dx:${d.dx}px;--dy:${d.dy}px`}></i>)}
+        </div>
+        {stipple && <div class="ph__stipple" data-depth="10"><Stipple shape={stipple} /></div>}
+      </figure>
+    )}
+  </div>
+</section>
+
+<style>
+  .ph { padding-block: clamp(16px, 2vw, 40px) clamp(56px, 6vw, 140px); overflow-x: clip; }
+  .ph__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(40px, 5vw, 120px); align-items: center; }
+  .ph--text .ph__grid { grid-template-columns: minmax(0, 1fr); }
+  h1 { font-size: var(--fs-hero); margin-top: clamp(16px, 2vw, 40px); max-width: 15ch; }
+  .ph--text h1 { max-width: 20ch; }
+  .ph__perex { font-size: var(--fs-md); line-height: 1.5; color: var(--graphite); max-width: 46ch; margin: clamp(20px, 2vw, 40px) 0 clamp(24px, 2.4vw, 48px); }
+  .ph__facts { display: flex; flex-wrap: wrap; gap: 18px clamp(28px, 3.4vw, 72px); margin-top: clamp(28px, 3vw, 64px); padding-top: 22px; border-top: 1px solid var(--line); font-size: var(--fs-sm); }
+  .ph__facts dt { color: var(--graphite); }
+  .ph__facts dd { font-weight: 600; font-size: var(--fs-md); }
+
+  .ph__visual { position: relative; width: 100%; max-width: 760px; justify-self: end; aspect-ratio: 4 / 4.6; }
+  .ph__shape { position: absolute; inset: 0; overflow: hidden; background: var(--sand); }
+  .ph__visual--blob .ph__shape { border-radius: 46% 54% 42% 58% / 52% 40% 60% 48%; }
+  .ph__visual--frame .ph__shape { border-radius: var(--r-img); }
+  .ph__shape :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ph__dust { position: absolute; inset: -6%; pointer-events: none; }
+  .ph__dust i { position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); border-radius: 50%; background: var(--c); opacity: var(--o); }
+  .ph__stipple { position: absolute; left: -12%; bottom: 6%; width: 62%; color: var(--ink); filter: drop-shadow(0 0 18px rgba(255, 255, 255, .9)); }
+  .ph__stipple :global(.stipple--lips) { color: var(--coral-deep); }
+  .ph__stipple :global(svg) { width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ph__visual--blob .ph__shape { animation: morph 16s ease-in-out infinite alternate; }
+    .ph__dust i { animation: drift var(--t) var(--d) ease-in-out infinite alternate; }
+    :global(.motion) .ph__visual { animation: rise 1.4s .2s var(--ease-out) both; }
+    :global(.motion) .ph__shape :global(img) { animation: zoom 2.2s .2s var(--ease-out) both; }
+    .ph__stipple :global(svg) {
+      -webkit-mask-image: linear-gradient(90deg, #000 42%, transparent 58%); mask-image: linear-gradient(90deg, #000 42%, transparent 58%);
+      -webkit-mask-size: 280% 100%; mask-size: 280% 100%; -webkit-mask-position: 100% 0; mask-position: 100% 0;
+      animation: powder 2.2s .9s cubic-bezier(.45, .05, .25, 1) forwards;
+    }
+  }
+  @keyframes morph { 0% { border-radius: 46% 54% 42% 58% / 52% 40% 60% 48%; } 50% { border-radius: 58% 42% 55% 45% / 44% 56% 44% 56%; } 100% { border-radius: 40% 60% 48% 52% / 58% 46% 54% 42%; } }
+  @keyframes drift { to { transform: translate(var(--dx), var(--dy)); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(40px) scale(.96); } }
+  @keyframes zoom { from { transform: scale(1.14); } }
+  @keyframes powder { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
+  @media (max-width: 860px) {
+    .ph__grid { grid-template-columns: minmax(0, 1fr); }
+    .ph__visual { justify-self: center; width: min(100%, 480px); }
+    .ph__stipple { left: -4%; width: 58%; }
+  }
+  @media (max-width: 360px) { .btns .btn { flex: 1 1 100%; } }
+</style>

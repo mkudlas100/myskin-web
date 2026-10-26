@@ -1,0 +1,21 @@
+URL: /hledala-jsem-az-jsem-nasla
+TITLE: Hledala jsem, až jsem našla! | Myskin Blog | Benešov
+DESC: Trvalo mi nějakou dobu než jsem vybrala kosmetiku,která bude splňovat moje požadavky. Kosmetiku,která bude mít 100% přírodní složení bez chemie a při kontaktu s ní na vás dýchne omamná vůně přírody.
+PUBLISHED: 
+MODIFIED: 
+LINKS: /o-mne
+
+Tipy triky
+# Hledala jsem, až jsem našla !
+Trvalo mi nějakou dobu než jsem vybrala kosmetiku,která bude splňovat moje požadavky. Kosmetiku,která bude mít 100% přírodní složení bez chemie a při kontaktu s ní na vás dýchne omamná vůně přírody. To že je francouzská s téměř 50.letou historií mě jen utvrdilo v tom,že jsem našla tu pravou. Tady je pár informací proč jsem se rozhodla právě pro kosmetiku Phyt's
+V dnešní době se stále více lidí snaží přejít na zdravější životní styl a zahrnout do svého každodenního života přírodní produkty. To samé platí i pro kosmetiku. Lidé se stále více zajímají o kosmetiku s přírodními složkami, která nejenže poskytuje účinnou péči, ale zároveň neobsahuje žádné škodlivé látky pro naše tělo. Kosmetika s 100% přírodními složkami nabízí několik výhod. Jednou z nich je to, že jsou tyto produkty šetrné k naší pokožce a přinášejí dlouhodobé benefity pro zdraví. Dále jsou tyto produkty šetrné k životnímu prostředí, což je velmi důležité, protože to znamená, že po použití se nevracejí zpět do přírody a neznečišťují ji. Kosmetika, která neobsahuje konzervační látky, syntetická barviva, parabeny, silikony, bisfenol A, ftaláty, PEG, GMO a fenoxyethanol, je ideální volbou pro každého, kdo chce být zdravý a krásný. Tyto škodlivé látky se totiž často používají v kosmetice, ale výrobci přírodní kosmetiky je vylučují a nahrazují přírodními složkami, které poskytují stejnou účinnost. Kosmetika s přírodními složkami je také ideální pro vegany a zastánce ochrany zvířat, protože nebyla testována na zvířatech. Pokud je výrobce certifikovaný jako cruelty-free, můžete být jisti, že produkt nebyl testován na zvířatech. Pro profesionální využití je ideální volbou kosmetika balená ve speciálních skleněných ampulkách. Tyto ampulky zaručují, že kosmetika se bude používat vždy čerstvá a bez syntetických složek. Vysoký obsah účinných látek v těchto produktech poskytuje kvalitní a efektivní péči
+V dnešní době se stále více lidí snaží přejít na zdravější životní styl a zahrnout do svého každodenního života přírodní produkty. To samé platí i pro kosmetiku. Lidé se stále více zajímají o kosmetiku s přírodními složkami, která nejenže poskytuje účinnou péči, ale zároveň neobsahuje žádné škodlivé látky pro naše tělo.
+Kosmetika s 100% přírodními složkami nabízí několik výhod. Jednou z nich je to, že jsou tyto produkty šetrné k naší pokožce a přinášejí dlouhodobé benefity pro zdraví. Dále jsou tyto produkty šetrné k životnímu prostředí, což je velmi důležité, protože to znamená, že po použití se nevracejí zpět do přírody a neznečišťují ji.
+Kosmetika, která neobsahuje konzervační látky, syntetická barviva, parabeny, silikony, bisfenol A, ftaláty, PEG, GMO a fenoxyethanol, je ideální volbou pro každého, kdo chce být zdravý a krásný. Tyto škodlivé látky se totiž často používají v kosmetice, ale výrobci přírodní kosmetiky je vylučují a nahrazují přírodními složkami, které poskytují stejnou účinnost.
+Kosmetika s přírodními složkami je také ideální pro vegany a zastánce ochrany zvířat, protože nebyla testována na zvířatech. Pokud je výrobce certifikovaný jako cruelty-free, můžete být jisti, že produkt nebyl testován na zvířatech.
+Pro profesionální využití je ideální volbou kosmetika balená ve speciálních skleněných ampulkách. Tyto ampulky zaručují, že kosmetika se bude používat vždy čerstvá a bez syntetických složek. Vysoký obsah účinných látek v těchto produktech poskytuje kvalitní a efektivní péči
+Karina Kudličková
+Email: karina @myskin.cz
+Telefon: +420 724 918 642
+O autorovi
+Jsem kosmetička a specialistka na permanentní make-up s více než 15 lety zkušeností. Moje profesní cesta vedla přes kosmetické korporace a kliniky až k založení vlastního salonu MySkin v Benešově. Specializuji se na permanentní make-up, profesionální péči o pleť a přírodní kosmetiku. Věřím v sílu přírody a v to, že krása začíná zdravou pletí. Na blogu se s vámi dělím o své zkušenosti, rady a tipy, které vám pomohou pečovat o sebe s jistotou a radostí.

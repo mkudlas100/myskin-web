@@ -1,0 +1,58 @@
+---
+// Rezervační pás – stejný na všech stránkách. Motto se při scrollu rozsvěcuje (skript v Base).
+import { Image } from 'astro:assets';
+import qr from '../assets/img/noona-qr.webp';
+import { salon } from '../data/salon';
+interface Props { heading?: string; text?: string }
+const { heading = 'Objednejte se', text = 'Termín si vyberete online v rezervačním systému Noona, nebo mi zavolejte.' } = Astro.props;
+---
+<section class="sec booking" id="rezervace" aria-labelledby="h-book">
+  <div class="wrap">
+    <p class="book__motto" id="motto">Krása by měla začít v&nbsp;srdci a&nbsp;duši.</p>
+    <div class="book__grid">
+      <div data-reveal>
+        <h2 id="h-book" class="book__h">{heading}</h2>
+        <p>{text}</p>
+        <div class="btns">
+          <a class="btn btn--primary" href={salon.booking}>Rezervovat online</a>
+          <a class="btn" href={`tel:${salon.phoneHref}`}>{salon.phone}</a>
+        </div>
+      </div>
+      <div class="book__qr" data-reveal style="--i: 1">
+        <a href={salon.noonaQr}><Image src={qr} alt="QR kód pro stažení aplikace Noona" width={120} height={120} /></a>
+        <p>V&nbsp;aplikaci Noona budete mít své termíny v&nbsp;telefonu. Stačí naskenovat kód.</p>
+      </div>
+      <div data-reveal style="--i: 2">
+        <h3>Kde nás najdete</h3>
+        <address>{salon.street}<br />{salon.postalCode} {salon.city}</address>
+        <p>{salon.hours}</p>
+        <a class="txt-link" href={salon.map}>Otevřít v&nbsp;Mapách Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking { background: var(--sand); }
+  .book__motto { font-size: var(--fs-hero); font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.025em; line-height: 1.02; max-width: 14ch; margin-bottom: clamp(48px, 5vw, 120px); }
+  .book__motto :global(.mw) { transition: color .5s var(--ease); }
+  :global(.motion) .book__motto :global(.mw) { color: rgba(42, 42, 44, .62); } /* 3,6 : 1 na písku – velký text */
+  :global(.motion) .book__motto :global(.mw.lit) { color: var(--ink); }
+  .book__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr); gap: clamp(32px, 3.4vw, 80px); padding-top: 40px; border-top: 1px solid rgba(42, 42, 44, .25); }
+  .book__h { font-size: var(--fs-xl); margin-bottom: 14px; }
+  .book__grid p { margin-bottom: 20px; max-width: 40ch; }
+  .book__grid h3 { font-size: var(--fs-md); font-variation-settings: 'opsz' 24; letter-spacing: 0; margin-bottom: 10px; }
+  address { font-style: normal; margin-bottom: 8px; }
+  .book__grid address + p { margin-bottom: 14px; }
+  .book__qr :global(img) { width: clamp(110px, 8vw, 160px); height: auto; border-radius: 6px; background: #fff; padding: 6px; margin-bottom: 16px; }
+  .book__qr p { font-size: var(--fs-sm); }
+  .booking .txt-link { text-decoration-color: var(--ink); }
+  @media (max-width: 860px) {
+    .book__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .book__grid > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .book__grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .book__qr { display: none; }
+  }
+</style>

@@ -2,13 +2,13 @@
 import { Image, Picture, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Stipple from '../components/Stipple.astro';
+import Booking from '../components/Booking.astro';
 import { salon } from '../data/salon';
 import { cz } from '../lib/cz';
 import { salonNode, ownerNode } from '../lib/schema';
 
 import logo from '../assets/img/logo.svg';
 import cekarna from '../assets/img/salon-cekarna.jpg'; // jen pro strukturovaná data (skutečné studio)
-import qr from '../assets/img/noona-qr.webp';
 // Ilustrační fotky z Unsplash (scripts/stock.json) – dočasně, než budou vlastní fotky.
 import vyrez from '../assets/img/stock/uvod-vyrez.png';
 import pece from '../assets/img/stock/k-pece-4.jpg';
@@ -86,7 +86,7 @@ const posts = [
 <Base title={title} description={description} schema={schema}>
 
   <!-- Úvod: obočí z teček pigmentu, nadpis, portrét na pískovém tvaru -->
-  <section class="hero" aria-labelledby="h-uvod">
+  <section class="hero" data-depth-root aria-labelledby="h-uvod">
     <div class="wrap hero__grid">
       <div class="hero__text">
         <div class="hero__brow" data-depth="6"><Stipple shape="brow" /></div>
@@ -125,7 +125,7 @@ const posts = [
         <p data-reveal style="--i: 2">Pigment ukládám jemnými jehličkami do svrchní vrstvy pokožky. Cílem je přirozený výsledek, který ráno nemusíte dokreslovat.</p>
         <a class="txt-link" href="/permanentni-make-up" data-reveal style="--i: 3">Vše o&nbsp;permanentním make-upu</a>
       </div>
-      <ul class="pmu__list">
+      <ul class="pmu__list peek-list">
         {pmu.map((p, i) => (
           <li data-reveal style={`--i: ${i}`}>
             <a href={p.href}>
@@ -181,7 +181,7 @@ const posts = [
         <h2 id="h-karina" class="h2 split">Karina Kudličková</h2>
         <p class="karina__role" data-reveal style="--i: 2">Kosmetička a&nbsp;specialistka na permanentní make-up</p>
         <p data-reveal style="--i: 3">S&nbsp;kosmetikou pracuji přes patnáct let. Začínala jsem ve firmě Yves Rocher, prošla klinikou estetické medicíny a&nbsp;dnes se ve vlastním studiu věnuji hlavně permanentnímu make-upu a&nbsp;problematické pleti.</p>
-        <ol class="timeline" id="timeline" aria-label="Vzdělání a praxe">
+        <ol class="timeline js-progress" aria-label="Vzdělání a praxe">
           {timeline.map((t, i) => <li data-reveal style={`--i: ${i}`}><span class="timeline__y">{t.y}</span><span><strong>{t.t}</strong> {cz(t.d)}</span></li>)}
         </ol>
         <div class="team" data-reveal>
@@ -245,112 +245,10 @@ const posts = [
     </div>
   </section>
 
-  <!-- Rezervace -->
-  <section class="sec booking" id="rezervace" aria-labelledby="h-book">
-    <div class="wrap">
-      <p class="book__motto" id="motto">Krása by měla začít v&nbsp;srdci a&nbsp;duši.</p>
-      <div class="book__grid">
-        <div data-reveal>
-          <h2 id="h-book" class="book__h">Objednejte se</h2>
-          <p>Termín si vyberete online v&nbsp;rezervačním systému Noona, nebo mi zavolejte.</p>
-          <div class="btns">
-            <a class="btn btn--primary" href={salon.booking}>Rezervovat online</a>
-            <a class="btn" href={`tel:${salon.phoneHref}`}>{salon.phone}</a>
-          </div>
-        </div>
-        <div class="book__qr" data-reveal style="--i: 1">
-          <a href={salon.noonaQr}><Image src={qr} alt="QR kód pro stažení aplikace Noona" width={120} height={120} /></a>
-          <p>V&nbsp;aplikaci Noona budete mít své termíny v&nbsp;telefonu. Stačí naskenovat kód.</p>
-        </div>
-        <div data-reveal style="--i: 2">
-          <h3>Kde nás najdete</h3>
-          <address>{salon.street}<br />{salon.postalCode} {salon.city}</address>
-          <p>{salon.hours}</p>
-          <a class="txt-link" href={salon.map}>Otevřít v&nbsp;Mapách Google</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Booking />
 </Base>
 
-<script>
-  // Pohyb úvodní stránky. Vše vypnuto při prefers-reduced-motion (třída .motion chybí).
-  const root = document.documentElement;
-  if (root.classList.contains('motion')) {
-    // 1) Úvod: vrstvy reagují na pohyb myši (jen přesné ukazatele, ne dotyk).
-    const hero = document.querySelector<HTMLElement>('.hero');
-    const layers = Array.from(document.querySelectorAll<HTMLElement>('.hero [data-depth]'));
-    if (hero && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
-      const step = () => {
-        cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-        layers.forEach((l) => { const d = Number(l.dataset.depth); l.style.translate = `${(cx * d).toFixed(2)}px ${(cy * d).toFixed(2)}px`; });
-        raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.001 ? requestAnimationFrame(step) : 0;
-      };
-      hero.addEventListener('pointermove', (e) => {
-        const r = hero.getBoundingClientRect();
-        tx = (e.clientX - r.left) / r.width - 0.5; ty = (e.clientY - r.top) / r.height - 0.5;
-        if (!raf) raf = requestAnimationFrame(step);
-      });
-      hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(step); });
-    }
 
-    // 1b) Náhled fotky u služeb PMU sleduje ukazatel (jen myš).
-    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      document.querySelectorAll<HTMLElement>('.pmu__list a').forEach((a) => {
-        let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
-        const step = () => {
-          cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
-          a.style.setProperty('--mx', `${cx.toFixed(1)}px`); a.style.setProperty('--my', `${cy.toFixed(1)}px`);
-          raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.3 ? requestAnimationFrame(step) : 0;
-        };
-        a.addEventListener('pointerenter', (e) => { const r = a.getBoundingClientRect(); cx = tx = e.clientX - r.left; cy = ty = e.clientY - r.top; step(); });
-        a.addEventListener('pointermove', (e) => { const r = a.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; if (!raf) raf = requestAnimationFrame(step); });
-      });
-    }
-
-    // 2) Paralaxa fotek při scrollu + 3) motto se rozsvěcuje slovo po slovu.
-    const par = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
-    const motto = document.getElementById('motto');
-    let words: HTMLElement[] = [];
-    if (motto) {
-      const text = motto.textContent || '';
-      motto.textContent = '';
-      const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = text;
-      const vis = document.createElement('span'); vis.setAttribute('aria-hidden', 'true');
-      text.split(' ').forEach((w, i) => { if (i) vis.append(' '); const s = document.createElement('span'); s.className = 'mw'; s.textContent = w; vis.append(s); });
-      motto.append(sr, vis);
-      words = Array.from(motto.querySelectorAll<HTMLElement>('.mw'));
-    }
-    let ticking = false;
-    const onScroll = () => {
-      const vh = innerHeight;
-      par.forEach((el) => {
-        const r = el.parentElement!.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > vh + 100) return;
-        const p = (r.top + r.height / 2 - vh / 2) / vh; // -1 … 1
-        el.style.translate = `0 ${(p * Number(el.dataset.parallax) * -100).toFixed(2)}%`;
-      });
-      const tl = document.getElementById('timeline');
-      if (tl) {
-        const r = tl.getBoundingClientRect();
-        const tp = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / r.height));
-        tl.style.setProperty('--tp', tp.toFixed(3));
-        tl.querySelectorAll('li').forEach((li, i, all) => li.classList.toggle('on', tp >= (i + 0.5) / all.length));
-      }
-      if (motto && words.length) {
-        const r = motto.getBoundingClientRect();
-        const prog = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.5)));
-        const lit = Math.round(prog * words.length);
-        words.forEach((w, i) => w.classList.toggle('lit', i < lit));
-      }
-      ticking = false;
-    };
-    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-    addEventListener('resize', onScroll);
-    onScroll();
-  }
-</script>
 
 <style>
   /* =========== úvod =========== */
@@ -477,22 +375,6 @@ const posts = [
   .blog__list h3 { font-size: var(--fs-lg); letter-spacing: -0.015em; line-height: 1.15; font-variation-settings: 'opsz' 48; }
   .blog__list p { margin-top: 8px; color: var(--graphite); max-width: 60ch; }
 
-  /* =========== rezervace =========== */
-  .booking { background: var(--sand); }
-  .book__motto { font-size: var(--fs-hero); font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.025em; line-height: 1.02; max-width: 14ch; margin-bottom: clamp(48px, 5vw, 120px); }
-  .book__motto :global(.mw) { transition: color .5s var(--ease); }
-  :global(.motion) .book__motto :global(.mw) { color: rgba(42, 42, 44, .62); } /* 3,6 : 1 na písku – velký text */
-  :global(.motion) .book__motto :global(.mw.lit) { color: var(--ink); }
-  .book__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr); gap: clamp(32px, 3.4vw, 80px); padding-top: 40px; border-top: 1px solid rgba(42, 42, 44, .25); }
-  .book__h { font-size: var(--fs-xl); margin-bottom: 14px; }
-  .book__grid p { margin-bottom: 20px; max-width: 40ch; }
-  .book__grid h3 { font-size: var(--fs-md); font-variation-settings: 'opsz' 24; letter-spacing: 0; margin-bottom: 10px; }
-  address { font-style: normal; margin-bottom: 8px; }
-  .book__grid address + p { margin-bottom: 14px; }
-  .book__qr :global(img) { width: clamp(110px, 8vw, 160px); height: auto; border-radius: 6px; background: #fff; padding: 6px; margin-bottom: 16px; }
-  .book__qr p { font-size: var(--fs-sm); }
-  .booking .txt-link { text-decoration-color: var(--ink); }
-
   /* =========== pohyb =========== */
   @media (prefers-reduced-motion: no-preference) {
     .hero__blob { animation: morph 16s ease-in-out infinite alternate; }
@@ -527,8 +409,6 @@ const posts = [
     .care__photo :global(img) { min-height: 0; aspect-ratio: 4 / 3.4; }
     .care__text { padding: 64px var(--pad) 72px; }
     .blog__list { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .book__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .book__grid > div:first-child { grid-column: 1 / -1; }
   }
   @media (max-width: 600px) {
     .pmu__fit { grid-template-columns: minmax(0, 1fr); }
@@ -536,8 +416,6 @@ const posts = [
     .studio__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-rows: 44vw; }
     .studio__grid .s1, .studio__grid .s4 { grid-column: 1 / -1; }
     .studio__grid .s2, .studio__grid .s3 { grid-column: span 1; }
-    .book__grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-    .book__qr { display: none; }
   }
   @media (max-width: 360px) {
     .btns .btn { flex: 1 1 100%; }

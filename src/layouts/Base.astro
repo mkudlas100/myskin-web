@@ -65,6 +65,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
     <Footer />
 
     <script>
+      import '../scripts/motion';
       // Hlavička po odscrollování, plovoucí tlačítko na mobilu, odhalení sekcí, mobilní menu.
       const hdr = document.getElementById('hdr');
       const fab = document.getElementById('fab');
@@ -83,38 +84,6 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
       };
       addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(onScroll); tick = true; } }, { passive: true });
       onScroll();
-
-      // Odhalení při scrollu: [data-reveal] a .split (slova nadpisu).
-      const splitWords = (el: Element) => {
-        if (el.querySelector('.w')) return;
-        let i = 0;
-        const walk = (node: Node) => {
-          for (const child of Array.from(node.childNodes)) {
-            if (child.nodeType === 3) {
-              const parts = (child.textContent || '').split(/([ \n\t]+)/);
-              const frag = document.createDocumentFragment();
-              for (const part of parts) {
-                if (!part) continue;
-                if (/^[ \n\t]+$/.test(part)) { frag.append(' '); continue; }
-                const w = document.createElement('span'); w.className = 'w';
-                const inner = document.createElement('span'); inner.textContent = part;
-                inner.style.setProperty('--i', String(i++));
-                w.append(inner); frag.append(w);
-              }
-              child.replaceWith(frag);
-            } else if (child.nodeType === 1) walk(child);
-          }
-        };
-        walk(el);
-      };
-      if (document.documentElement.classList.contains('motion')) {
-        (window as any).__rv = true;
-        document.querySelectorAll('.split').forEach(splitWords);
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-        document.querySelectorAll('[data-reveal], .split').forEach((el) => io.observe(el));
-      }
 
       const burger = document.getElementById('burger');
       const nav = document.getElementById('nav');

@@ -73,3 +73,53 @@ export function webPageNode(opts: { url: string; name: string; description: stri
 export function graph(nodes: object[]) {
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': nodes });
 }
+
+export function breadcrumbNode(url: string, items: { name: string; href: string }[]) {
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumbs`,
+    itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: `${SITE}${it.href === '/' ? '/' : it.href}` })),
+  };
+}
+
+export function serviceNode(opts: { url: string; name: string; description: string; image?: string; offers?: { name: string; price: number }[]; category?: string }) {
+  return {
+    '@type': 'Service',
+    '@id': `${opts.url}#service`,
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    ...(opts.image ? { image: opts.image } : {}),
+    ...(opts.category ? { category: opts.category } : {}),
+    provider: { '@id': ids.salon },
+    areaServed: { '@type': 'City', name: 'Benešov' },
+    ...(opts.offers?.length
+      ? { offers: opts.offers.map((o) => ({ '@type': 'Offer', name: o.name, price: o.price, priceCurrency: 'CZK', url: opts.url, seller: { '@id': ids.salon } })) }
+      : {}),
+  };
+}
+
+export function blogPostingNode(opts: { url: string; headline: string; description: string; image: string; published?: string; modified: string; section?: string }) {
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${opts.url}#article`,
+    headline: opts.headline,
+    description: opts.description,
+    image: opts.image,
+    ...(opts.published ? { datePublished: opts.published } : {}),
+    dateModified: opts.modified,
+    ...(opts.section ? { articleSection: opts.section } : {}),
+    inLanguage: 'cs',
+    author: { '@id': ids.owner },
+    publisher: { '@id': ids.salon },
+    mainEntityOfPage: { '@id': `${opts.url}#webpage` },
+  };
+}
+
+export function faqNode(url: string, faq: { q: string; a: string }[]) {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  };
+}

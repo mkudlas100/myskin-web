@@ -1,0 +1,22 @@
+---
+interface Props { items: { name: string; href: string }[]; tone?: 'dark' | 'light' }
+const { items, tone = 'dark' } = Astro.props;
+---
+<nav class:list={['crumbs', `crumbs--${tone}`]} aria-label="Drobečková navigace">
+  <ol>
+    {items.map((it, i) => (
+      <li>{i < items.length - 1 ? <a href={it.href}>{it.name}</a> : <span aria-current="page">{it.name}</span>}</li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .crumbs { font-size: var(--fs-xs); color: var(--graphite); }
+  .crumbs ol { display: flex; flex-wrap: wrap; gap: 4px 0; list-style: none; }
+  .crumbs li { display: flex; align-items: center; }
+  .crumbs li + li::before { content: ""; width: 5px; height: 5px; margin: 0 10px; border-radius: 50%; background: var(--coral); }
+  .crumbs a { display: inline-block; padding: 6px 0; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color var(--t-fast); }
+  .crumbs a:hover { text-decoration-color: currentColor; }
+  .crumbs span { color: var(--ink); }
+  .crumbs--light, .crumbs--light span { color: var(--on-ink); }
+</style>

@@ -52,7 +52,12 @@
     "/tetovane-oboci-ktera-metoda-je-nejlepsi",
     "/vse-co-potebujete-vedet-o-radiofrekvencni-peci",
     "/vyhody-alginatovych-masek",
-    "/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts"
+    "/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts",
+    "/jak-pecovat-o-permanentni-make-up",
+    "/laserova-epilace-vedlejsi-ucinky",
+    "/nejnovejsi-clanky",
+    "/tipy-blog",
+    "/prirodni-produkty-blog"
   ],
   "legal": [
     "/obchodni-podminky",
@@ -64,7 +69,7 @@
     "/hyzde-radiofrekvencni-pece": "/radiofrekvence",
     "/paze-radiofrekvencni-pece": "/radiofrekvence",
     "/stehna-radiofrekvencni-pece": "/radiofrekvence",
-    "/jak-pecovat-o-pmu": "/pudrove-oboci-den-po-dni",
+    "/jak-pecovat-o-pmu": "/jak-pecovat-o-permanentni-make-up",
     "/pedikura": "/kosmeticke-sluzby"
   },
   "gone": [
@@ -84,5 +89,8 @@
     "/shop/sample-sunglasses",
     "/shop/sample-black-tank",
     "/shop/sample-boardshorts"
-  ]
+  ],
+  "notes": {
+    "2026-10-26": "Nalezeny stránky mimo sitemapu (2 články, 3 rubriky blogu). Pedikúra zrušena → 301 na /kosmeticke-sluzby."
+  }
 }

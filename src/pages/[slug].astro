@@ -1,0 +1,209 @@
+---
+// Jedna šablona pro služby, články a obecné stránky z src/content/. URL = název souboru.
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import PostList from '../components/PostList.astro';
+import ServiceList from '../components/ServiceList.astro';
+import PriceTable from '../components/PriceTable.astro';
+import Booking from '../components/Booking.astro';
+import Stipple from '../components/Stipple.astro';
+import { allPosts, allServices, img, pick, postsFor, rubriky, dateCz, iso, type Sluzba, type Clanek } from '../lib/content';
+import { cenik, pricesFor, kc, cenikPlatnost, fromPrice } from '../data/cenik';
+import { breadcrumbNode, serviceNode, blogPostingNode, faqNode, ownerNode } from '../lib/schema';
+import { salon } from '../data/salon';
+import { cz } from '../lib/cz';
+
+export async function getStaticPaths() {
+  const [s, b, p] = await Promise.all([getCollection('sluzby'), getCollection('blog'), getCollection('stranky')]);
+  return [
+    ...s.map((e) => ({ params: { slug: e.id }, props: { type: 'sluzba' as const, entry: e } })),
+    ...b.map((e) => ({ params: { slug: e.id }, props: { type: 'clanek' as const, entry: e } })),
+    ...p.map((e) => ({ params: { slug: e.id }, props: { type: 'stranka' as const, entry: e } })),
+  ];
+}
+
+const { type, entry } = Astro.props as { type: 'sluzba' | 'clanek' | 'stranka'; entry: any };
+const { Content } = await render(entry);
+const url = `${salon.url}/${entry.id}`;
+const services = await allServices();
+const posts = await allPosts();
+const hubs: Record<string, { name: string; href: string }> = {
+  pmu: { name: 'Permanentní make-up', href: '/permanentni-make-up' },
+  pece: { name: 'Kosmetické služby', href: '/kosmeticke-sluzby' },
+  dalsi: { name: 'Kosmetické služby', href: '/kosmeticke-sluzby' },
+  kurz: { name: 'Kurzy a workshopy', href: '/kurzy-a-workshopy' },
+};
+
+let crumbs: { name: string; href: string }[] = [{ name: 'Úvod', href: '/' }];
+let schema: object[] = [];
+let ogImage;
+
+// ---------- služba ----------
+let svc: Sluzba | undefined, children: Sluzba[] = [], relServices: Sluzba[] = [], relPosts: Clanek[] = [], prices: any[] = [];
+if (type === 'sluzba') {
+  svc = entry as Sluzba;
+  const d = svc.data;
+  const hub = hubs[d.kind];
+  if (hub && hub.href !== `/${svc.id}`) crumbs.push(hub);
+  crumbs.push({ name: d.title, href: `/${svc.id}` });
+  children = pick(services, d.children, svc.id);
+  relServices = pick(services, d.services, svc.id);
+  const explicit = pick(posts, d.posts, svc.id);
+  relPosts = [...explicit, ...postsFor(svc.id, posts).filter((p) => !explicit.includes(p))].slice(0, 6);
+  const group = cenik.find((g) => g.id === d.prices);
+  prices = group ? group.items : pricesFor(d.prices ?? `/${svc.id}`);
+  ogImage = img(d.image);
+  const imgUrl = new URL((await getImage({ src: ogImage, width: 1200, format: 'jpg' })).src, Astro.site).href;
+  schema = [
+    serviceNode({ url, name: d.title, description: d.description, image: imgUrl, offers: prices.map((p: any) => ({ name: p.name, price: p.price })), category: hub?.name }),
+    breadcrumbNode(url, crumbs),
+    ...(d.faq.length ? [faqNode(url, d.faq)] : []),
+  ];
+}
+
+// ---------- článek ----------
+let post: Clanek | undefined, mainService: Sluzba | undefined, otherServices: Sluzba[] = [];
+if (type === 'clanek') {
+  post = entry as Clanek;
+  const d = post.data;
+  crumbs.push({ name: 'Blog', href: '/blog-myskin' });
+  if (rubriky[d.category].href !== '/blog-myskin') crumbs.push({ name: rubriky[d.category].title, href: rubriky[d.category].href });
+  crumbs.push({ name: d.title, href: `/${post.id}` });
+  const svcs = pick(services, d.services, post.id);
+  mainService = svcs[0]; otherServices = svcs.slice(1);
+  const explicit = pick(posts, d.posts, post.id);
+  const sameCat = posts.filter((p) => p.id !== post!.id && p.data.category === d.category && !explicit.includes(p));
+  relPosts = [...explicit, ...sameCat].slice(0, 3);
+  ogImage = img(d.image);
+  const imgUrl = new URL((await getImage({ src: ogImage, width: 1200, format: 'jpg' })).src, Astro.site).href;
+  schema = [
+    blogPostingNode({ url, headline: d.title, description: d.description, image: imgUrl, published: d.published ? iso(d.published) : undefined, modified: iso(d.updated), section: rubriky[d.category].title }),
+    ownerNode(),
+    breadcrumbNode(url, crumbs),
+    ...(d.faq.length ? [faqNode(url, d.faq)] : []),
+  ];
+}
+
+// ---------- obecná stránka ----------
+if (type === 'stranka') {
+  crumbs.push({ name: entry.data.title, href: `/${entry.id}` });
+  schema = [breadcrumbNode(url, crumbs)];
+}
+
+const d = entry.data;
+const from = fromPrice(prices);
+const baseCount = prices.filter((p: any) => !/^Korekce/i.test(p.name)).length;
+const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od' : 'Cena', value: kc(from) }] : []), ...d.facts] : [];
+---
+<Base title={d.seoTitle} description={d.description} ogImage={ogImage} schema={schema} pageType={type === 'clanek' ? 'WebPage' : undefined}>
+
+  {type === 'sluzba' && svc && (
+    <>
+      <PageHero crumbs={crumbs} h1={d.h1} perex={cz(d.perex)} image={img(d.image)} imageAlt={d.imageAlt} stipple={d.stipple} facts={facts} />
+      {children.length > 0 && <ServiceList services={children} heading={d.kind === 'rozcestnik' ? 'Vyberte si' : 'Co nabízím'} id="podstranky" tone="grey" />}
+      <section class="sec body">
+        <div class="wrap body__grid">
+          <article class="prose"><Content /></article>
+          {prices.length > 0 && (
+            <aside class="body__aside">
+              <div class="aside__sticky">
+                <PriceTable items={prices} heading="Cena" id="cena" note={`Ceník platí od ${cenikPlatnost}.`} />
+                <div class="btns aside__btns"><a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a><a class="btn" href="/cenik">Celý ceník</a></div>
+              </div>
+            </aside>
+          )}
+        </div>
+      </section>
+      <Faq items={d.faq} />
+      <PostList posts={relPosts} heading="Čtěte také" more={{ label: 'Všechny články', href: '/blog-myskin' }} id="clanky" />
+      <ServiceList services={relServices} heading="Mohlo by vás zajímat" id="souvisejici" />
+    </>
+  )}
+
+  {type === 'clanek' && post && (
+    <>
+      <PageHero crumbs={crumbs} h1={d.title} perex={cz(d.perex ?? d.description)} image={img(d.image)} imageAlt={d.imageAlt} ctas={false} shape="frame">
+        <p slot="meta" class="meta" data-reveal style="--i: 5">
+          <a href="/o-mne">Karina Kudličková</a>, kosmetička a&nbsp;specialistka na permanentní make-up<br />
+          {d.published && <>Vyšlo <time datetime={iso(d.published)}>{dateCz(d.published)}</time>, </>}
+          {d.published ? 'aktualizováno' : 'Aktualizováno'} <time datetime={iso(d.updated)}>{dateCz(d.updated)}</time>
+        </p>
+      </PageHero>
+      <section class="sec body body--article">
+        <div class="wrap body__grid">
+          <article class="prose"><Content /></article>
+          {mainService && (
+            <aside class="body__aside">
+              <div class="aside__sticky aside__svc" data-reveal>
+                <p class="aside__label">Služba k článku</p>
+                <a class="aside__main" href={`/${mainService.id}`}>
+                  {mainService.data.stipple && <Stipple shape={mainService.data.stipple} amount={0.45} class="aside__art" />}
+                  <span class="aside__name">{mainService.data.title}</span>
+                  <span class="aside__text">{cz(mainService.data.perex.split('. ')[0].replace(/\.$/, ''))}.</span>
+                  {fromPrice(pricesFor(`/${mainService.id}`)) > 0 && <span class="aside__price">od {kc(fromPrice(pricesFor(`/${mainService.id}`)))}</span>}
+                </a>
+                <a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a>
+                {otherServices.length > 0 && (
+                  <ul class="aside__more">{otherServices.map((s) => <li><a href={`/${s.id}`}>{s.data.title}</a></li>)}</ul>
+                )}
+              </div>
+            </aside>
+          )}
+        </div>
+        <div class="wrap author" data-reveal>
+          <div class="author__art"><Stipple shape="brow" amount={0.4} /></div>
+          <div>
+            <p class="author__name">Karina Kudličková</p>
+            <p>Kosmetička a specialistka na permanentní make-up s více než patnácti lety praxe. Prošla jsem firmou Yves Rocher i klinikou estetické medicíny, dnes ve svém studiu v&nbsp;Benešově pečuji hlavně o&nbsp;citlivou a&nbsp;problémovou pleť a&nbsp;dělám pudrové obočí, stínované rty a&nbsp;oční linky.</p>
+            <a class="txt-link" href="/o-mne">Více o&nbsp;mně</a>
+          </div>
+        </div>
+      </section>
+      <Faq items={d.faq} />
+      <PostList posts={relPosts} heading="Mohlo by vás zajímat" more={{ label: rubriky[d.category].title, href: rubriky[d.category].href }} id="clanky" />
+    </>
+  )}
+
+  {type === 'stranka' && (
+    <>
+      <PageHero crumbs={crumbs} h1={d.h1} perex={d.perex ? cz(d.perex) : undefined} ctas={false} />
+      <section class="sec body body--plain"><div class="wrap"><article class="prose"><Content /></article></div></section>
+    </>
+  )}
+
+  <Booking />
+</Base>
+
+<style>
+  .body { padding-top: clamp(24px, 2vw, 56px); }
+  .body__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(40px, 5vw, 120px); align-items: start; }
+  .body--plain .prose { max-width: 72ch; }
+  .aside__sticky { position: sticky; top: 110px; }
+  .aside__btns { margin-top: 24px; }
+  .meta { font-size: var(--fs-sm); color: var(--graphite); margin-top: 24px; line-height: 1.7; }
+  .meta a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+  .aside__svc { padding: clamp(24px, 2vw, 40px); background: var(--mist-light); border-radius: var(--r-img); display: grid; gap: 18px; }
+  .aside__label { font-size: var(--fs-xs); color: var(--graphite); display: flex; gap: 8px; align-items: center; }
+  .aside__label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+  .aside__main { display: grid; gap: 8px; }
+  .aside__main :global(.aside__art) { width: 160px; height: auto; color: var(--ink); }
+  .aside__main :global(.stipple--lips) { color: var(--coral-deep); }
+  .aside__name { font-size: var(--fs-lg); font-weight: 600; font-variation-settings: 'opsz' 48; letter-spacing: -0.015em; text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .aside__text { color: var(--graphite); }
+  .aside__price { font-weight: 600; }
+  .aside__more { border-top: 1px solid var(--line); }
+  .aside__more a { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+  .aside__more a:hover { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+  .author { display: grid; grid-template-columns: clamp(110px, 12vw, 200px) minmax(0, 1fr); gap: clamp(20px, 3vw, 56px); align-items: center; margin-top: clamp(56px, 6vw, 120px); padding-top: clamp(32px, 3vw, 56px); border-top: 1px solid var(--line); max-width: calc(1680px + 2 * var(--pad)); }
+  .author__art :global(svg) { width: 100%; height: auto; color: var(--ink); }
+  .author__name { font-size: var(--fs-lg); font-weight: 600; font-variation-settings: 'opsz' 48; margin-bottom: 8px; }
+  .author p:not(.author__name) { color: var(--graphite); max-width: 70ch; margin-bottom: 14px; }
+  @media (max-width: 960px) {
+    .body__grid { grid-template-columns: minmax(0, 1fr); }
+    .aside__sticky { position: static; }
+  }
+  @media (max-width: 600px) { .author { grid-template-columns: minmax(0, 1fr); } .author__art { width: 140px; } }
+</style>

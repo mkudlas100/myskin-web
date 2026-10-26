@@ -1,0 +1,59 @@
+---
+// Řádky služeb: název, krátký popis, cena od; na počítači se u kurzoru ukáže fotka.
+import { Image } from 'astro:assets';
+import { img, type Sluzba } from '../lib/content';
+import { pricesFor, kc, fromPrice } from '../data/cenik';
+import { cz } from '../lib/cz';
+interface Props { services: Sluzba[]; heading?: string; lead?: string; id?: string; tone?: 'light' | 'grey' }
+const { services, heading, lead, id = 'sluzby', tone = 'light' } = Astro.props;
+const from = (s: Sluzba) => {
+  const p = fromPrice(pricesFor(`/${s.id}`));
+  return p ? `od ${kc(p)}` : '';
+};
+---
+{services.length > 0 && (
+  <section class:list={['sec', 'svc', `svc--${tone}`]} aria-labelledby={heading ? `h-${id}` : undefined}>
+    <div class="wrap svc__grid">
+      {heading && (
+        <div class="svc__head">
+          <h2 id={`h-${id}`} class="h2 split">{heading}</h2>
+          {lead && <p data-reveal style="--i: 2">{cz(lead)}</p>}
+        </div>
+      )}
+      <ul class="svc__list peek-list">
+        {services.map((s, i) => (
+          <li data-reveal style={`--i: ${i % 4}`}>
+            <a href={`/${s.id}`}>
+              <span class="svc__name">{s.data.title}</span>
+              <span class="svc__text">{cz(s.data.perex.split('. ')[0].replace(/\.$/, ''))}.</span>
+              <span class="svc__price">{from(s)}</span>
+              <span class="peek" aria-hidden="true"><Image src={img(s.data.image)} widths={[300, 500]} sizes="260px" alt="" /></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .svc--grey { background: var(--mist-light); }
+  .svc__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px clamp(40px, 5vw, 120px); }
+  .svc__head p { margin-top: 20px; color: var(--graphite); max-width: 38ch; }
+  .svc__list { border-top: 1px solid var(--line); grid-column: 2; }
+  .svc__grid > .svc__list:first-child { grid-column: 1 / -1; }
+  .svc__list li { position: relative; border-bottom: 1px solid var(--line); }
+  .svc__list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name price" "text text"; gap: 6px 24px; padding: clamp(20px, 1.8vw, 36px) 0; transition: padding var(--t) var(--ease); }
+  .svc__name { grid-area: name; font-size: var(--fs-lg); font-weight: 600; font-variation-settings: 'opsz' 48; letter-spacing: -0.015em; line-height: 1.15; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: 6px; transition: text-decoration-color var(--t-fast); }
+  .svc__text { grid-area: text; color: var(--graphite); max-width: 60ch; }
+  .svc__price { grid-area: price; font-size: var(--fs-sm); color: var(--graphite); white-space: nowrap; align-self: center; }
+  .svc__list a:hover { padding-left: 12px; }
+  .svc__list a:hover .svc__name { text-decoration-color: var(--coral); }
+  .peek { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .peek { display: block; position: absolute; left: var(--mx, 50%); top: var(--my, 50%); width: clamp(160px, 12vw, 260px); aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-img); pointer-events: none; z-index: 3; box-shadow: var(--sh-2); opacity: 0; transform: translate(36px, -50%) rotate(-5deg) scale(.7); transition: opacity .35s var(--ease), transform .6s var(--ease-out); }
+    .peek :global(img) { width: 100%; height: 100%; object-fit: cover; }
+    .svc__list a:hover .peek { opacity: 1; transform: translate(36px, -50%) rotate(-3deg) scale(1); }
+  }
+  @media (max-width: 860px) { .svc__grid { grid-template-columns: minmax(0, 1fr); } .svc__list { grid-column: auto; } }
+</style>
