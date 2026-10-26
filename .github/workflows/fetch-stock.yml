@@ -1,0 +1,40 @@
+name: Stažení ilustračních fotek
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/stock.json
+      - scripts/fetch-stock.mjs
+      - scripts/cutout.py
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Stáhnout fotky
+        run: node scripts/fetch-stock.mjs
+      - name: Vyříznout pozadí (pokud je seznam)
+        run: |
+          if [ -f scripts/cutout.py ]; then
+            pip install --quiet "rembg[cpu]" pillow
+            python scripts/cutout.py
+          fi
+      - name: Uložit do repozitáře
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/img/stock
+          if git diff --cached --quiet; then
+            echo "Nic nového."
+          else
+            git commit -m "Ilustrační fotky (automaticky staženo)"
+            git push
+          fi
