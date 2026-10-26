@@ -12,7 +12,7 @@ export const menu: NavItem[] = [
     ],
   },
   {
-    label: 'Kosmetika',
+    label: 'Péče o pleť',
     href: '/kosmeticke-sluzby',
     children: [
       { label: 'Kosmetické ošetření', href: '/kosmeticke-osetreni' },

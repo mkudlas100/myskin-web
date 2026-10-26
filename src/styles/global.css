@@ -1,81 +1,81 @@
 /* =========================================================
-   MySkin – design tokens a základní styly
-   Barvy a písmo vycházejí z myskin.cz a ze šablony článků MySkin.
-   Korálová jen na ikony a dekor (na bílé nemá kontrast pro text),
-   tmavší hnědá pro text a obrysy, hnědá pro plná tlačítka.
+   MySkin – úvod v2 (experiment). Záměr: docs/design-uvod-v2.md
+   Kakao = pigment tmavě hnědé barvy, písek = barva značky,
+   korál jen na tečky a dekor (na bílé nemá kontrast pro text).
    ========================================================= */
 :root {
-  --sand: #EFD19F;        /* pásy: úvod, rezervace */
-  --sand-soft: #FBF3E6;   /* jemný podklad sekcí */
-  --mist: #D7D7D9;        /* sekce tým */
-  --coral: #FFA089;       /* ikony, podtržení – nikdy text */
-  --brown: #7E6157;       /* plná tlačítka (bílý text 5,6 : 1) */
-  --brown-deep: #654C44;  /* hnědý text, obrysy, hover (5,3 : 1 i na písku) */
-  --ink: #1C1C1C;
-  --muted: #555555;
+  --cocoa: #3B2721;      /* text, tmavý pás */
+  --pigment: #6E4E43;    /* vedlejší text */
+  --sand: #EFD19F;       /* značka, rezervace */
+  --skin: #F5E4DC;       /* pás péče o pleť */
+  --coral: #FF9C86;      /* tečky rtů, dekor – nikdy text */
+  --coral-deep: #E8705A; /* tečky rtů na bílé */
   --paper: #FFFFFF;
-  --night: #1C1C1C;
-  --on-night-muted: #9A9A9A;
+  --line: rgba(59, 39, 33, .16);
+  --on-cocoa: #F4E6D9;
+  --on-cocoa-muted: #CDB7A8;
 
-  --font: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --fs-xs: 13px; --fs-sm: 14px; --fs-base: 16px; --fs-md: 18px;
-  --fs-lg: 22px; --fs-xl: 28px; --fs-2xl: 36px; --fs-hero: 52px;
+  /* kompatibilita se sdílenými šablonami (404 apod.) */
+  --ink: var(--cocoa); --muted: var(--pigment); --brown: var(--cocoa); --brown-deep: var(--cocoa);
+  --sand-soft: #FBF1E0; --night: var(--cocoa); --on-night-muted: var(--on-cocoa-muted);
 
-  --r-pill: 100px; --r-card: 20px;
-  --sh-1: 0 10px 28px -14px rgba(28, 28, 28, .28);
-  --sh-2: 0 24px 48px -24px rgba(28, 28, 28, .32);
-  --sec: 104px;
-  --gap: 32px;
+  --font: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* stupnice 14 / 17 / 21 / 28 / 37 / 50 / 67 */
+  --fs-xs: 14px; --fs-sm: 15px; --fs-base: 17px; --fs-md: 21px;
+  --fs-lg: 28px; --fs-xl: 37px; --fs-2xl: 50px; --fs-hero: 67px;
+
+  --r-pill: 100px; --r-img: 6px;
+  --sh-2: 0 24px 48px -24px rgba(59, 39, 33, .35);
+  --sec: 128px;
   --ease: cubic-bezier(.22, .61, .36, 1);
-  --t-fast: .25s; --t: .5s;
+  --t-fast: .2s; --t: .45s;
   color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--font); color: var(--ink); background: var(--paper); font-size: var(--fs-base); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font); font-optical-sizing: auto; font-variation-settings: 'opsz' 14;
+  color: var(--cocoa); background: var(--paper); font-size: var(--fs-base); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-h1, h2, h3 { text-wrap: balance; }
+h1, h2, h3 { text-wrap: balance; font-weight: 600; font-variation-settings: 'opsz' 96; letter-spacing: -0.022em; line-height: 1.04; }
 p { text-wrap: pretty; }
 
-.wrap { max-width: 1170px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 .sec { padding-block: var(--sec); }
 .center { text-align: center; }
 
 /* přístupnost */
-:focus-visible { outline: 2px solid var(--brown-deep); outline-offset: 3px; border-radius: 4px; }
-.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: var(--r-pill); font-weight: 700; font-size: var(--fs-sm); }
+:focus-visible { outline: 2px solid var(--cocoa); outline-offset: 3px; border-radius: 3px; }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--cocoa); color: #fff; padding: 10px 18px; border-radius: var(--r-pill); font-weight: 600; font-size: var(--fs-sm); }
 .skip:focus { top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-/* nadpisy sekcí */
-.sec-icon { display: block; width: 56px; height: 56px; margin: 0 auto 18px; color: var(--coral); }
-.sec-icon svg { width: 100%; height: 100%; }
-.h2 { font-size: var(--fs-2xl); font-weight: 600; line-height: 1.25; }
-.lead { max-width: 720px; margin: 18px auto 0; color: var(--muted); }
-.txt-link { color: var(--brown-deep); text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: text-decoration-color var(--t-fast); }
-.txt-link:hover { text-decoration-color: var(--brown-deep); }
+.h2 { font-size: var(--fs-2xl); }
+.lead { max-width: 60ch; margin: 18px auto 0; color: var(--pigment); }
+.txt-link { font-weight: 600; text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-decoration-color var(--t-fast); }
+.txt-link:hover { text-decoration-color: currentColor; }
 
-/* tlačítko – jedna komponenta, dvě varianty */
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 24px; border-radius: var(--r-pill); border: 2px solid var(--brown-deep); color: var(--brown-deep); background: transparent; font: 700 var(--fs-sm)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
-.btn:hover { background: var(--brown-deep); color: #fff; }
-.btn--primary { background: var(--brown); border-color: var(--brown); color: #fff; }
-.btn--primary:hover { background: var(--brown-deep); border-color: var(--brown-deep); }
+/* tlačítka: plné kakao, obrysové kakao */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 28px; border-radius: var(--r-pill); border: 1.5px solid var(--cocoa); color: var(--cocoa); background: transparent; font: 600 var(--fs-base)/1.2 var(--font); cursor: pointer; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.btn:hover { background: var(--cocoa); color: #fff; }
+.btn--primary { background: var(--cocoa); color: #fff; }
+.btn--primary:hover { background: var(--pigment); border-color: var(--pigment); }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* jemné odhalení při scrollu – jen se zapnutým JS, bez JS je vše vidět */
-.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
-.js .rv.in { opacity: 1; transform: none; }
+/* bez odhalování sekcí – třída zůstává jen kvůli starším šablonám */
+.rv { opacity: 1; }
 
 @media (max-width: 960px) {
-  :root { --sec: 80px; --fs-hero: 40px; --fs-2xl: 30px; }
+  :root { --sec: 96px; --fs-hero: 52px; --fs-2xl: 40px; --fs-xl: 32px; }
 }
 @media (max-width: 600px) {
-  :root { --sec: 64px; --fs-hero: 33px; --fs-2xl: 27px; --fs-xl: 24px; }
+  :root { --sec: 72px; --fs-hero: 40px; --fs-2xl: 34px; --fs-xl: 28px; --fs-lg: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .js .rv { opacity: 1; transform: none; }
 }

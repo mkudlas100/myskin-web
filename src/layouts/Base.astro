@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/manrope/wght.css';
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
@@ -35,7 +35,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <meta name="theme-color" content="#EFD19F" />
+    <meta name="theme-color" content="#FFFFFF" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -72,21 +72,11 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
       const onScroll = () => {
         const y = window.scrollY;
         hdr?.classList.toggle('scrolled', y > 30);
-        fab?.classList.toggle('show', y > window.innerHeight * 0.7);
+        fab?.classList.toggle('show', y > window.innerHeight * 0.8);
         tick = false;
       };
       addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(onScroll); tick = true; } }, { passive: true });
       onScroll();
-
-      const els = document.querySelectorAll('.rv');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-        els.forEach((el) => io.observe(el));
-      } else {
-        els.forEach((el) => el.classList.add('in'));
-      }
 
       const burger = document.getElementById('burger');
       const nav = document.getElementById('nav');
@@ -106,7 +96,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
     <style is:global>
       .fab { display: none; }
       @media (max-width: 1060px) {
-        .fab { display: flex; align-items: center; gap: 8px; position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; min-height: 48px; padding: 12px 20px; border-radius: var(--r-pill); background: var(--brown); color: #fff; font-weight: 700; font-size: var(--fs-sm); box-shadow: var(--sh-2); transform: translateY(160%); transition: transform var(--t) var(--ease); }
+        .fab { display: flex; align-items: center; gap: 8px; position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; min-height: 48px; padding: 12px 20px; border-radius: var(--r-pill); background: var(--cocoa); color: #fff; font-weight: 600; font-size: var(--fs-sm); box-shadow: var(--sh-2); transform: translateY(160%); transition: transform var(--t) var(--ease); }
         .fab.show { transform: none; }
         .fab svg { width: 18px; height: 18px; }
       }

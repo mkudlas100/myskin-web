@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
 import logo from '../assets/img/logo.svg';
 import { menu } from '../data/navigace';
 import { salon } from '../data/salon';
@@ -16,7 +17,9 @@ const isCurrent = (href: string) => href === path;
       <ul class="menu">
         {menu.map((item) => (
           <li class={item.children ? 'has-sub' : undefined}>
-            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              {item.label}{item.children && <Icon name="chevron" class="chev" />}
+            </a>
             {item.children && (
               <ul class="sub">
                 {item.children.map((c) => (
@@ -26,55 +29,55 @@ const isCurrent = (href: string) => href === path;
             )}
           </li>
         ))}
+        <li class="m-only"><a href={salon.eshop}>E-shop</a></li>
       </ul>
-      <div class="ctas">
-        <a class="btn" href={salon.eshop}>E-shop</a>
-        <a class="btn btn--primary" href={salon.booking}>Online rezervace</a>
-      </div>
+      <a class="btn btn--primary book" href={salon.booking}>Rezervovat termín</a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
   </div>
 </header>
 
 <style>
-  .hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding-block: 24px; transition: padding var(--t) var(--ease), background var(--t), box-shadow var(--t); }
-  :global(.hdr.scrolled) { padding-block: 10px; background: rgba(255, 255, 255, .94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(28, 28, 28, .06); }
-  .hdr__in { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .logo :global(img) { width: 160px; height: auto; transition: width var(--t) var(--ease); }
-  :global(.hdr.scrolled) .logo :global(img) { width: 128px; }
-  .nav { display: flex; align-items: center; gap: 16px; }
-  .menu { display: flex; }
+  .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color var(--t); }
+  :global(.hdr.scrolled) { border-bottom-color: var(--line); }
+  .hdr__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 84px; }
+  .logo :global(img) { width: 138px; height: auto; }
+  .nav { display: flex; align-items: center; gap: 22px; }
+  .menu { display: flex; align-items: center; }
   .menu > li { position: relative; }
-  .menu > li > a { display: flex; align-items: center; min-height: 44px; padding: 0 10px; font-size: var(--fs-sm); font-weight: 700; color: var(--brown-deep); position: relative; white-space: nowrap; }
-  .menu > li > a::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 8px; height: 2px; background: var(--coral); transform: scaleX(0); transform-origin: left; transition: transform var(--t-fast) var(--ease); }
-  .menu > li > a:hover::after, .menu > li > a[aria-current]::after { transform: scaleX(1); }
-  .sub { position: absolute; top: 100%; left: 0; min-width: 230px; background: #fff; border-radius: 14px; box-shadow: var(--sh-2); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast); }
+  .menu > li > a { display: flex; align-items: center; gap: 4px; min-height: 48px; padding: 0 11px; font-size: var(--fs-sm); font-weight: 500; white-space: nowrap; }
+  .menu > li > a:hover, .menu > li > a[aria-current] { text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .menu :global(.chev) { width: 14px; height: 14px; opacity: .6; transition: transform var(--t-fast); }
+  .has-sub:hover :global(.chev), .has-sub:focus-within :global(.chev) { transform: rotate(180deg); }
+  .sub { position: absolute; top: 100%; left: 0; min-width: 240px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--sh-2); padding: 8px; opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast); }
   .has-sub:hover .sub, .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
-  .sub a { display: block; padding: 9px 20px; font-size: var(--fs-sm); font-weight: 600; color: var(--ink); }
-  .sub a:hover, .sub a[aria-current] { color: var(--brown-deep); background: var(--sand-soft); }
-  .ctas { display: flex; gap: 8px; }
-  .ctas .btn { min-height: 42px; padding: 8px 16px; font-size: var(--fs-xs); }
-  .burger { display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; position: relative; z-index: 60; }
-  .burger span { display: block; height: 2px; margin: 6px 10px; background: var(--brown-deep); border-radius: 2px; transition: transform var(--t-fast), opacity var(--t-fast); }
-  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .sub a { display: block; padding: 9px 12px; border-radius: 6px; font-size: var(--fs-sm); }
+  .sub a:hover, .sub a[aria-current] { background: var(--skin); }
+  .m-only { display: none; }
+  .book { min-height: 46px; padding: 10px 22px; font-size: var(--fs-sm); }
+  .burger { display: none; width: 48px; height: 48px; border: 0; background: none; cursor: pointer; position: relative; z-index: 60; }
+  .burger span { display: block; height: 2px; margin: 7px 11px; background: var(--cocoa); transition: transform var(--t-fast); }
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
 
-  @media (max-width: 1180px) {
-    .menu > li > a { padding: 0 7px; }
-    .menu > li > a::after { left: 7px; right: 7px; }
+  @media (max-width: 1140px) {
+    .menu > li > a { padding: 0 8px; }
+    .nav { gap: 12px; }
   }
   @media (max-width: 1060px) {
+    .hdr__in { min-height: 68px; }
+    .logo :global(img) { width: 116px; }
     .burger { display: block; }
-    .nav { position: fixed; inset: 0; z-index: 55; background: var(--sand); flex-direction: column; justify-content: flex-start; gap: 28px; padding: 96px 24px 40px; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity var(--t) var(--ease), visibility var(--t); }
+    .nav { position: fixed; inset: 0; z-index: 55; background: var(--paper); flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 28px; padding: 88px max(20px, env(safe-area-inset-left, 0px)) 40px; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity var(--t) var(--ease), visibility var(--t); }
     :global(.nav.open) { opacity: 1; visibility: visible; }
-    .menu { flex-direction: column; align-items: center; }
-    .menu > li { text-align: center; }
-    .menu > li > a { justify-content: center; font-size: var(--fs-md); }
-    .menu > li > a::after { display: none; }
-    .sub { position: static; opacity: 1; visibility: inherit; transform: none; box-shadow: none; background: none; padding: 0 0 8px; min-width: 0; }
-    .sub a { padding: 6px 12px; font-weight: 500; }
-    .sub a:hover { background: none; }
-    .ctas .btn { min-height: 46px; padding: 10px 22px; font-size: var(--fs-sm); }
+    .menu { flex-direction: column; align-items: stretch; }
+    .menu > li { border-bottom: 1px solid var(--line); }
+    .menu > li > a { font-size: var(--fs-md); font-weight: 600; padding: 10px 0; }
+    .menu :global(.chev) { display: none; }
+    .sub { position: static; opacity: 1; visibility: inherit; transform: none; box-shadow: none; border: 0; background: none; padding: 0 0 12px; min-width: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    .sub a { padding: 6px 0; color: var(--pigment); }
+    .sub a:hover { background: none; text-decoration: underline; }
+    .m-only { display: block; }
+    .book { align-self: flex-start; }
   }
 </style>
