@@ -10,7 +10,7 @@ let ok = 0, failed = [];
 for (const img of cfg.images) {
   const target = path.join(cfg.outDir, img.file);
   if (await exists(target)) continue;
-  const url = `https://unsplash.com/photos/${img.id}/download?force=true&w=2000`;
+  const url = `${img.url}?w=2000&q=82&fm=jpg&fit=max`;
   try {
     const res = await fetch(url, { redirect: 'follow', headers: { 'User-Agent': 'myskin-web-stock-fetch' } });
     const type = res.headers.get('content-type') || '';

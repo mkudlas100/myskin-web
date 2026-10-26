@@ -2,35 +2,150 @@
   "outDir": "src/assets/img/stock",
   "note": "Ilustrační fotografie z Unsplash (licence Unsplash: volné komerční použití bez nutnosti uvedení autora). Jen dočasně, než budou vlastní fotky.",
   "images": [
-    { "file": "k-portret-1.jpg", "id": "JRa8lCQQhSs" },
-    { "file": "k-portret-2.jpg", "id": "EGVccebWodM" },
-    { "file": "k-portret-3.jpg", "id": "GG8i22DQTHw" },
-    { "file": "k-portret-4.jpg", "id": "BOW0zIGpUGI" },
-    { "file": "k-portret-5.jpg", "id": "Hp-3N5Gl1Ak" },
-    { "file": "k-portret-6.jpg", "id": "cowLgyb63c4" },
-    { "file": "k-portret-7.jpg", "id": "4p6XsMzkTsE" },
-    { "file": "k-portret-8.jpg", "id": "0b_7r_dNjFs" },
-    { "file": "k-oko-1.jpg", "id": "otYarkxbZzo" },
-    { "file": "k-oko-2.jpg", "id": "fvInY-Gh7sc" },
-    { "file": "k-oko-3.jpg", "id": "oc5j3o3L7oc" },
-    { "file": "k-oko-4.jpg", "id": "nt6KRD9im7A" },
-    { "file": "k-pece-1.jpg", "id": "RbIcMsh0NSk" },
-    { "file": "k-pece-2.jpg", "id": "Pe9IXUuC6QU" },
-    { "file": "k-pece-3.jpg", "id": "J6Hg_YH2tFk" },
-    { "file": "k-pece-4.jpg", "id": "Xxs9WvkUPLo" },
-    { "file": "k-pece-5.jpg", "id": "PqyzuzFiQfY" },
-    { "file": "k-pece-6.jpg", "id": "wYrnlhDQaIA" },
-    { "file": "k-pece-7.jpg", "id": "2OVrIfOXDDY" },
-    { "file": "k-pece-8.jpg", "id": "k_5LhU6JqS0" },
-    { "file": "k-pece-9.jpg", "id": "MGKzomg0Dts" },
-    { "file": "k-pece-10.jpg", "id": "u93nTfWqR9w" },
-    { "file": "k-produkt-1.jpg", "id": "E30Dik5cHO8" },
-    { "file": "k-produkt-2.jpg", "id": "Mxy5gokl8mE" },
-    { "file": "k-produkt-3.jpg", "id": "D-CcjoOREow" },
-    { "file": "k-produkt-4.jpg", "id": "kD9qprR6HBI" },
-    { "file": "k-produkt-5.jpg", "id": "tWxfxTvvH8g" },
-    { "file": "k-produkt-6.jpg", "id": "GLl6_-L3fxM" },
-    { "file": "k-produkt-7.jpg", "id": "JiqTLjzEH18" },
-    { "file": "k-stetce-1.jpg", "id": "pxax5WuM7eY" }
+    {
+      "file": "k-portret-1.jpg",
+      "id": "JRa8lCQQhSs",
+      "url": "https://images.unsplash.com/photo-1667053508464-eb11b394df83"
+    },
+    {
+      "file": "k-portret-2.jpg",
+      "id": "EGVccebWodM",
+      "url": "https://images.unsplash.com/photo-1521146764736-56c929d59c83"
+    },
+    {
+      "file": "k-portret-3.jpg",
+      "id": "GG8i22DQTHw",
+      "url": "https://images.unsplash.com/photo-1581182830442-e8bc7babbf15"
+    },
+    {
+      "file": "k-portret-4.jpg",
+      "id": "BOW0zIGpUGI",
+      "url": "https://images.unsplash.com/photo-1679466061812-211a6b737175"
+    },
+    {
+      "file": "k-portret-5.jpg",
+      "id": "Hp-3N5Gl1Ak",
+      "url": "https://images.unsplash.com/photo-1577746838851-816a43ca8733"
+    },
+    {
+      "file": "k-portret-6.jpg",
+      "id": "cowLgyb63c4",
+      "url": "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c"
+    },
+    {
+      "file": "k-portret-7.jpg",
+      "id": "4p6XsMzkTsE",
+      "url": "https://images.unsplash.com/photo-1637851497145-0faa2e456081"
+    },
+    {
+      "file": "k-portret-8.jpg",
+      "id": "0b_7r_dNjFs",
+      "url": "https://images.unsplash.com/photo-1636153279424-cb5d1e00f5a2"
+    },
+    {
+      "file": "k-oko-1.jpg",
+      "id": "otYarkxbZzo",
+      "url": "https://images.unsplash.com/photo-1777521778743-d152c0404e32"
+    },
+    {
+      "file": "k-oko-2.jpg",
+      "id": "fvInY-Gh7sc",
+      "url": "https://images.unsplash.com/photo-1516220362602-dba5272034e7"
+    },
+    {
+      "file": "k-oko-3.jpg",
+      "id": "oc5j3o3L7oc",
+      "url": "https://images.unsplash.com/photo-1761169563770-c6b8e61eb57a"
+    },
+    {
+      "file": "k-oko-4.jpg",
+      "id": "nt6KRD9im7A",
+      "url": "https://images.unsplash.com/photo-1542833807-ad5af0977050"
+    },
+    {
+      "file": "k-pece-1.jpg",
+      "id": "RbIcMsh0NSk",
+      "url": "https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f"
+    },
+    {
+      "file": "k-pece-2.jpg",
+      "id": "Pe9IXUuC6QU",
+      "url": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881"
+    },
+    {
+      "file": "k-pece-3.jpg",
+      "id": "J6Hg_YH2tFk",
+      "url": "https://images.unsplash.com/photo-1761718209708-9ab9ba1c7252"
+    },
+    {
+      "file": "k-pece-4.jpg",
+      "id": "Xxs9WvkUPLo",
+      "url": "https://images.unsplash.com/photo-1761718209835-c8586b7dcac0"
+    },
+    {
+      "file": "k-pece-5.jpg",
+      "id": "PqyzuzFiQfY",
+      "url": "https://images.unsplash.com/photo-1552693673-1bf958298935"
+    },
+    {
+      "file": "k-pece-6.jpg",
+      "id": "wYrnlhDQaIA",
+      "url": "https://images.unsplash.com/photo-1761718209793-cb6d348831e0"
+    },
+    {
+      "file": "k-pece-7.jpg",
+      "id": "2OVrIfOXDDY",
+      "url": "https://images.unsplash.com/photo-1761718210055-e83ca7e2c9ad"
+    },
+    {
+      "file": "k-pece-9.jpg",
+      "id": "MGKzomg0Dts",
+      "url": "https://images.unsplash.com/photo-1683408640631-2c99fff964d7"
+    },
+    {
+      "file": "k-pece-10.jpg",
+      "id": "u93nTfWqR9w",
+      "url": "https://images.unsplash.com/photo-1731514771613-991a02407132"
+    },
+    {
+      "file": "k-produkt-1.jpg",
+      "id": "E30Dik5cHO8",
+      "url": "https://images.unsplash.com/photo-1785581778868-79100f7fe56c"
+    },
+    {
+      "file": "k-produkt-2.jpg",
+      "id": "Mxy5gokl8mE",
+      "url": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108"
+    },
+    {
+      "file": "k-produkt-3.jpg",
+      "id": "D-CcjoOREow",
+      "url": "https://images.unsplash.com/photo-1764694187667-f28a05a52c0e"
+    },
+    {
+      "file": "k-produkt-4.jpg",
+      "id": "kD9qprR6HBI",
+      "url": "https://images.unsplash.com/photo-1585945037805-5fd82c2e60b1"
+    },
+    {
+      "file": "k-produkt-5.jpg",
+      "id": "tWxfxTvvH8g",
+      "url": "https://images.unsplash.com/photo-1787569499510-ef18cc7ba7a5"
+    },
+    {
+      "file": "k-produkt-6.jpg",
+      "id": "GLl6_-L3fxM",
+      "url": "https://images.unsplash.com/photo-1552046122-03184de85e08"
+    },
+    {
+      "file": "k-produkt-7.jpg",
+      "id": "JiqTLjzEH18",
+      "url": "https://images.unsplash.com/photo-1608068811588-3a67006b7489"
+    },
+    {
+      "file": "k-stetce-1.jpg",
+      "id": "pxax5WuM7eY",
+      "url": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937"
+    }
   ]
 }
