@@ -1,0 +1,115 @@
+---
+import '@fontsource-variable/manrope/wght.css';
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import ogDefault from '../assets/img/og-myskin.jpg';
+import { salon } from '../data/salon';
+import { graph, webPageNode, websiteNode } from '../lib/schema';
+
+interface Props {
+  title: string;          // 50–60 znaků, jedinečný
+  description: string;    // 140–160 znaků, jedinečný
+  ogImage?: ImageMetadata;
+  schema?: object[];      // další uzly do @graph
+  pageType?: string;      // WebPage, AboutPage, ContactPage…
+  noindex?: boolean;
+}
+const { title, description, ogImage = ogDefault, schema = [], pageType, noindex = false } = Astro.props;
+
+// Kanonická URL: https://www.myskin.cz/ pro úvod, jinak bez lomítka na konci a bez .html.
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/+$/, '');
+const canonical = path ? `${salon.url}${path}` : `${salon.url}/`;
+const og = await getImage({ src: ogImage, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const ogUrl = new URL(og.src, Astro.site).href;
+const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, description, type: pageType }), ...schema]);
+---
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#EFD19F" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content={salon.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script type="application/ld+json" set:html={jsonLd} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#obsah">Přeskočit na obsah</a>
+    <Header />
+    <main id="obsah">
+      <slot />
+      <a class="fab" id="fab" href={salon.booking}><Icon name="calendar" />Rezervovat termín</a>
+    </main>
+    <Footer />
+
+    <script>
+      // Hlavička po odscrollování, plovoucí tlačítko na mobilu, odhalení sekcí, mobilní menu.
+      const hdr = document.getElementById('hdr');
+      const fab = document.getElementById('fab');
+      let tick = false;
+      const onScroll = () => {
+        const y = window.scrollY;
+        hdr?.classList.toggle('scrolled', y > 30);
+        fab?.classList.toggle('show', y > window.innerHeight * 0.7);
+        tick = false;
+      };
+      addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(onScroll); tick = true; } }, { passive: true });
+      onScroll();
+
+      const els = document.querySelectorAll('.rv');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('in'));
+      }
+
+      const burger = document.getElementById('burger');
+      const nav = document.getElementById('nav');
+      const setMenu = (open: boolean) => {
+        nav?.classList.toggle('open', open);
+        burger?.setAttribute('aria-expanded', String(open));
+        burger?.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+      burger?.addEventListener('click', () => setMenu(!nav?.classList.contains('open')));
+      nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+      addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav?.classList.contains('open')) { setMenu(false); burger?.focus(); }
+      });
+    </script>
+
+    <style is:global>
+      .fab { display: none; }
+      @media (max-width: 1060px) {
+        .fab { display: flex; align-items: center; gap: 8px; position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; min-height: 48px; padding: 12px 20px; border-radius: var(--r-pill); background: var(--brown); color: #fff; font-weight: 700; font-size: var(--fs-sm); box-shadow: var(--sh-2); transform: translateY(160%); transition: transform var(--t) var(--ease); }
+        .fab.show { transform: none; }
+        .fab svg { width: 18px; height: 18px; }
+      }
+    </style>
+  </body>
+</html>

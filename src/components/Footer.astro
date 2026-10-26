@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import logoLight from '../assets/img/logo-svetle.svg';
+import mapa from '../assets/img/mapa.jpg';
+import logoPhyts from '../assets/img/logo-phyts.png';
+import logoCollin from '../assets/img/logo-gm-collin.png';
+import logoNoon from '../assets/img/logo-noon.png';
+import { salon } from '../data/salon';
+import { footerServices, footerMore, legal } from '../data/navigace';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <a href="/" aria-label="MySkin – kosmetické studio, úvodní stránka"><Image src={logoLight} alt="" width={220} height={83} /></a>
+        <p>Kosmetické studio v Benešově. Permanentní make-up, péče o pleť přírodní kosmetikou a další kosmetické služby.</p>
+        <div class="soc">
+          <a href={salon.social.instagram} aria-label="MySkin na Instagramu"><Icon name="instagram" /></a>
+          <a href={salon.social.facebook} aria-label="MySkin na Facebooku"><Icon name="facebook" /></a>
+        </div>
+      </div>
+      <nav class="ftr__col" aria-label="Služby">
+        <h2 class="f-title">Služby</h2>
+        <ul>{footerServices.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+      <nav class="ftr__col" aria-label="Další odkazy">
+        <h2 class="f-title">MySkin</h2>
+        <ul>{footerMore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+      <div class="ftr__col ftr__contact">
+        <h2 class="f-title">Kontakt</h2>
+        <address>
+          {salon.name}<br />
+          {salon.street}<br />
+          {salon.postalCode} {salon.city}
+        </address>
+        <p><a href={`tel:${salon.phoneHref}`}>{salon.phone}</a><br /><a href={`mailto:${salon.email}`}>{salon.email}</a></p>
+        <p>{salon.hours}</p>
+      </div>
+    </div>
+
+    <a class="map" href={salon.map}>
+      <Image src={mapa} alt="Mapa s polohou salonu MySkin, Pražská 380, Benešov – otevřít v Mapách Google" widths={[358, 716]} sizes="358px" />
+    </a>
+
+    <div class="partners">
+      <h2 class="f-title">Pracujeme s kosmetikou</h2>
+      <div class="logos">
+        <a href="https://www.phyts.com/"><Image src={logoPhyts} alt="Phyt's" height={32} /></a>
+        <a href="https://world.gmcollin.com/"><Image src={logoCollin} alt="G.M. Collin" height={32} /></a>
+        <a href="https://noonaesthetics.com/"><Image src={logoNoon} alt="NOON Aesthetics" height={32} /></a>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p>Provozovatel: {salon.operator} · IČO {salon.ico} · {salon.street}, {salon.postalCode} {salon.city}</p>
+      <p>
+        {legal.map((l, i) => <>{i > 0 && ' · '}<a href={l.href}>{l.label}</a></>)}
+      </p>
+      <p>© {year} {salon.name} · Design <a href="https://anfilov.cz">ANFILOV</a> &amp; <a href="https://www.archivisual.cz/">ARCHIVISUAL</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--night); color: #fff; padding-block: 72px 40px; font-size: var(--fs-sm); }
+  .ftr__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+  .ftr__brand :global(img) { width: 200px; height: auto; margin-bottom: 18px; }
+  .ftr__brand p { color: #CFCFCF; max-width: 300px; }
+  .soc { display: flex; gap: 12px; margin-top: 20px; }
+  .soc a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(239, 209, 159, .35); color: var(--sand); transition: background var(--t-fast), color var(--t-fast); }
+  .soc a:hover { background: var(--sand); color: var(--night); }
+  .soc :global(svg) { width: 22px; height: 22px; }
+  .f-title { color: var(--sand); font-size: var(--fs-base); font-weight: 700; margin-bottom: 10px; }
+  .ftr__col li a { display: inline-block; padding: 5px 0; color: #E6E6E6; }
+  .ftr__col a:hover { color: var(--sand); }
+  address { font-style: normal; color: #E6E6E6; }
+  .ftr__contact p { margin-top: 10px; color: #E6E6E6; }
+  .ftr__contact a { display: inline-block; padding: 3px 0; }
+  .map { display: block; width: 358px; max-width: 100%; margin: 48px auto 0; border-radius: 14px; overflow: hidden; }
+  .partners { margin-top: 44px; text-align: center; }
+  .logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 36px; margin-top: 18px; }
+  .logos :global(img) { height: 32px; width: auto; opacity: .75; transition: opacity var(--t-fast); }
+  .logos a:hover :global(img) { opacity: 1; }
+  .legal { margin-top: 44px; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .12); text-align: center; font-size: 12px; color: var(--on-night-muted); line-height: 1.7; }
+  .legal a { display: inline-block; padding: 6px 2px; }
+  .legal a:hover { color: #fff; }
+  @media (max-width: 960px) { .ftr__top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .ftr__top { grid-template-columns: 1fr; gap: 32px; } }
+</style>

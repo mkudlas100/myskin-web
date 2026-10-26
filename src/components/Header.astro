@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo.svg';
+import { menu } from '../data/navigace';
+import { salon } from '../data/salon';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => href === path;
+---
+<header id="hdr" class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="/" aria-label="MySkin – kosmetické studio, úvodní stránka">
+      <Image src={logo} alt="" width={170} height={64} loading="eager" />
+    </a>
+    <nav id="nav" class="nav" aria-label="Hlavní menu">
+      <ul class="menu">
+        {menu.map((item) => (
+          <li class={item.children ? 'has-sub' : undefined}>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+            {item.children && (
+              <ul class="sub">
+                {item.children.map((c) => (
+                  <li><a href={c.href} aria-current={isCurrent(c.href) ? 'page' : undefined}>{c.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="ctas">
+        <a class="btn" href={salon.eshop}>E-shop</a>
+        <a class="btn btn--primary" href={salon.booking}>Online rezervace</a>
+      </div>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<style>
+  .hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding-block: 24px; transition: padding var(--t) var(--ease), background var(--t), box-shadow var(--t); }
+  :global(.hdr.scrolled) { padding-block: 10px; background: rgba(255, 255, 255, .94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(28, 28, 28, .06); }
+  .hdr__in { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .logo :global(img) { width: 160px; height: auto; transition: width var(--t) var(--ease); }
+  :global(.hdr.scrolled) .logo :global(img) { width: 128px; }
+  .nav { display: flex; align-items: center; gap: 16px; }
+  .menu { display: flex; }
+  .menu > li { position: relative; }
+  .menu > li > a { display: flex; align-items: center; min-height: 44px; padding: 0 10px; font-size: var(--fs-sm); font-weight: 700; color: var(--brown-deep); position: relative; white-space: nowrap; }
+  .menu > li > a::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 8px; height: 2px; background: var(--coral); transform: scaleX(0); transform-origin: left; transition: transform var(--t-fast) var(--ease); }
+  .menu > li > a:hover::after, .menu > li > a[aria-current]::after { transform: scaleX(1); }
+  .sub { position: absolute; top: 100%; left: 0; min-width: 230px; background: #fff; border-radius: 14px; box-shadow: var(--sh-2); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast); }
+  .has-sub:hover .sub, .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
+  .sub a { display: block; padding: 9px 20px; font-size: var(--fs-sm); font-weight: 600; color: var(--ink); }
+  .sub a:hover, .sub a[aria-current] { color: var(--brown-deep); background: var(--sand-soft); }
+  .ctas { display: flex; gap: 8px; }
+  .ctas .btn { min-height: 42px; padding: 8px 16px; font-size: var(--fs-xs); }
+  .burger { display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; position: relative; z-index: 60; }
+  .burger span { display: block; height: 2px; margin: 6px 10px; background: var(--brown-deep); border-radius: 2px; transition: transform var(--t-fast), opacity var(--t-fast); }
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  @media (max-width: 1180px) {
+    .menu > li > a { padding: 0 7px; }
+    .menu > li > a::after { left: 7px; right: 7px; }
+  }
+  @media (max-width: 1060px) {
+    .burger { display: block; }
+    .nav { position: fixed; inset: 0; z-index: 55; background: var(--sand); flex-direction: column; justify-content: flex-start; gap: 28px; padding: 96px 24px 40px; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity var(--t) var(--ease), visibility var(--t); }
+    :global(.nav.open) { opacity: 1; visibility: visible; }
+    .menu { flex-direction: column; align-items: center; }
+    .menu > li { text-align: center; }
+    .menu > li > a { justify-content: center; font-size: var(--fs-md); }
+    .menu > li > a::after { display: none; }
+    .sub { position: static; opacity: 1; visibility: inherit; transform: none; box-shadow: none; background: none; padding: 0 0 8px; min-width: 0; }
+    .sub a { padding: 6px 12px; font-weight: 500; }
+    .sub a:hover { background: none; }
+    .ctas .btn { min-height: 46px; padding: 10px 22px; font-size: var(--fs-sm); }
+  }
+</style>

@@ -1,0 +1,24 @@
+{
+  "_poznamka": "Mapa URL ze skillu myskin-web (audit 26. 10. 2026). keep = zachovat stejnou adresu, redirect = 301 ve vercel.json, gone = zrušeno (404), legal = právní stránky z patičky (nebyly v sitemapě, zachovat).",
+  "keep": [
+    "/", "/cenik", "/kontakt", "/o-mne", "/blog-myskin", "/blog-permanentni-make-up",
+    "/permanentni-make-up", "/permanentni-make-up-pudrove-oboci", "/permanentni-make-up-stinovane-rty", "/permanentni-make-up-ocni-linky",
+    "/kosmeticke-sluzby", "/kosmeticke-osetreni", "/radiofrekvence", "/kura-chemicky-peeling", "/kompletni-osetreni-pro-muze", "/cistici-pece-zad", "/pece-collagen", "/cisteni-suche-pleti2", "/pece-o-citlivou-plet", "/ultrazvukova-spachtle",
+    "/rasy-oboci", "/liceni", "/depilace", "/pedikura",
+    "/kurzy-a-workshopy", "/mini-kurz-liceni", "/refresh-kurz-pro-kosmetiky",
+    "/co-je-bb-krem", "/co-jsou-rostlinne-extrakty", "/efektivni-pece-o-mastnou-plet", "/hledala-jsem-az-jsem-nasla", "/hydratace-pleti", "/jak-hydratovat-plet-v-zimnim-obdobi", "/jak-na-cerne-teky", "/jak-se-pripravit-na-permanentni-make-up", "/jak-se-staram-o-plet", "/jak-se-urcuje-tvar-pudroveho-oboci", "/jsou-pigmenty-pro-permanentni-make-up-bezpene", "/kosmetika-v-obraze", "/najdete-si-cas-na-peeling", "/neni-bio-jako-bio", "/pece-o-specificke-typy-pleti", "/pmu-na-co-se-nejcasteji-ptate", "/pravidelna-depilace", "/privitejte-jarni-dny", "/pro-koho-je-pudrove-oboi-mastna-ple-zrala-ple-i-aktivni-ivot", "/proc-je-dulezite-cisteni-a-odlicovani-pleti", "/proc-mineralni-uv-filtry", "/pudrove-oboci-den-po-dni", "/tetovane-oboci-ktera-metoda-je-nejlepsi", "/vse-co-potebujete-vedet-o-radiofrekvencni-peci", "/vyhody-alginatovych-masek", "/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts"
+  ],
+  "legal": ["/obchodni-podminky", "/zasady-ochrany-osobnich-udaju"],
+  "redirect": {
+    "/pedikura-2": "/pedikura",
+    "/bricho-radiofrekvencni-pece": "/radiofrekvence",
+    "/hyzde-radiofrekvencni-pece": "/radiofrekvence",
+    "/paze-radiofrekvencni-pece": "/radiofrekvence",
+    "/stehna-radiofrekvencni-pece": "/radiofrekvence",
+    "/jak-pecovat-o-pmu": "/pudrove-oboci-den-po-dni"
+  },
+  "gone": [
+    "/prirodni-esencialni-oleje", "/uzasne-esencialni-oleje", "/jak-nakoupit-esencialni-oleje-myskin", "/startovaci-sady", "/kurz-raindrop-technique-2", "/rolonek-a-parfem-na-miru", "/chci-byt-videt",
+    "/shop/sample-black-dress", "/shop/sample-blue-flannel", "/shop/sample-flower-woven", "/shop/sample-jade-tank", "/shop/sample-white-tank", "/shop/sample-rimini-romper", "/shop/sample-sunglasses", "/shop/sample-black-tank", "/shop/sample-boardshorts"
+  ]
+}

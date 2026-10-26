@@ -1,0 +1,6 @@
+# MySkin – kosmetické studio
+# Všichni vyhledávací i AI roboti jsou vítáni (rozhodnutí 26. 10. 2026).
+User-agent: *
+Allow: /
+
+Sitemap: https://www.myskin.cz/sitemap-index.xml

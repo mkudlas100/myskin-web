@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { salon } from '../data/salon';
+---
+<Base title="Stránka nenalezena | MySkin – kosmetické studio" description="Tuto stránku jsme nenašli. Pokračujte na permanentní make-up, kosmetické ošetření, ceník nebo kontakt kosmetického studia MySkin v Benešově." noindex>
+  <section class="nf">
+    <div class="wrap center">
+      <p class="nf__code">404</p>
+      <h1 class="h2">Tuto stránku jsme nenašli</h1>
+      <p class="lead">Adresa se mohla změnit nebo stránka už neexistuje. Zkuste některou z těchto:</p>
+      <ul class="nf__links">
+        <li><a class="btn" href="/permanentni-make-up">Permanentní make-up</a></li>
+        <li><a class="btn" href="/kosmeticke-osetreni">Kosmetické ošetření</a></li>
+        <li><a class="btn" href="/cenik">Ceník</a></li>
+        <li><a class="btn" href="/kontakt">Kontakt</a></li>
+        <li><a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf { background: var(--sand); padding-block: 160px 120px; }
+  .nf__code { font-size: 96px; font-weight: 600; line-height: 1; color: var(--brown-deep); margin-bottom: 12px; }
+  .nf__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+</style>
