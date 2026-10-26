@@ -1,0 +1,70 @@
+---
+// Ceník: jediný zdroj src/data/cenik.ts; každá skupina odkazuje na stránku služby.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PriceTable from '../components/PriceTable.astro';
+import Faq from '../components/Faq.astro';
+import Booking from '../components/Booking.astro';
+import { cenik, cenikPlatnost } from '../data/cenik';
+import { breadcrumbNode } from '../lib/schema';
+import { salon } from '../data/salon';
+
+const url = `${salon.url}/cenik`;
+const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'Ceník', href: '/cenik' }];
+const faq = [
+  { q: 'Kolik stojí permanentní make-up?', a: 'Pudrové obočí i stínované rty stojí 4 500 Kč, oční linky 3 500 Kč. Korekce po zhojení stojí 1 500 Kč.' },
+  { q: 'Kolik stojí kosmetické ošetření?', a: 'Ošetření pleti začínají na 990 Kč (hloubkově čisticí péče). Kompletní ošetření stojí 1 490 Kč, liftingový rituál G.M. Collin 2 490 Kč.' },
+  { q: 'Jak se mohu objednat?', a: `Nejrychleji online přes rezervační systém Noona, nebo telefonicky na ${salon.phone}.` },
+];
+const schema = [
+  breadcrumbNode(url, crumbs),
+  {
+    '@type': 'OfferCatalog',
+    '@id': `${url}#cenik`,
+    name: 'Ceník služeb MySkin',
+    provider: { '@id': `${salon.url}/#salon` },
+    itemListElement: cenik.map((g) => ({
+      '@type': 'OfferCatalog',
+      name: g.title,
+      itemListElement: g.items.map((i) => ({
+        '@type': 'Offer',
+        price: i.price,
+        priceCurrency: 'CZK',
+        itemOffered: { '@type': 'Service', name: i.name, ...(i.href ? { url: `${salon.url}${i.href.split('#')[0]}` } : {}) },
+      })),
+    })),
+  },
+  { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base title="Ceník – permanentní make-up a kosmetika Benešov | MySkin" description={`Ceník studia MySkin Benešov: permanentní make-up od 3 500 Kč, ošetření pleti od 990 Kč, radiofrekvence, řasy, líčení a depilace. Platný od ${cenikPlatnost}.`} schema={schema}>
+  <PageHero crumbs={crumbs} h1="Ceník" perex={`Ceny všech služeb na jednom místě. Ceník platí od ${cenikPlatnost}, všechny ceny jsou konečné.`} secondary={{ label: "Kontakt", href: "/kontakt" }} />
+  <nav class="jump wrap" aria-label="Části ceníku">
+    <ul>{cenik.map((g) => <li><a href={`#${g.id}`}>{g.title}</a></li>)}</ul>
+  </nav>
+  <section class="sec cenik">
+    <div class="wrap cenik__grid">
+      {cenik.map((g) => (
+        <div class="cenik__group">
+          <PriceTable items={g.items} heading={g.title} id={g.id} showLinks />
+          {g.href && <a class="txt-link" href={g.href}>Více o službě</a>}
+        </div>
+      ))}
+    </div>
+    <p class="wrap cenik__note">Ceník je platný od {cenikPlatnost}. Termín si rezervujete <a href={salon.booking}>online</a> nebo na <a href={`tel:${salon.phoneHref}`}>{salon.phone}</a>.</p>
+  </section>
+  <Faq items={faq} />
+  <Booking />
+</Base>
+<style>
+  .jump ul { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 8px; }
+  .jump a { display: inline-block; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; font-size: var(--fs-sm); font-weight: 500; transition: border-color var(--t-fast); }
+  .jump a:hover { border-color: var(--ink); }
+  .cenik__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(56px, 5vw, 112px) clamp(40px, 5vw, 120px); align-items: start; }
+  .cenik__group { scroll-margin-top: 110px; }
+  .cenik__group :global(.prices) { scroll-margin-top: 110px; }
+  .cenik__group .txt-link { display: inline-block; margin-top: 18px; }
+  .cenik__note { margin-top: clamp(48px, 4vw, 80px); color: var(--graphite); }
+  .cenik__note a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+  @media (max-width: 960px) { .cenik__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

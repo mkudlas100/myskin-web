@@ -6,6 +6,7 @@ import Booking from '../components/Booking.astro';
 import { salon } from '../data/salon';
 import { cz } from '../lib/cz';
 import { salonNode, ownerNode } from '../lib/schema';
+import { allPosts, pick } from '../lib/content';
 
 import logo from '../assets/img/logo.svg';
 import cekarna from '../assets/img/salon-cekarna.jpg'; // jen pro strukturovaná data (skutečné studio)
@@ -77,11 +78,9 @@ const dust = Array.from({ length: 46 }, (_, i) => {
   };
 });
 
-const posts = [
-  { href: '/jak-se-pripravit-na-permanentni-make-up', title: 'Jak se připravit na permanentní make-up', text: 'Co dělat čtyři týdny, dva týdny i den před zákrokem a kdy je lepší ho odložit.' },
-  { href: '/pudrove-oboci-den-po-dni', title: 'Pudrové obočí den po dni', text: 'Proč je obočí první dny tmavé, po týdnu skoro zmizí a pak se vrátí.' },
-  { href: '/vse-co-potebujete-vedet-o-radiofrekvencni-peci', title: 'Radiofrekvence pleti: účinky a průběh', text: 'Jak radiofrekvence funguje, pro koho je vhodná a kolik sezení potřebujete.' },
-];
+// Výběr článků z blogu (kolekce src/content/blog) – PMU a péče o pleť mají přednost.
+const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up', 'pudrove-oboci-den-po-dni', 'vse-co-potebujete-vedet-o-radiofrekvencni-peci'], 'index')
+  .map((p) => ({ href: `/${p.id}`, title: p.data.title, text: p.data.listDescription }));
 ---
 <Base title={title} description={description} schema={schema}>
 

@@ -1,0 +1,66 @@
+---
+// Výpis článků blogu: celý blog, rubrika nebo nejnovější. Rubriky jako odkazy (ne filtr v JS),
+// aby každá měla vlastní indexovatelnou URL.
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import PostList from './PostList.astro';
+import ServiceList from './ServiceList.astro';
+import Booking from './Booking.astro';
+import { allPosts, allServices, pick, rubriky } from '../lib/content';
+import { breadcrumbNode } from '../lib/schema';
+import { salon } from '../data/salon';
+import { cz } from '../lib/cz';
+
+interface Props {
+  path: string;
+  title: string;
+  description: string;
+  h1: string;
+  perex: string;
+  category?: keyof typeof rubriky;
+  latest?: boolean;
+  services?: string[];
+}
+const { path, title, description, h1, perex, category, latest = false, services = [] } = Astro.props;
+const all = await allPosts();
+const list = category ? all.filter((p) => p.data.category === category) : all;
+const url = `${salon.url}${path}`;
+const crumbs = [{ name: 'Úvod', href: '/' }, ...(path === '/blog-myskin' ? [] : [{ name: 'Blog', href: '/blog-myskin' }]), { name: h1, href: path }];
+const svc = pick(await allServices(), services, path);
+const tabs = [
+  { label: 'Všechny články', href: '/blog-myskin' },
+  ...Object.values(rubriky).filter((r) => r.href !== '/blog-myskin').map((r) => ({ label: r.title, href: r.href })),
+  { label: 'Nejnovější', href: '/nejnovejsi-clanky' },
+];
+const schema = [
+  breadcrumbNode(url, crumbs),
+  {
+    '@type': 'ItemList',
+    '@id': `${url}#clanky`,
+    itemListElement: list.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${salon.url}/${p.id}`, name: p.data.title })),
+  },
+];
+// Celý blog: po rubrikách (PMU a pleť první), jinak jedna mřížka.
+const groups = !category && !latest
+  ? (['pmu', 'plet', 'prirodni', 'telo'] as const).map((k) => ({ k, r: rubriky[k], posts: all.filter((p) => p.data.category === k) })).filter((g) => g.posts.length)
+  : [];
+---
+<Base title={title} description={description} schema={schema} pageType="CollectionPage">
+  <PageHero crumbs={crumbs} h1={h1} perex={cz(perex)} ctas={false} />
+  <nav class="tabs wrap" aria-label="Rubriky blogu">
+    <ul>
+      {tabs.map((t) => <li><a href={t.href} aria-current={t.href === path ? 'page' : undefined}>{t.label}</a></li>)}
+    </ul>
+  </nav>
+  {groups.length > 0
+    ? groups.map((g) => <PostList posts={g.posts} heading={g.r.title} id={`r-${g.k}`} more={g.r.href !== path ? { label: `Rubrika ${g.r.title.toLowerCase()}`, href: g.r.href } : undefined} />)
+    : <PostList posts={list} heading={latest ? 'Všechny články od nejnovějších' : `${list.length} ${list.length >= 5 ? 'článků' : 'články'}`} id="clanky" />}
+  <ServiceList services={svc} heading="Služby k tématu" id="sluzby" tone="grey" />
+  <Booking />
+</Base>
+<style>
+  .tabs ul { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 8px; }
+  .tabs a { display: inline-block; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; font-size: var(--fs-sm); font-weight: 500; transition: background var(--t-fast), border-color var(--t-fast); }
+  .tabs a:hover { border-color: var(--ink); }
+  .tabs a[aria-current='page'] { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+</style>

@@ -6,8 +6,8 @@ perex: Permanentní make-up je díky znecitlivění pro většinu klientek tém�
 listDescription: Bolí to? Jak dlouho to vydrží? Co když se mi barva nebude líbit? Odpovídám na otázky, které v salonu slýchám nejčastěji – od metody přes zákrok až po péči.
 category: pmu
 updated: 2026-10-26
-image: oboci-prirozene
-imageAlt: Žena s přirozeně upraveným obočím
+image: k-portret-7
+imageAlt: Žena s upraveným obočím a oční linkou
 services:
   - permanentni-make-up
   - permanentni-make-up-pudrove-oboci
