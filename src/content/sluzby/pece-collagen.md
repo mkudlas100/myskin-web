@@ -49,4 +49,4 @@ Kanadská dermokosmetika založená v roce 1957. Produkty vznikají v laboratoř
 - dehydratovaná, unavená pleť bez jasu,
 - před svatbou, plesem nebo focením.
 
-Pro výraznější zpevnění se rituál dobře kombinuje s [radiofrekvencí](/radiofrekvence). Další ošetření pro zralou pleť, jako je Anti-Age 50+ nebo Kinéplastie, najdete u [kosmetického ošetření pleti](/kosmeticke-osetreni). Proč na hydrataci tolik záleží, píšu v článku [hydratace pleti](/hydratace-pleti).
+Pro výraznější zpevnění se rituál dobře kombinuje s [radiofrekvencí](/radiofrekvence). Další ošetření pro zralou pleť, jako je Anti-Age 50+ nebo péče Panacée, najdete u [kosmetického ošetření pleti](/kosmeticke-osetreni). Proč na hydrataci tolik záleží, píšu v článku [hydratace pleti](/hydratace-pleti).

@@ -1,7 +1,7 @@
 ---
 title: Líčení
 seoTitle: Svatební, plesové a denní líčení Benešov | MySkin
-description: Svatební, večerní, plesové i denní líčení a vlasový styling v Benešově. Svatební líčení včetně zkoušky v salonu. Líčení od 500 Kč, rezervace online.
+description: Svatební, večerní, plesové i denní líčení v Benešově na míru vaší tváři. Svatební líčení včetně zkoušky v salonu. Líčení od 500 Kč, rezervace online.
 h1: Svatební, plesové a denní líčení
 perex: Líčím jemně a přirozeně, aby výsledek zvýraznil vaši osobnost, ne ji překryl. Ať jde o svatbu, ples, focení, nebo jen chcete zazářit během běžného dne, líčení přizpůsobím vám a příležitosti. Ke svatebnímu líčení patří zkouška v salonu.
 kind: dalsi
@@ -23,8 +23,6 @@ faq:
     a: Používám profesionální kosmetiku, která vydrží dlouhé hodiny. Svatební líčení je připravené tak, aby vydrželo od obřadu až po poslední tanec.
   - q: Jak se připravit na líčení?
     a: Přijďte s čistou, odlíčenou a hydratovanou pletí. Pokud máte oblíbený vzhled nebo fotky, které se vám líbí, klidně je přineste.
-  - q: Uděláte mi i účes?
-    a: Ano, nabízím vlasový styling a svatební účesy. Cena se odvíjí od složitosti účesu.
 updated: 2026-10-26
 ---
 
@@ -43,10 +41,6 @@ Pro plesy, firemní večírky a společenské události, kde chcete zazářit. T
 ### Denní líčení
 
 Přirozené, svěží a lehké. Zvýrazní vaši krásu nenápadně – do práce, na schůzku nebo jen pro radost. Trvá zhruba 20 minut.
-
-### Vlasový styling a svatební účesy
-
-K líčení můžete přidat účes. Cena se odvíjí od jeho složitosti.
 
 ## Chcete se naučit líčit sama?
 

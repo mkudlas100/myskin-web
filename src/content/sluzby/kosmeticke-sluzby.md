@@ -3,7 +3,7 @@ title: Kosmetické služby
 seoTitle: Kosmetické služby Benešov – ošetření pleti, řasy | MySkin
 description: "Kosmetické služby v Benešově: ošetření pleti kosmetikou Phyt's, G.M. Collin a NOON, radiofrekvence, chemický peeling, řasy a obočí, líčení a depilace."
 h1: Kosmetické služby v Benešově
-perex: Ve studiu MySkin pečuji o pleť profesionální kosmetikou Phyt’s, G.M. Collin a NOON Aesthetics – od hloubkového čištění přes hydrataci a anti-age péči po chemický peeling a radiofrekvenci. K tomu lash lifting, laminaci obočí, líčení a depilaci teplým včelím voskem.
+perex: Ve studiu MySkin pečuji o pleť profesionální kosmetikou Phyt’s, G.M. Collin a NOON Aesthetics – od hloubkového čištění přes hydrataci a anti-age péči po chemický peeling a radiofrekvenci. K tomu lash lifting, úpravu obočí, líčení a depilaci teplým včelím voskem.
 kind: rozcestnik
 order: 10
 image: pece-masaz
@@ -55,4 +55,4 @@ Kosmetiku, se kterou pracuji ve studiu, si můžete objednat domů v [e-shopu](h
 
 ## Řasy, obočí, líčení a depilace
 
-Kromě péče o pleť dělám [lash lifting a laminaci obočí](/rasy-oboci), [denní, plesové i svatební líčení](/liceni) a [depilaci teplým včelím voskem](/depilace). Pro výrazné obočí, rty nebo linky na roky je tu [permanentní make-up](/permanentni-make-up).
+Kromě péče o pleť dělám [lash lifting a úpravu obočí](/rasy-oboci), [denní, plesové i svatební líčení](/liceni) a [depilaci teplým včelím voskem](/depilace). Pro výrazné obočí, rty nebo linky na roky je tu [permanentní make-up](/permanentni-make-up).

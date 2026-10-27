@@ -24,7 +24,7 @@ export const menu: NavItem[] = [
   },
   {
     label: 'Další služby',
-    href: '/kosmeticke-sluzby',
+    href: '/dalsi-sluzby',
     children: [
       { label: 'Řasy a obočí', href: '/rasy-oboci' },
       { label: 'Líčení', href: '/liceni' },

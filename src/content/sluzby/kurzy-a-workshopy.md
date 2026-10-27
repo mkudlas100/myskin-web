@@ -25,7 +25,7 @@ updated: 2026-10-26
 
 ## Kdo kurzy vede
 
-Kurzy vedu já, Karina Kudličková. S kosmetikou pracuji přes patnáct let – ve firmě Yves Rocher, na klinice estetické medicíny Asklepion a dnes ve vlastním studiu. Absolvovala jsem kurz fotomakeupu u Asociace vizážistů a stylistů ČR.
+Kurzy vedu já, Karina Kudličková. S kosmetikou pracuji přes dvacet let – ve firmě Yves Rocher, na klinice estetické medicíny Asklepion a dnes ve vlastním studiu. Absolvovala jsem kurz fotomakeupu u Asociace vizážistů a stylistů ČR.
 
 ## Jaký kurz vybrat
 

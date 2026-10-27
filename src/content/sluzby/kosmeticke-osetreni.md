@@ -1,9 +1,9 @@
 ---
 title: Kosmetické ošetření pleti
 seoTitle: Kosmetické ošetření pleti Benešov | MySkin
-description: "Kosmetické ošetření pleti v Benešově: kompletní péče, hydratace s kyselinou hyaluronovou, anti-age 30+ a 50+, Kinéplastie Phyt's a hloubkové čištění."
+description: "Kosmetické ošetření pleti v Benešově: kompletní péče, hydratace s kyselinou hyaluronovou, anti-age 30+ a 50+, péče Panacée Phyt's a hloubkové čištění."
 h1: Kosmetické ošetření pleti
-perex: Kosmetické ošetření pleti v MySkin vždy přizpůsobím typu a stavu vaší pleti. Vybírat můžete z kompletního ošetření, hydratace s kyselinou hyaluronovou, anti-age péče, liftingové Kinéplastie nebo hloubkového čištění pro smíšenou a mastnou pleť.
+perex: Kosmetické ošetření pleti v MySkin vždy přizpůsobím typu a stavu vaší pleti. Vybírat můžete z kompletního ošetření, hydratace s kyselinou hyaluronovou, anti-age péče, péče Panacée od Phyt’s nebo hloubkového čištění pro smíšenou a mastnou pleť.
 kind: pece
 order: 11
 image: pece-maska
@@ -28,7 +28,7 @@ faq:
   - q: Jak dlouho kosmetické ošetření trvá?
     a: Kompletní ošetření pleti zhruba 90 minut, hydratační péče 75 minut, hloubkově čisticí péče a relaxační masáž obličeje 60 minut.
   - q: Které ošetření je vhodné pro zralou pleť?
-    a: Anti-Age 50+, Péče MILLÉSIME, Kinéplastie nebo liftingový rituál G.M. Collin. Pro výraznější zpevnění je dobré je kombinovat s radiofrekvencí.
+    a: Anti-Age 50+, Péče MILLÉSIME, péče Panacée nebo liftingový rituál G.M. Collin. Pro výraznější zpevnění je dobré je kombinovat s radiofrekvencí.
   - q: Co když mám citlivou pleť nebo růžovku?
     a: Řekněte mi to při objednání. Péči volím šetrnou a se zklidňujícími látkami. Kosmetika NOON s technologií DermShield je vhodná i pro citlivou pleť.
   - q: Jak často chodit na hydrataci?
@@ -50,9 +50,9 @@ Péče sestavená přesně pro vaši pleť: čištění, peeling, masáž, maska
 
 Certifikované ošetření pro dehydratovanou pleť s důkladnou exfoliací a masáží s přírodními účinnými látkami. Trvá 75 minut. Výrobce uvádí nárůst hydratace až o 70 % během 6 hodin a účinek až 24 hodin. Doporučuji jednou měsíčně nebo intenzivní šestitýdenní kúru. Víc o hydrataci píšu v článku [hydratace pleti](/hydratace-pleti).
 
-### Kinéplastie PHYT’S
+### Péče Panacée PHYT’S
 
-Liftingové, neinvazivní ošetření obličeje s ručními masážními technikami zaměřenými na fascie. Posiluje svaly obličeje, zpevňuje kontury a zlepšuje tonus pleti. Pracuje se 100% přírodními BIO produkty PHYT’S.
+Anti-age ošetření z řady Panacée značky PHYT’S pro pleť, která potřebuje omladit a zpevnit. Pracuje se s certifikovanými BIO produkty PHYT’S.
 
 ### Péče MILLÉSIME – mladistvost
 

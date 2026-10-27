@@ -64,6 +64,6 @@ Intenzitu přechodu ladíme podle vás – může být sotva znatelný, nebo vý
 
 ## Jak se na měření připravit
 
-Deset dní před zákrokem si obočí nebarvěte a nechte chloupky volně růst. Čím víc přirozeného obočí uvidím, tím přesněji najdu tvar, který k vám patří. Pokud chodíte na [úpravu nebo laminaci obočí](/rasy-oboci), domluvme se předem na vhodném termínu. Další přípravu najdete v článku [jak se připravit na permanentní make-up](/jak-se-pripravit-na-permanentni-make-up).
+Deset dní před zákrokem si obočí nebarvěte a nechte chloupky volně růst. Čím víc přirozeného obočí uvidím, tím přesněji najdu tvar, který k vám patří. Pokud chodíte na [úpravu a barvení obočí](/rasy-oboci), domluvme se předem na vhodném termínu. Další přípravu najdete v článku [jak se připravit na permanentní make-up](/jak-se-pripravit-na-permanentni-make-up).
 
 Rozdíl mezi pudrovou technikou a microbladingem vysvětluji v článku [microblading, nebo pudrové obočí](/tetovane-oboci-ktera-metoda-je-nejlepsi).

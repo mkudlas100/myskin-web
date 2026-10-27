@@ -21,7 +21,7 @@ faq:
   - q: Je pudrové obočí vhodné po padesátce?
     a: Ano. Jemné stínování je šetrné k tenčí a méně pružné kůži a obočí opticky omladí výraz.
   - q: Mám husté obočí. Má pro mě pudrová technika smysl?
-    a: Může mít, pokud chcete výraznější tvar nebo vyplnit drobné mezery. Pokud vám jde hlavně o upravený tvar chloupků, zkuste nejdřív laminaci obočí.
+    a: Může mít, pokud chcete výraznější tvar nebo vyplnit drobné mezery. Pokud vám jde hlavně o upravený tvar chloupků, zkuste nejdřív úpravu a barvení obočí.
   - q: Můžu s pudrovým obočím sportovat a chodit do sauny?
     a: Po zhojení ano, obočí se potem nerozteče. Během prvních týdnů hojení se ale bazénu, sauně a intenzivnímu pocení vyhněte.
 ---
@@ -50,4 +50,4 @@ Po konzultaci s lékařem je zákrok možný při srdečně-cévních potížíc
 
 > Pokud toužíte po viditelných jednotlivých chloupcích, pudrová technika to není. Vytváří jemný stín, ne kresbu chloupků.
 
-Obě techniky podrobně srovnávám v článku [microblading, nebo pudrové obočí](/tetovane-oboci-ktera-metoda-je-nejlepsi). A pokud máte husté obočí a jde vám hlavně o tvar, zkuste nejdřív [laminaci obočí](/rasy-oboci).
+Obě techniky podrobně srovnávám v článku [microblading, nebo pudrové obočí](/tetovane-oboci-ktera-metoda-je-nejlepsi). A pokud máte husté obočí a jde vám hlavně o tvar, zkuste nejdřív [úpravu a barvení obočí](/rasy-oboci).

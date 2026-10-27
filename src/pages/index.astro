@@ -58,7 +58,7 @@ const timeline = [
 ];
 
 const more = [
-  { href: '/rasy-oboci', name: 'Řasy a obočí', text: 'Lash lifting a laminace obočí' },
+  { href: '/rasy-oboci', name: 'Řasy a obočí', text: 'Lash lifting, úprava a barvení obočí' },
   { href: '/liceni', name: 'Líčení', text: 'Denní, plesové i svatební' },
   { href: '/depilace', name: 'Depilace', text: 'Teplým včelím voskem' },
 ];
@@ -186,7 +186,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
       <div class="karina__text">
         <h2 id="h-karina" class="h2 split">Karina Kudličková</h2>
         <p class="karina__role" data-reveal style="--i: 2">Kosmetička a&nbsp;specialistka na permanentní make-up</p>
-        <p data-reveal style="--i: 3">S&nbsp;kosmetikou pracuji přes patnáct let. Začínala jsem ve firmě Yves Rocher, prošla klinikou estetické medicíny a&nbsp;dnes se ve vlastním studiu věnuji hlavně permanentnímu make-upu a&nbsp;problematické pleti.</p>
+        <p data-reveal style="--i: 3">S&nbsp;kosmetikou pracuji přes dvacet let. Začínala jsem ve firmě Yves Rocher, prošla klinikou estetické medicíny a&nbsp;dnes se ve vlastním studiu věnuji hlavně permanentnímu make-upu a&nbsp;problematické pleti.</p>
         <ol class="timeline js-progress" aria-label="Vzdělání a praxe">
           {timeline.map((t, i) => <li data-reveal style={`--i: ${i}`}><span class="timeline__y">{t.y}</span><span><strong>{t.t}</strong> {cz(t.d)}</span></li>)}
         </ol>

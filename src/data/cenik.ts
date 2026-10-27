@@ -21,7 +21,7 @@ export const cenik: PriceGroup[] = [
     id: 'kosmetika', title: 'Kosmetická ošetření', href: '/kosmeticke-osetreni',
     items: [
       { name: 'Kompletní ošetření pleti', price: 1490, href: '/kosmeticke-osetreni' },
-      { name: 'Kompletní ošetření Kinéplastie (PHYT’S)', price: 1990, href: '/kosmeticke-osetreni' },
+      { name: 'Kompletní ošetření Panacée (PHYT’S)', price: 1990, href: '/kosmeticke-osetreni' },
       { name: 'Hydratační péče s kyselinou hyaluronovou', price: 1600, duration: 'cca 75 min', href: '/kosmeticke-osetreni' },
       { name: 'Péče MILLÉSIME – mladistvost', price: 1600, href: '/kosmeticke-osetreni' },
       { name: 'Liftingový rituál G.M. Collin (kolagenová péče)', price: 2490, duration: 'cca 90 min', href: '/pece-collagen' },
@@ -48,10 +48,9 @@ export const cenik: PriceGroup[] = [
   {
     id: 'rasy-oboci', title: 'Řasy a obočí', href: '/rasy-oboci',
     items: [
-      { name: 'Lash lifting', price: 1200, note: 'přirozeně natočené řasy', href: '/rasy-oboci' },
-      { name: 'Laminace obočí', price: 1100, href: '/rasy-oboci' },
+      { name: 'Lash lifting (laminace řas)', price: 990, note: 'přirozeně natočené řasy', href: '/rasy-oboci' },
       { name: 'Úprava a barvení obočí a řas', price: 500, duration: '30 min', href: '/rasy-oboci' },
-      { name: 'Barvení obočí a řas ke kosmetickému ošetření', price: 150, href: '/rasy-oboci' },
+      { name: 'Barvení obočí a řas ke kosmetickému ošetření', price: 300, href: '/rasy-oboci' },
     ],
   },
   {
@@ -60,7 +59,6 @@ export const cenik: PriceGroup[] = [
       { name: 'Denní líčení', price: 500, duration: 'cca 20 min', href: '/liceni' },
       { name: 'Večerní a plesové líčení', price: 800, duration: 'cca 40 min', href: '/liceni' },
       { name: 'Svatební líčení', price: 5500, duration: 'cca 120 min', note: 'včetně zkoušky v salonu', href: '/liceni' },
-      { name: 'Vlasový styling, svatební účesy', price: 1500, duration: 'cca 60 min', note: 'cena podle složitosti účesu', href: '/liceni' },
     ],
   },
   {
