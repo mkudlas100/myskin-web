@@ -4,7 +4,7 @@ import { recenze, google, type Recenze } from '../data/recenze';
 import { cz } from '../lib/cz';
 interface Props { topic?: Recenze['topic'] | 'all'; heading?: string; limit?: number }
 const { topic = 'all', heading = 'Co říkají klientky', limit = 3 } = Astro.props;
-const list = [...recenze].sort((a, b) => (a.topic === topic ? -1 : 0) - (b.topic === topic ? -1 : 0)).slice(0, limit);
+const list = [...recenze].sort((a, b) => (a.topic === topic ? -1 : 0) - (b.topic === topic ? -1 : 0)).slice(0, Math.max(3, limit)); // vždy aspoň 3 recenze
 ---
 <section class="sec rev" aria-labelledby="h-recenze">
   <div class="wrap">
@@ -21,7 +21,7 @@ const list = [...recenze].sort((a, b) => (a.topic === topic ? -1 : 0) - (b.topic
         <li data-reveal style={`--i: ${i}`}>
           <blockquote>
             <p>„{cz(r.text)}“</p>
-            <footer>{r.name} · <span>{r.source === 'Google' ? 'recenze na Google' : 'z původního webu'}</span></footer>
+            <footer>{r.name}{r.source === 'Google' && <> · <span>recenze na Google</span></>}</footer>
           </blockquote>
         </li>
       ))}

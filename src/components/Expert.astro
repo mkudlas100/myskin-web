@@ -3,7 +3,7 @@
 import { Image } from 'astro:assets';
 import { karina } from '../data/karina';
 import { cz } from '../lib/cz';
-import foto from '../assets/img/foto/karina-portret.jpg';
+import foto from '../assets/img/foto/karina-postava.jpg';
 interface Props { topic?: 'pmu' | 'plet' }
 const { topic = 'pmu' } = Astro.props;
 const lead = topic === 'pmu'
@@ -29,7 +29,7 @@ const lead = topic === 'pmu'
   .expert { background: var(--ink); color: var(--on-ink); }
   .expert__grid { display: grid; grid-template-columns: clamp(160px, 18vw, 320px) minmax(0, 1fr); gap: clamp(28px, 5vw, 110px); align-items: center; }
   .expert__img { border-radius: var(--r-img); overflow: hidden; aspect-ratio: 4 / 5; }
-  .expert__img :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+  .expert__img :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
   .expert__eyebrow { font-size: var(--fs-sm); color: var(--on-ink-muted); display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
   .expert__eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
   .expert__role { color: var(--sand); margin: 8px 0 18px; }

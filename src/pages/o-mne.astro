@@ -23,7 +23,7 @@ const cesta = karina.milestones;
 
 const pleti = ['hyperpigmentace', 'těžká aknózní pleť', 'růžovka', 'citlivá pleť'];
 
-const karinaImgUrl = new URL((await getImage({ src: karinaPortret, width: 800, format: 'jpg' })).src, Astro.site).href;
+const karinaImgUrl = new URL((await getImage({ src: karinaPostava, width: 800, format: 'jpg' })).src, Astro.site).href;
 const schema = [
   breadcrumbNode(url, crumbs),
   ownerNode(karinaImgUrl),
@@ -36,7 +36,7 @@ const schema = [
   },
 ];
 ---
-<Base title="Karina Kudličková – kosmetička Benešov | O nás | MySkin" description="Karina Kudličková, kosmetička a specialistka na permanentní make-up: přes 15 let praxe, Yves Rocher, klinika Asklepion, pigmentologie. Studio MySkin Benešov." schema={schema} pageType="AboutPage" ogImage={karinaPortret}>
+<Base title="Karina Kudličková – kosmetička Benešov | O nás | MySkin" description="Karina Kudličková, kosmetička a specialistka na permanentní make-up: přes 15 let praxe, Yves Rocher, klinika Asklepion, pigmentologie. Studio MySkin Benešov." schema={schema} pageType="AboutPage" ogImage={karinaPostava}>
   <PageHero crumbs={crumbs} h1="Z kliniky zpět k lidem" perex="Jsem Karina Kudličková, kosmetička a specialistka na permanentní make-up. Po letech ve velké kosmetické firmě a na klinice estetické medicíny pečuji ve vlastním studiu v Benešově o pleť a dělám pudrové obočí, stínované rty a oční linky." image={karinaPostava} imageAlt="Karina Kudličková ve studiu MySkin" shape="frame" secondary={{ label: 'Kontakt', href: '/kontakt' }} />
 
   <section class="sec story">

@@ -7,8 +7,8 @@ listDescription: Proč permanentní make-up nedělám těhotným a kojícím mam
 category: pmu
 published: 2026-10-27
 updated: 2026-10-27
-image: pmu-proces-pudrove
-imageAlt: Pigmentace pudrového obočí ve studiu MySkin
+image: pmu-oboci
+imageAlt: Mladá žena s přirozeně upraveným obočím
 services:
   - permanentni-make-up
   - kosmeticke-osetreni
