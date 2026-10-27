@@ -13,10 +13,12 @@ import cekarna from '../assets/img/salon-cekarna.jpg'; // jen pro strukturovaná
 // Ilustrační fotky z Unsplash (scripts/stock.json) – dočasně, než budou vlastní fotky.
 import vyrez from '../assets/img/stock/uvod-vyrez.png';
 import pece from '../assets/img/stock/k-pece-4.jpg';
-import sklo from '../assets/img/stock/k-produkt-2.jpg';
 import g1 from '../assets/img/stock/k-pece-9.jpg';
 import g2 from '../assets/img/stock/k-produkt-4.jpg';
-import g3 from '../assets/img/stock/k-oko-3.jpg';
+import g3 from '../assets/img/foto/kosmetika-maska-collin.jpg';
+import g5 from '../assets/img/foto/salon-osetrovna-karina.jpg';
+import g6 from '../assets/img/foto/oboci-pudrove.jpg';
+import karinaFoto from '../assets/img/foto/karina-portret.jpg';
 import g4 from '../assets/img/stock/k-produkt-1.jpg';
 import peekBrow from '../assets/img/stock/pmu-oboci.jpg';
 import peekLips from '../assets/img/stock/pmu-rty.jpg';
@@ -172,9 +174,8 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
     <div class="wrap karina__grid">
       <figure class="karina__photo">
         <div class="karina__img" data-reveal="clip">
-          <Image src={sklo} widths={[480, 720, 960, 1300]} sizes="(max-width: 860px) 100vw, 44vw" alt="Lahvička se sérem ve stínu listů" data-parallax="0.08" />
+          <Image src={karinaFoto} widths={[480, 720, 960, 1300]} sizes="(max-width: 860px) 100vw, 44vw" alt="Karina Kudličková, kosmetička a specialistka na permanentní make-up" data-parallax="0.08" />
         </div>
-        <figcaption>Ilustrační fotografie</figcaption>
       </figure>
       <div class="karina__text">
         <h2 id="h-karina" class="h2 split">Karina Kudličková</h2>
@@ -220,13 +221,14 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
     <div class="wrap">
       <div class="studio__head">
         <h2 id="h-studio" class="studio__h split">Klid a&nbsp;čas na péči</h2>
-        <p class="studio__note">Ilustrační fotografie</p>
       </div>
       <div class="studio__grid">
         <div class="s1" data-reveal="clip" style="--i: 0"><Image src={g1} widths={[600, 900, 1300, 1800]} sizes="(max-width: 600px) 100vw, 58vw" alt="Klientka s čelenkou při ošetření obličeje" data-parallax="0.1" /></div>
         <div class="s2" data-reveal="clip" style="--i: 1"><Image src={g2} widths={[400, 700, 1000, 1300]} sizes="(max-width: 600px) 50vw, 38vw" alt="Vzorek krému na béžovém podkladu" data-parallax="0.1" /></div>
-        <div class="s3" data-reveal="clip" style="--i: 0"><Image src={g3} widths={[400, 700, 1000, 1300]} sizes="(max-width: 600px) 50vw, 38vw" alt="Detail oka a obočí v teplém světle" data-parallax="0.1" /></div>
+        <div class="s3" data-reveal="clip" style="--i: 0"><Image src={g3} widths={[400, 700, 1000, 1300]} sizes="(max-width: 600px) 50vw, 38vw" alt="Ošetření pleti maskou G.M. Collin" data-parallax="0.1" /></div>
         <div class="s4" data-reveal="clip" style="--i: 1"><Image src={g4} widths={[600, 900, 1300, 1800]} sizes="(max-width: 600px) 100vw, 58vw" alt="Krém a sérum mezi květy a eukalyptem" data-parallax="0.1" /></div>
+        <div class="s5" data-reveal="clip" style="--i: 0"><Image src={g5} widths={[600, 900, 1300, 1800]} sizes="(max-width: 600px) 100vw, 58vw" alt="Ošetřovna studia MySkin v Benešově" data-parallax="0.1" /></div>
+        <div class="s6" data-reveal="clip" style="--i: 1"><Image src={g6} widths={[400, 700, 1000, 1300]} sizes="(max-width: 600px) 50vw, 38vw" alt="Detail pudrového obočí" data-parallax="0.1" /></div>
       </div>
     </div>
   </section>
@@ -307,7 +309,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
   /* =========== péče o pleť =========== */
   .care { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); background: var(--mist-light); }
   .care__photo { overflow: hidden; }
-  .care__photo :global(img) { width: 100%; height: 100%; min-height: clamp(560px, 50vw, 1200px); object-fit: cover; object-position: 50% 72%; }
+  .care__photo :global(img) { width: 100%; height: 100%; min-height: clamp(560px, 50vw, 1200px); object-fit: cover; object-position: 50% 20%; }
   .care__text { padding: var(--sec) max(var(--pad), calc((100vw - 1680px) / 2)) var(--sec) clamp(40px, 5vw, 120px); }
   .care__text > * { max-width: 40rem; }
   .quote { margin: clamp(24px, 2.4vw, 48px) 0; padding-left: 24px; border-left: 3px solid var(--coral); }
@@ -362,8 +364,8 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
   .studio__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 27vw, 640px); gap: clamp(10px, 1.1vw, 24px); }
   .studio__grid > div { overflow: hidden; border-radius: var(--r-img); }
   .studio__grid :global(img) { width: 100%; height: 100%; object-fit: cover; }
-  .studio__grid .s1, .studio__grid .s4 { grid-column: span 3; }
-  .studio__grid .s2, .studio__grid .s3 { grid-column: span 2; }
+  .studio__grid .s1, .studio__grid .s4, .studio__grid .s5 { grid-column: span 3; }
+  .studio__grid .s2, .studio__grid .s3, .studio__grid .s6 { grid-column: span 2; }
 
   /* =========== blog =========== */
   .blog__grid > div { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -414,7 +416,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
     .more__list a { grid-template-columns: minmax(0, 1fr); gap: 4px; }
     .studio__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-rows: 44vw; }
     .studio__grid .s1, .studio__grid .s4 { grid-column: 1 / -1; }
-    .studio__grid .s2, .studio__grid .s3 { grid-column: span 1; }
+    .studio__grid .s2, .studio__grid .s3, .studio__grid .s5, .studio__grid .s6 { grid-column: span 1; }
   }
   @media (max-width: 360px) {
     .btns .btn { flex: 1 1 100%; }

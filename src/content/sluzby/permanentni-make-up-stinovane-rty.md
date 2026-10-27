@@ -23,6 +23,15 @@ posts:
   - jak-se-pripravit-na-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate
   - jsou-pigmenty-pro-permanentni-make-up-bezpene
+gallery:
+  - image: pmu-proces-salon
+    alt: Permanentní make-up ve studiu MySkin
+  - image: pmu-pigment-michani
+    alt: Příprava pigmentu před zákrokem
+  - image: karina-pri-praci
+    alt: Karina Kudličková při permanentním make-upu
+  - image: pmu-proces-detail
+    alt: Detail pigmentace obočí
 results:
   - before: po-rty-1-pred
     after: po-rty-1-po

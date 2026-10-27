@@ -23,6 +23,8 @@ const sluzby = defineCollection({
     children: z.array(z.string()).default([]),   // rozcestník: podstránky
     services: z.array(z.string()).default([]),   // související služby
     posts: z.array(z.string()).default([]),      // související články
+    // Malá galerie ze studia (Karina při práci, proces) – 4 fotky
+    gallery: z.array(z.object({ image: z.string(), alt: z.string() })).default([]),
     // Výsledky před a po – jen jako ukázka pro zákaznice, ne jako tematická fotka.
     results: z.array(z.object({
       before: z.string().optional(),   // dvojice fotek před / po

@@ -6,8 +6,8 @@ h1: Permanentní oční linky
 perex: Permanentní oční linka je jemná linie pigmentu v řasové linii, která oči zvýrazní a opticky zahustí řasy. Nerozmaže se při sportu, v dešti ani v bazénu a obvykle vydrží 2–3 roky.
 kind: pmu
 order: 4
-image: rasova-linie
-imageAlt: Vyhojená oční linka v řasové linii
+image: rasova-linie-detail
+imageAlt: Detail oční linky v řasové linii
 stipple: liner
 facts:
   - label: Délka
@@ -22,6 +22,15 @@ posts:
   - jak-se-pripravit-na-permanentni-make-up
   - jak-pecovat-o-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate
+gallery:
+  - image: karina-pri-praci
+    alt: Karina Kudličková při permanentním make-upu
+  - image: pmu-proces-detail
+    alt: Detail pigmentace obočí
+  - image: pmu-proces-salon
+    alt: Permanentní make-up ve studiu MySkin
+  - image: pmu-pigment-michani
+    alt: Příprava pigmentu před zákrokem
 results:
   - image: po-linka-oboci
     caption: "Oční linka v řasové linii a pudrové obočí"

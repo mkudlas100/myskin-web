@@ -25,6 +25,15 @@ posts:
   - tetovane-oboci-ktera-metoda-je-nejlepsi
   - jak-pecovat-o-permanentni-make-up
   - jak-se-pripravit-na-permanentni-make-up
+gallery:
+  - image: pmu-proces-pudrove
+    alt: Karina při pigmentaci pudrového obočí
+  - image: karina-pri-praci
+    alt: Karina Kudličková při permanentním make-upu
+  - image: pmu-proces-detail
+    alt: Detail pigmentace obočí
+  - image: pmu-pigment-michani
+    alt: Příprava pigmentu před zákrokem
 results:
   - before: po-oboci-zakaznice-pred
     after: po-oboci-zakaznice-po

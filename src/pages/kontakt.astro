@@ -9,6 +9,7 @@ import { breadcrumbNode, salonNode, ownerNode } from '../lib/schema';
 import { salon } from '../data/salon';
 import logo from '../assets/img/logo.svg';
 import cekarna from '../assets/img/salon-cekarna.jpg';
+import lehatko from '../assets/img/salon-lehatko.jpg';
 import mapa from '../assets/img/mapa.jpg';
 
 const url = `${salon.url}/kontakt`;
@@ -27,8 +28,8 @@ const schema = [
   { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
-<Base title="Kontakt a online rezervace | Kosmetika MySkin Benešov" description={`Kosmetické studio MySkin, ${salon.street}, Benešov. Objednejte se online přes Noona nebo na tel. ${salon.phone}. Permanentní make-up, kosmetika, řasy a obočí.`} schema={schema} pageType="ContactPage" ogImage={cekarna}>
-  <PageHero crumbs={crumbs} h1="Kontakt" perex="Těším se na vás ve studiu v Benešově. Termín si nejrychleji rezervujete online – hned uvidíte, kdy mám volno." image={cekarna} imageAlt="Čekárna studia MySkin v Benešově" shape="frame" secondary={{ label: 'Ceník', href: '/cenik' }} />
+<Base title="Kontakt a online rezervace | Kosmetika MySkin Benešov" description={`Kosmetické studio MySkin, ${salon.street}, Benešov. Objednejte se online přes Noona nebo na tel. ${salon.phone}. Permanentní make-up, kosmetika, řasy a obočí.`} schema={schema} pageType="ContactPage" ogImage={lehatko}>
+  <PageHero crumbs={crumbs} h1="Kontakt" perex="Těším se na vás ve studiu v Benešově. Termín si nejrychleji rezervujete online – hned uvidíte, kdy mám volno." image={lehatko} imageAlt="Ošetřovna studia MySkin v Benešově" shape="frame" secondary={{ label: 'Ceník', href: '/cenik' }} />
 
   <section class="sec nap">
     <div class="wrap nap__grid">

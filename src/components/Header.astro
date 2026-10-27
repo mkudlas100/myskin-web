@@ -29,9 +29,11 @@ const isCurrent = (href: string) => href === path;
             )}
           </li>
         ))}
-        <li class="m-only"><a href={salon.eshop}>E-shop</a></li>
       </ul>
-      <a class="btn btn--primary book" href={salon.booking}>Rezervovat termín</a>
+      <div class="cta">
+        <a class="btn eshop" href={salon.eshop} aria-label="E-shop"><Icon name="bag" class="bag" /><span class="eshop__txt">E-shop</span></a>
+        <a class="btn btn--primary book" href={salon.booking}>Rezervovat termín</a>
+      </div>
     </nav>
     <button class="burger" id="burger" type="button" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
   </div>
@@ -55,13 +57,20 @@ const isCurrent = (href: string) => href === path;
   .has-sub:hover .sub, .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
   .sub a { display: block; padding: 9px 12px; border-radius: 6px; font-size: var(--fs-sm); }
   .sub a:hover, .sub a[aria-current] { background: var(--mist-light); }
-  .m-only { display: none; }
+  .cta { display: flex; align-items: center; gap: 10px; }
+  .cta .btn { white-space: nowrap; }
+  .eshop { min-height: clamp(44px, 1vw + 32px, 58px); padding: 10px clamp(14px, 1vw, 24px); font-size: var(--fs-sm); gap: 8px; }
+  .eshop :global(.bag) { width: 18px; height: 18px; }
   .book { min-height: clamp(44px, 1vw + 32px, 58px); padding: 10px clamp(18px, 1.2vw, 30px); font-size: var(--fs-sm); }
   .burger { display: none; width: 48px; height: 48px; border: 0; background: none; cursor: pointer; position: relative; z-index: 60; }
   .burger span { display: block; height: 2px; margin: 7px 11px; background: var(--ink); transition: transform var(--t-fast); }
   .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
   .burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
 
+  @media (max-width: 1179px) and (min-width: 1061px) {
+    .eshop { padding: 10px 14px; }
+    .eshop__txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  }
   @media (max-width: 1140px) {
     .menu > li > a { padding: 0 8px; }
     .nav { gap: 12px; }
@@ -79,7 +88,6 @@ const isCurrent = (href: string) => href === path;
     .sub { position: static; opacity: 1; visibility: inherit; transform: none; box-shadow: none; border: 0; background: none; padding: 0 0 12px; min-width: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
     .sub a { padding: 6px 0; color: var(--graphite); }
     .sub a:hover { background: none; text-decoration: underline; }
-    .m-only { display: block; }
-    .book { align-self: flex-start; }
+    .cta { flex-wrap: wrap; }
   }
 </style>

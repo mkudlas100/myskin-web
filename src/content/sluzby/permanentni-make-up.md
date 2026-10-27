@@ -6,8 +6,8 @@ h1: Permanentní make-up v Benešově
 perex: Permanentní make-up je jemné pigmentování svrchní vrstvy kůže, díky kterému máte obočí, rty nebo oční linky upravené od rána do večera. Dělám ho tak, aby působil přirozeně a ladil s vaším obličejem.
 kind: rozcestnik
 order: 1
-image: karina-pri-praci
-imageAlt: Karina Kudličková při permanentním make-upu ve studiu MySkin
+image: pmu-portret-linka-oboci
+imageAlt: Žena s pudrovým obočím a oční linkou
 stipple: brow
 facts:
   - label: Výdrž
@@ -29,6 +29,15 @@ posts:
   - jsou-pigmenty-pro-permanentni-make-up-bezpene
   - tetovane-oboci-ktera-metoda-je-nejlepsi
   - pudrove-oboci-den-po-dni
+gallery:
+  - image: karina-pri-praci
+    alt: Karina Kudličková při permanentním make-upu
+  - image: pmu-proces-salon
+    alt: Permanentní make-up ve studiu MySkin
+  - image: pmu-pigment-michani
+    alt: Příprava pigmentu před zákrokem
+  - image: pmu-proces-pudrove
+    alt: Karina při pigmentaci pudrového obočí
 results:
   - before: po-oboci-zakaznice-pred
     after: po-oboci-zakaznice-po

@@ -25,8 +25,6 @@ results:
   - before: po-lash-pred
     after: po-lash-po
     caption: "Lash lifting – před a po"
-  - image: po-lash-plakat
-    caption: "Lash lifting – přirozeně natočené řasy bez řasenky"
 faq:
   - q: Jak dlouho lash lifting vydrží?
     a: Obvykle 4–6 týdnů, dokud se řasy přirozeně neobnoví. Pak je můžete natočit znovu.

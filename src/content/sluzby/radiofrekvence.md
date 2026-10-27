@@ -6,8 +6,8 @@ h1: Radiofrekvence obličeje a těla
 perex: Radiofrekvence je neinvazivní ošetření, při kterém řízené teplo prohřeje hlubší vrstvy kůže. Kolagenová vlákna se stáhnou a kůže dostane podnět k tvorbě nového kolagenu a elastinu. Dělám ji na obličej, krk a dekolt i na břicho, hýždě, paže a stehna.
 kind: pece
 order: 12
-image: radiofrekvence
-imageAlt: Ošetření pleti obličeje kosmetickým přístrojem
+image: radiofrekvence-osetreni
+imageAlt: Radiofrekvenční ošetření obličeje
 prices: radiofrekvence
 facts:
   - label: Délka

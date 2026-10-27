@@ -4,14 +4,15 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ServiceList from '../components/ServiceList.astro';
-import Stipple from '../components/Stipple.astro';
 import Booking from '../components/Booking.astro';
 import { allServices, pick } from '../lib/content';
 import { breadcrumbNode, ids } from '../lib/schema';
 import { salon } from '../data/salon';
 import { cz } from '../lib/cz';
-import lehatko from '../assets/img/salon-lehatko.jpg';
-import kosmetika from '../assets/img/salon-kosmetika-phyts.jpg';
+import karinaPostava from '../assets/img/foto/karina-postava.jpg';
+import karinaPortret from '../assets/img/foto/karina-portret.jpg';
+import karinaPrace from '../assets/img/foto/karina-pri-praci.jpg';
+import michaela from '../assets/img/foto/michaela-benesova.jpg';
 
 const url = `${salon.url}/o-mne`;
 const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'O nás', href: '/o-mne' }];
@@ -28,7 +29,7 @@ const cesta = [
 
 const pleti = ['hyperpigmentace', 'těžká aknózní pleť', 'růžovka', 'citlivá pleť'];
 
-const imgUrl = new URL((await getImage({ src: lehatko, width: 1200, format: 'jpg' })).src, Astro.site).href;
+const imgUrl = new URL((await getImage({ src: karinaPostava, width: 1200, format: 'jpg' })).src, Astro.site).href;
 const schema = [
   breadcrumbNode(url, crumbs),
   {
@@ -51,12 +52,12 @@ const schema = [
   },
 ];
 ---
-<Base title="Karina Kudličková – kosmetička Benešov | O nás | MySkin" description="Karina Kudličková, kosmetička a specialistka na permanentní make-up: přes 15 let praxe, Yves Rocher, klinika Asklepion, pigmentologie. Studio MySkin Benešov." schema={schema} pageType="AboutPage" ogImage={lehatko}>
-  <PageHero crumbs={crumbs} h1="Z kliniky zpět k lidem" perex="Jsem Karina Kudličková, kosmetička a specialistka na permanentní make-up. Po letech ve velké kosmetické firmě a na klinice estetické medicíny pečuji ve vlastním studiu v Benešově o pleť a dělám pudrové obočí, stínované rty a oční linky." image={lehatko} imageAlt="Ošetřovna studia MySkin v Benešově" shape="frame" secondary={{ label: 'Kontakt', href: '/kontakt' }} />
+<Base title="Karina Kudličková – kosmetička Benešov | O nás | MySkin" description="Karina Kudličková, kosmetička a specialistka na permanentní make-up: přes 15 let praxe, Yves Rocher, klinika Asklepion, pigmentologie. Studio MySkin Benešov." schema={schema} pageType="AboutPage" ogImage={karinaPortret}>
+  <PageHero crumbs={crumbs} h1="Z kliniky zpět k lidem" perex="Jsem Karina Kudličková, kosmetička a specialistka na permanentní make-up. Po letech ve velké kosmetické firmě a na klinice estetické medicíny pečuji ve vlastním studiu v Benešově o pleť a dělám pudrové obočí, stínované rty a oční linky." image={karinaPostava} imageAlt="Karina Kudličková ve studiu MySkin" shape="frame" secondary={{ label: 'Kontakt', href: '/kontakt' }} />
 
   <section class="sec story">
     <div class="wrap story__grid">
-      <div class="story__art" aria-hidden="true"><Stipple shape="brow" /></div>
+      <figure class="story__photo" data-reveal="clip"><Image src={karinaPrace} widths={[400, 700, 1000]} sizes="(max-width: 860px) 92vw, 34vw" alt="Karina Kudličková při permanentním make-upu" /></figure>
       <div class="prose">
         <h2>Můj příběh</h2>
         <p>{cz('Více než deset let jsem sbírala zkušenosti v prestižní mezinárodní kosmetické firmě a na klinice estetické medicíny. Pak jsem se rozhodla vykročit vlastní cestou a založila studio, které stojí na síle přírodních ingrediencí a hluboké péči o pleť.')}</p>
@@ -88,16 +89,21 @@ const schema = [
   </section>
 
   <section class="sec team" aria-labelledby="h-tym">
-    <div class="wrap team__grid">
-      <figure class="team__img" data-reveal="clip"><Image src={kosmetika} widths={[480, 800, 1100]} sizes="(max-width: 860px) 92vw, 44vw" alt="Přírodní kosmetika PHYT’S ve studiu MySkin" /></figure>
-      <div>
-        <p class="team__eyebrow" data-reveal>Tým MySkin</p>
-        <h2 id="h-tym" class="h2 split">Michaela Benešová</h2>
-        <p class="team__role" data-reveal style="--i: 2">Kosmetička a vizážistka</p>
-        <div class="prose" data-reveal style="--i: 3">
-          <p>{cz('Michaela vystudovala v Praze střední školu v oboru kosmetika a vizážistika a má za sebou víc než deset let praxe. Znám ji dlouho a vždy jsem se na ni mohla spolehnout – její profesionální přístup i pečlivost jsou bez kompromisů.')}</p>
-          <p>Specializuje se na komplexní <a href="/kosmeticke-osetreni">kosmetická ošetření</a>, relaxační procedury a šetrnou <a href="/depilace">depilaci</a>. {cz('Její laskavost a smysl pro humor promění každou návštěvu v příjemný zážitek.')}</p>
-        </div>
+    <div class="wrap">
+      <h2 id="h-tym" class="h2 split">Tým MySkin</h2>
+      <div class="team__grid">
+        <article class="member" data-reveal>
+          <figure class="member__img" data-reveal="clip"><Image src={karinaPortret} widths={[400, 700, 1000]} sizes="(max-width: 860px) 92vw, 40vw" alt="Karina Kudličková, kosmetička a specialistka na permanentní make-up" /></figure>
+          <h3>Karina Kudličková</h3>
+          <p class="member__role">Kosmetička a specialistka na permanentní make-up</p>
+          <p>Dělám <a href="/permanentni-make-up">permanentní make-up</a> – pudrové obočí, stínované rty a oční linky – a {cz('pečuji o citlivou a problematickou pleť: hyperpigmentace, akné i růžovku.')}</p>
+        </article>
+        <article class="member" data-reveal style="--i: 1">
+          <figure class="member__img" data-reveal="clip"><Image src={michaela} widths={[400, 700, 1000]} sizes="(max-width: 860px) 92vw, 40vw" alt="Michaela Benešová, kosmetička a vizážistka" /></figure>
+          <h3>Michaela Benešová</h3>
+          <p class="member__role">Kosmetička a vizážistka</p>
+          <p>{cz('Vystudovala v Praze obor kosmetika a vizážistika a má za sebou víc než deset let praxe. Znám ji dlouho a vždy jsem se na ni mohla spolehnout.')} Specializuje se na komplexní <a href="/kosmeticke-osetreni">kosmetická ošetření</a>, relaxační procedury a šetrnou <a href="/depilace">depilaci</a>. {cz('Její laskavost a smysl pro humor promění každou návštěvu v příjemný zážitek.')}</p>
+        </article>
       </div>
     </div>
   </section>
@@ -107,8 +113,8 @@ const schema = [
 </Base>
 <style>
   .story__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 140px); align-items: start; }
-  .story__art { color: var(--ink); padding-top: 12px; }
-  .story__art :global(svg) { width: 100%; max-width: 420px; height: auto; }
+  .story__photo { border-radius: var(--r-img); overflow: hidden; aspect-ratio: 4 / 5; background: var(--mist-light); position: sticky; top: 130px; }
+  .story__photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
   .story .prose { max-width: 68ch; }
   .path { background: var(--mist-light); }
   .path__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 32px clamp(40px, 6vw, 140px); }
@@ -119,14 +125,16 @@ const schema = [
   .path__list li.on .path__y { color: var(--coral-deep); }
   .path__list h3 { font-size: var(--fs-lg); font-variation-settings: 'opsz' 48; letter-spacing: -0.015em; line-height: 1.2; }
   .path__list p { color: var(--graphite); margin-top: 6px; max-width: 60ch; }
-  .team__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 140px); align-items: center; }
-  .team__img { border-radius: var(--r-img); overflow: hidden; aspect-ratio: 4 / 5; background: var(--mist-light); }
-  .team__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
-  .team__eyebrow { font-size: var(--fs-sm); color: var(--graphite); margin-bottom: 14px; display: flex; gap: 8px; align-items: center; }
-  .team__eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
-  .team__role { font-weight: 600; margin: 10px 0 20px; }
+  .team h2 { margin-bottom: clamp(28px, 3vw, 64px); }
+  .team__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 4vw, 96px); }
+  .member__img { border-radius: var(--r-img); overflow: hidden; aspect-ratio: 4 / 5; background: var(--mist-light); margin-bottom: 22px; }
+  .member__img :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+  .member h3 { font-size: var(--fs-lg); font-variation-settings: 'opsz' 48; letter-spacing: -0.015em; }
+  .member__role { font-weight: 600; color: var(--graphite); margin: 6px 0 14px; }
+  .member p:not(.member__role) { color: var(--graphite); max-width: 56ch; }
+  .member a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
   @media (max-width: 860px) {
     .story__grid, .path__grid, .team__grid { grid-template-columns: minmax(0, 1fr); }
-    .story__art { position: static; max-width: 220px; }
+    .story__photo { position: static; max-width: 420px; }
   }
 </style>
