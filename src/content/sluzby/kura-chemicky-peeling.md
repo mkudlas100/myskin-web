@@ -55,7 +55,7 @@ Jedno ošetření trvá zhruba hodinu. Peeling se dělá v sérii 3–5 ošetře
 
 ## Proč vůbec peeling
 
-Pravidelná exfoliace odstraní odumřelé buňky a nečistoty, pleť pak lépe přijímá účinné látky z další péče. Proč na peeling myslet i doma, píšu v článku [najděte si čas na peeling](/najdete-si-cas-na-peeling). Šetrnou přírodní variantu představuji v článku o [BIO peelingu PHYT’S](/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts).
+Pravidelná exfoliace odstraní odumřelé buňky a nečistoty, pleť pak lépe přijímá účinné látky z další péče. Proč na peeling myslet i doma, píšu v článku [najděte si čas na peeling](/najdete-si-cas-na-peeling). Jak kyseliny v peelingu fungují, vysvětluji v článku [chemický peeling s kyselinami](/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts).
 
 ## Po peelingu
 

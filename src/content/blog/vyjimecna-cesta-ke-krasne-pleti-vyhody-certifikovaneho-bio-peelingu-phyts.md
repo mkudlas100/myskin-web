@@ -1,11 +1,11 @@
 ---
-title: Výhody certifikovaného bio peelingu PHYT’S
-seoTitle: Bio chemický peeling PHYT’S s kyselinou glykolovou | MySkin
-description: Jak funguje certifikovaný bio peeling PHYT’S s přírodní kyselinou glykolovou, jak probíhá kúra čtyř ošetření a s čím pomáhá – textura pleti, nedokonalosti, jas.
-perex: Bio peeling PHYT’S používá kyselinu glykolovou přírodního původu, která působí na nejsvrchnější vrstvu kůže. Pleť vyhladí, přečistí její texturu a sjednotí tón. Dělá se jako kúra čtyř ošetření v odstupu 10 dní a dá se opakovat každé 3–6 měsíců.
-listDescription: Chemický peeling nemusí být agresivní. Jak funguje certifikovaný bio peeling PHYT’S s přírodní kyselinou glykolovou a jak probíhá kúra.
-category: prirodni
-updated: 2026-10-26
+title: Chemický peeling s kyselinami – jak funguje
+seoTitle: Chemický peeling s kyselinami – jak funguje a co čekat | MySkin
+description: Jak funguje chemický peeling s kyselinami, například glykolovou, s čím pomáhá a proč ve studiu v Benešově dělám chemický peeling NOON v sérii ošetření.
+perex: Chemický peeling s kyselinami, například glykolovou, rozpouští vazby mezi odumřelými buňkami na povrchu kůže. Pleť je pak hladší, přečištěná a má sjednocenější tón. Ve studiu dnes dělám chemický peeling NOON, který díky technologii DermShield™ zvládne i citlivější pleť.
+listDescription: Co kyseliny v peelingu s pletí dělají, s čím chemický peeling pomáhá a proč ve studiu pracuji s peelingem NOON.
+category: plet
+updated: 2026-10-27
 image: serum-kvety
 imageAlt: Sérum v lahvičce mezi květy
 services:
@@ -13,33 +13,39 @@ services:
   - kosmeticke-osetreni
 posts:
   - najdete-si-cas-na-peeling
-  - neni-bio-jako-bio
-  - hledala-jsem-az-jsem-nasla
+  - efektivni-pece-o-mastnou-plet
+  - proc-mineralni-uv-filtry
 faq:
-  - q: Co dělá kyselina glykolová?
+  - q: Co dělá kyselina glykolová v peelingu?
     a: Působí na nejsvrchnější vrstvu kůže (stratum corneum), uvolňuje odumřelé buňky a nečistoty, vyhlazuje pleť a sjednocuje její tón.
-  - q: Jak často opakovat kúru?
-    a: Kúru čtyř ošetření lze opakovat každé 3–6 měsíců.
+  - q: Jaký chemický peeling ve studiu děláte?
+    a: Chemický peeling NOON Aesthetics. Jedno ošetření trvá zhruba hodinu, dělá se v sérii 3–5 ošetření, výhodnější je kúra 6 ošetření.
+  - q: Na co si dát po chemickém peelingu pozor?
+    a: Pleť je citlivější na slunce, proto ji chraňte krémem s SPF a vyhněte se soláriu.
 ---
 
-Hledáme účinné, a přitom přírodní metody péče o pleť. Jednou z nich je certifikovaný bio peeling od francouzské značky PHYT’S.
+Chemický peeling nemusí znamenat agresivní zákrok. Správně zvolené kyseliny pleť obnoví šetrně a bez dlouhého hojení.
 
-## Jak funguje
+## Jak kyseliny v peelingu fungují
 
-Peeling využívá kyselinu glykolovou přírodního původu. Ta působí na nejsvrchnější vrstvu kůže, stratum corneum, uvolní odumřelé buňky a nečistoty a pleť jemně obnoví. Pomáhá s nerovnou texturou, nedokonalostmi, černými tečkami i nevýrazným tónem pleti.
+Kyseliny, například glykolová, působí na nejsvrchnější vrstvu kůže, stratum corneum. Uvolní odumřelé buňky a nečistoty a pleť jemně obnoví. Výsledkem je hladší pleť s přečištěnou texturou a jasnějším, sjednocenějším tónem.
 
-## Proč certifikovaný bio peeling
+## S čím chemický peeling pomáhá
 
-PHYT’S patří k průkopníkům certifikovaných bio peelingů. Kyselina přírodního původu je šetrná k pleti a certifikace potvrzuje kvalitu použitých přípravků. Co certifikace přírodní a bio kosmetiky znamená, vysvětluji v článku [není bio jako bio](/neni-bio-jako-bio).
+- nerovná textura a rozšířené póry,
+- akné a stopy po něm,
+- pigmentové skvrny,
+- jemné známky stárnutí,
+- unavená pleť bez jasu.
 
-## Jak probíhá kúra
+## Jaký peeling dělám ve studiu
 
-1. **Aplikace kyseliny glykolové** – nanáší ji vyškolená kosmetička.
-2. **Revitalizace** – po ošetření je pleť vyhlazená a sjednocená.
-3. **Opakování** – kúra má čtyři ošetření v odstupu 10 dní. Pro udržení výsledku se dá opakovat každé 3–6 měsíců.
+Ve studiu dělám [chemický peeling NOON Aesthetics](/kura-chemicky-peeling). Je to profesionální dermokosmetika s patentovanou technologií DermShield™, která umožňuje používat vysoké koncentrace kyselin bez zbytečného podráždění. Proto se hodí i pro citlivější pleť – citlivost nebo růžovku mi ale vždy řekněte předem.
 
-Podle měření výrobce (PHYT’SKIN RÉNOV) mělo po čtyřech ošetřeních 90 % klientek vyhlazenou pleť, 95 % přečištěnou texturu a 80 % zredukované nedokonalosti.
+Jedno ošetření trvá zhruba hodinu. Peeling se dělá v sérii 3–5 ošetření, výhodnější je kúra 6 ošetření. Ceny najdete v [ceníku](/cenik).
 
-## Chemický peeling ve studiu
+## Po peelingu
 
-Aktuální nabídku chemického peelingu, průběh i ceny najdete na stránce [chemický peeling](/kura-chemicky-peeling). Jak se liší peeling v salonu od domácího, píšu v článku [najděte si čas na peeling](/najdete-si-cas-na-peeling).
+Pleť je po peelingu citlivější na slunce. Chraňte ji krémem s SPF – proč volím [minerální UV filtry](/proc-mineralni-uv-filtry). Čtyři týdny po chemickém peelingu se v ošetřené oblasti nedělá [permanentní make-up](/permanentni-make-up).
+
+Jak se peeling v salonu liší od domácího a jak často exfoliovat doma, píšu v článku [najděte si čas na peeling](/najdete-si-cas-na-peeling).

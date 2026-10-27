@@ -36,7 +36,7 @@ Sametově hladká pleť je přání mnoha z nás a peeling je jeden z kroků, kt
 
 Problémy z pleti nevydrhnete. Používejte jemný tlak a teplou, ne horkou vodu. Hrubý peeling pleť dráždí a dělá ji náchylnější k poškození. Klíčem je mírný a pravidelný peeling.
 
-Pokud dáváte přednost přírodní kosmetice, přečtěte si o [certifikovaném bio peelingu PHYT’S](/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts).
+Jak funguje peeling s kyselinami, popisuji v článku [chemický peeling s kyselinami](/vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts).
 
 ## Peeling v salonu
 

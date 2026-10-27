@@ -14,7 +14,7 @@ services:
 posts:
   - neni-bio-jako-bio
   - co-jsou-rostlinne-extrakty
-  - vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts
+  - kosmetika-v-obraze
 faq:
   - q: S jakou kosmetikou v salonu pracujete?
     a: Při ošetření pleti pracuji hlavně s francouzskou přírodní kosmetikou PHYT’S. Přípravky na domácí péči najdete v e-shopu.
