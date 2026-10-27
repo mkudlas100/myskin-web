@@ -19,6 +19,7 @@ services:
   - permanentni-make-up-ocni-linky
   - liceni
 posts:
+  - kolik-stoji-permanentni-make-up
   - jak-pecovat-o-permanentni-make-up
   - jak-se-pripravit-na-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate

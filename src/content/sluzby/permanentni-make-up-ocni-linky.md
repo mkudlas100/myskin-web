@@ -19,6 +19,7 @@ services:
   - permanentni-make-up-stinovane-rty
   - rasy-oboci
 posts:
+  - jak-dlouho-vydrzi-permanentni-make-up
   - jak-se-pripravit-na-permanentni-make-up
   - jak-pecovat-o-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate

@@ -23,6 +23,10 @@ services:
   - kosmeticke-osetreni
   - rasy-oboci
 posts:
+  - kolik-stoji-permanentni-make-up
+  - jak-dlouho-vydrzi-permanentni-make-up
+  - oprava-stareho-permanentniho-make-upu
+  - permanentni-make-up-tehotenstvi-kojeni
   - jak-se-pripravit-na-permanentni-make-up
   - jak-pecovat-o-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate
@@ -93,12 +97,5 @@ Zhruba polovina úspěchu je v přípravě a péči po zákroku. Čtyři týdny 
 
 ## Kde mě najdete
 
-Studio je v Benešově u Prahy, na Pražské 380. Z Prahy se sem dostanete po dálnici D1 nebo vlakem po trati Praha – České Budějovice. Na konzultaci i zákrok se objednáte [online](https://noona.app/cs/myskin/book) nebo telefonicky, podrobnosti najdete na stránce [kontakt](/kontakt).
+Studio je v Benešově u Prahy, na Pražské 380. Z Prahy se sem dostanete po dálnici D1 nebo vlakem po trati Praha – České Budějovice. Kolik zákrok stojí a co je v ceně, rozepisuji v článku [kolik stojí permanentní make-up](/kolik-stoji-permanentni-make-up). Na konzultaci i zákrok se objednáte [online](https://noona.app/cs/myskin/book) nebo telefonicky, podrobnosti najdete na stránce [kontakt](/kontakt).
 
-## Co říkají klientky
-
-> „MySkin navštěvuji delší dobu a nedám dopustit jak na pravidelné kosmetické ošetření, tak i na pudrové obočí, se kterým jsem neskutečně spokojená. Má přirozený tvar i barvu.“ – Petra Kočanová
-
-> „Byla jsem na permanentním make-upu obočí (pudr efekt) a musím říct, že co jsem byla předtím již 2× v životě jinde, od Kariny jsem si odnesla nejlepší výsledek.“ – Nelly Kuchařová, Benešov
-
-> „Byla jsem na permanentním make-upu obočí a jsem moc spokojená. Paní kosmetička je moc milá.“ – Martina Timová, Praha

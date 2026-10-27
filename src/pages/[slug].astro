@@ -13,6 +13,7 @@ import Stipple from '../components/Stipple.astro';
 import Results from '../components/Results.astro';
 import Gallery from '../components/Gallery.astro';
 import Expert from '../components/Expert.astro';
+import Reviews from '../components/Reviews.astro';
 import { allPosts, allServices, img, pick, postsFor, rubriky, dateCz, iso, type Sluzba, type Clanek } from '../lib/content';
 import { cenik, pricesFor, kc, cenikPlatnost, fromPrice } from '../data/cenik';
 import { breadcrumbNode, serviceNode, blogPostingNode, faqNode, ownerNode } from '../lib/schema';
@@ -129,6 +130,9 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
       {['kosmeticke-osetreni', 'kura-chemicky-peeling', 'radiofrekvence', 'pece-collagen', 'kosmeticke-sluzby'].includes(svc.id) && <Expert topic="plet" />}
       <Gallery items={d.gallery} />
       <Results items={d.results} />
+      {isPmu && <Reviews topic="pmu" />}
+      {['kosmeticke-osetreni', 'kura-chemicky-peeling', 'kosmeticke-sluzby'].includes(svc.id) && <Reviews topic="plet" />}
+      {svc.id === 'rasy-oboci' && <Reviews topic="rasy" />}
       <Faq items={d.faq} />
       <PostList posts={relPosts} heading="Čtěte také" more={{ label: 'Všechny články', href: '/blog-myskin' }} id="clanky" />
       <ServiceList services={relServices} heading="Mohlo by vás zajímat" id="souvisejici" />

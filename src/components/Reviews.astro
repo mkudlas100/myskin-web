@@ -1,0 +1,45 @@
+---
+// Recenze klientek – skutečné texty z Google a z původního webu, s odkazem na zdroj.
+import { recenze, google, type Recenze } from '../data/recenze';
+import { cz } from '../lib/cz';
+interface Props { topic?: Recenze['topic'] | 'all'; heading?: string; limit?: number }
+const { topic = 'all', heading = 'Co říkají klientky', limit = 3 } = Astro.props;
+const list = [...recenze].sort((a, b) => (a.topic === topic ? -1 : 0) - (b.topic === topic ? -1 : 0)).slice(0, limit);
+---
+<section class="sec rev" aria-labelledby="h-recenze">
+  <div class="wrap">
+    <div class="rev__head">
+      <h2 id="h-recenze" class="h2 split">{heading}</h2>
+      <a class="rev__score" href={google.url} data-reveal>
+        <span class="rev__num">{google.rating}</span>
+        <span class="rev__stars" aria-hidden="true">★★★★★</span>
+        <span class="rev__meta">{google.count} recenzí na Google</span>
+      </a>
+    </div>
+    <ul class="rev__grid">
+      {list.map((r, i) => (
+        <li data-reveal style={`--i: ${i}`}>
+          <blockquote>
+            <p>„{cz(r.text)}“</p>
+            <footer>{r.name} · <span>{r.source === 'Google' ? 'recenze na Google' : 'z původního webu'}</span></footer>
+          </blockquote>
+        </li>
+      ))}
+    </ul>
+    <p class="rev__note">Hodnocení podle profilu MySkin na Google k {google.date}. <a class="txt-link" href={google.url}>Všechny recenze</a></p>
+  </div>
+</section>
+<style>
+  .rev__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(28px, 3vw, 56px); }
+  .rev__score { display: grid; grid-template-columns: auto auto; column-gap: 12px; align-items: baseline; }
+  .rev__num { font-size: var(--fs-xl); font-weight: 600; font-variation-settings: 'opsz' 64; grid-row: span 2; }
+  .rev__stars { color: var(--ink); letter-spacing: 2px; }
+  .rev__meta { font-size: var(--fs-sm); color: var(--graphite); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+  .rev__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 40px); }
+  .rev__grid blockquote { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: clamp(22px, 2vw, 36px); background: var(--mist-light); border-radius: var(--r-img); }
+  .rev__grid p { font-size: var(--fs-md); line-height: 1.5; }
+  .rev__grid footer { font-weight: 600; font-size: var(--fs-sm); }
+  .rev__grid footer span { font-weight: 400; color: var(--graphite); }
+  .rev__note { margin-top: 20px; font-size: var(--fs-sm); color: var(--graphite); }
+  @media (max-width: 900px) { .rev__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

@@ -10,15 +10,15 @@ import imgNoon from '../assets/img/znacka-noon.webp';
 import imgCollin from '../assets/img/znacka-gm-collin.png';
 
 const brands = [
-  { id: 'noon', name: 'NOON Aesthetics', logo: logoNoon, img: imgNoon, imgAlt: 'Přípravek NOON Aesthetics', href: '/kura-chemicky-peeling', link: 'Chemický peeling NOON',
+  { id: 'noon', name: 'NOON Aesthetics', logo: logoNoon, img: imgNoon, imgAlt: 'Přípravek NOON Aesthetics', href: '/kura-chemicky-peeling', link: 'Chemický peeling NOON', site: 'https://www.noon-aesthetics.com',
     sub: 'Izraelská profesionální dermokosmetika',
     text: 'Patentovaná technologie DermShield™ umožňuje používat vysoké koncentrace účinných látek bez podráždění. Péče je účinná, a přitom šetrná i k citlivé pleti.',
     points: ['Vysoké koncentrace účinných látek', 'Izraelská preciznost a inovace', 'Bez parfemace, parabenů a zbytečné chemie'] },
-  { id: 'phyts', name: 'PHYT’S', logo: logoPhyts, img: imgPhyts, imgAlt: 'Sérum PHYT’S', href: '/kosmeticke-osetreni', link: 'Ošetření s kosmetikou PHYT’S',
+  { id: 'phyts', name: 'PHYT’S', logo: logoPhyts, img: imgPhyts, imgAlt: 'Sérum PHYT’S', href: '/kosmeticke-osetreni', link: 'Ošetření s kosmetikou PHYT’S', site: 'https://www.phyts.com',
     sub: 'Francouzská přírodní kosmetika pro profesionální péči',
     text: 'Certifikovaná BIO kosmetika PHYT’S splňuje mé vysoké nároky na přírodní přípravky. Patří mezi vedoucí francouzské značky profesionální péče o pleť: pracuje s ní více než 3 000 kosmetických salonů ve 47 zemích světa.',
     points: ['Certifikované BIO složení z rostlinných extraktů a esenciálních olejů', 'Francouzská tradice a odbornost', 'Bez parabenů, syntetických barviv a zbytečné chemie'] },
-  { id: 'collin', name: 'G.M. Collin', logo: logoCollin, img: imgCollin, imgAlt: 'Přípravky G.M. Collin', href: '/pece-collagen', link: 'Liftingový rituál G.M. Collin',
+  { id: 'collin', name: 'G.M. Collin', logo: logoCollin, img: imgCollin, imgAlt: 'Přípravky G.M. Collin', href: '/pece-collagen', link: 'Liftingový rituál G.M. Collin', site: 'https://www.gmcollin.com',
     sub: 'Kanadská dermokosmetická značka od roku 1957',
     text: 'G.M. Collin spojuje přírodní ingredience s moderními biotechnologiemi. Přípravky vznikají v laboratořích v Montrealu ve spolupráci s dermatology a vědci.',
     points: ['Intenzivní hydratace a regenerace pleti', 'Peptidy, probiotika, kyselina hyaluronová', 'Profesionální péče s dlouhodobým výsledkem'] },
@@ -47,6 +47,7 @@ const brands = [
           <div class="btns">
             <a class="txt-link" href={b.href}>{b.link}</a>
             <a class="txt-link" href="https://eshop.myskin.cz">Koupit v e-shopu</a>
+            <a class="txt-link" href={b.site} rel="noopener">Web značky {b.name}</a>
           </div>
         </div>
       </div>

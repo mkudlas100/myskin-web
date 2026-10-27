@@ -19,6 +19,8 @@ services:
   - permanentni-make-up-ocni-linky
   - rasy-oboci
 posts:
+  - jak-dlouho-vydrzi-permanentni-make-up
+  - oprava-stareho-permanentniho-make-upu
   - jak-se-urcuje-tvar-pudroveho-oboci
   - pudrove-oboci-den-po-dni
   - pro-koho-je-pudrove-oboi-mastna-ple-zrala-ple-i-aktivni-ivot
@@ -93,6 +95,8 @@ Hojení trvá 5–6 týdnů. Celou tu dobu se vyhněte slunci a soláriu (po 14 
 ## Korekce
 
 Po týdnu vám obočí může připadat světlé nebo řídké. To je v pořádku, barva se během dalších týdnů vrátí. Korekce přichází zhruba za 7–8 týdnů od první aplikace: doplníme místa, kde se pigment neuchytil, a případně doladíme tvar nebo sytost.
+
+Jak dlouho obočí vydrží a kdy ho osvěžit, popisuji v článku [jak dlouho vydrží permanentní make-up](/jak-dlouho-vydrzi-permanentni-make-up). Máte starý permanentní make-up od jiné kosmetičky? Přečtěte si, [kdy jde obnovit](/oprava-stareho-permanentniho-make-upu).
 
 ## Jak se připravit
 

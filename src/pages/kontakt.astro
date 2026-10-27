@@ -20,7 +20,8 @@ const salonImg = new URL((await getImage({ src: cekarna, width: 1200, format: 'j
 const faq = [
   { q: 'Jak se objednám?', a: `Nejrychleji online přes rezervační systém Noona, kde vidíte volné termíny. Můžete také zavolat na ${salon.phone} nebo napsat na ${salon.email}.` },
   { q: 'Jaká je otevírací doba?', a: 'Pracuji na objednání. Volné termíny najdete v online rezervaci.' },
-  { q: 'Kde studio najdu?', a: `Na adrese ${salon.street}, ${salon.postalCode} ${salon.city}.` },
+  { q: 'Kde studio najdu?', a: `Na adrese ${salon.street}, ${salon.postalCode} ${salon.city}. Z Prahy se sem dostanete po dálnici D1 nebo vlakem po trati Praha – České Budějovice.` },
+  { q: 'Kde mohu zaparkovat?', a: salon.parking },
 ];
 const schema = [
   salonNode(logoUrl, salonImg),
@@ -41,6 +42,7 @@ const schema = [
           <div><dt>Telefon</dt><dd><a href={`tel:${salon.phoneHref}`}>{salon.phone}</a></dd></div>
           <div><dt>E-mail</dt><dd><a href={`mailto:${salon.email}`}>{salon.email}</a></dd></div>
           <div><dt>Otevřeno</dt><dd>{salon.hours}</dd></div>
+          <div><dt>Parkování</dt><dd>{salon.parking}</dd></div>
           <div><dt>Provozovatel</dt><dd>{salon.operator}, IČO {salon.ico}</dd></div>
         </dl>
         <div class="btns">

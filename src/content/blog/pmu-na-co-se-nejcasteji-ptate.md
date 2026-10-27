@@ -17,6 +17,8 @@ posts:
   - jak-se-pripravit-na-permanentni-make-up
   - jak-pecovat-o-permanentni-make-up
   - jsou-pigmenty-pro-permanentni-make-up-bezpene
+  - kolik-stoji-permanentni-make-up
+  - jak-dlouho-vydrzi-permanentni-make-up
 faq:
   - q: Bolí permanentní make-up?
     a: Kombinuji dva druhy znecitlivujících přípravků, takže zákrok je pro většinu klientek téměř bezbolestný. Vnímáte spíš lehké šimrání nebo tlak.

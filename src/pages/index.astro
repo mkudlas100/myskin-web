@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Stipple from '../components/Stipple.astro';
 import Booking from '../components/Booking.astro';
 import Brands from '../components/Brands.astro';
+import Reviews from '../components/Reviews.astro';
 import { salon } from '../data/salon';
 import karinaPortretSchema from '../assets/img/foto/karina-portret.jpg';
 import { cz } from '../lib/cz';
@@ -217,6 +218,11 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
           <p>Kosmetiku, se kterou pracuji ve studiu, si můžete objednat domů.</p>
           <a class="txt-link" href={salon.eshop}>Otevřít e-shop</a>
         </div>
+        <div data-reveal style="--i: 6">
+          <h3>Dárkové poukazy</h3>
+          <p>Poukaz na ošetření nebo permanentní make-up koupíte v e-shopu a obdarovaná si termín vybere sama.</p>
+          <a class="txt-link" href={salon.vouchers}>Koupit dárkový poukaz</a>
+        </div>
       </div>
     </div>
   </section>
@@ -237,6 +243,9 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
       </div>
     </div>
   </section>
+
+  <!-- Recenze -->
+  <Reviews />
 
   <!-- Blog -->
   <section class="sec blog" aria-labelledby="h-blog">

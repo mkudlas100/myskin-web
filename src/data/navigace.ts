@@ -51,6 +51,7 @@ export const footerMore = [
   { label: 'Blog', href: '/blog-myskin' },
   { label: 'Kurzy', href: '/kurzy-a-workshopy' },
   { label: 'E-shop', href: 'https://eshop.myskin.cz' },
+  { label: 'Dárkové poukazy', href: 'https://eshop.myskin.cz/darkove-poukazy' },
   { label: 'O nás', href: '/o-mne' },
   { label: 'Kontakt', href: '/kontakt' },
 ];

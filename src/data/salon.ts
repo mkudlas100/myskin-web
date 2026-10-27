@@ -14,6 +14,8 @@ export const salon = {
   phoneHref: '+420724918642',
   email: 'karina@myskin.cz',
   hours: 'Po–Pá na objednání',
+  parking: 'Na parkovišti přímo naproti studiu, nebo na placeném parkovišti u kruhového objezdu, asi 100 metrů od salonu.',
+  vouchers: 'https://eshop.myskin.cz/darkove-poukazy',
   geo: { lat: 49.7839282, lng: 14.6873101 },
   map: 'https://www.google.com/maps?cid=3124744777116543652',
   booking: 'https://noona.app/cs/myskin/book',
