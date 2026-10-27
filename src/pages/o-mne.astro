@@ -6,7 +6,8 @@ import PageHero from '../components/PageHero.astro';
 import ServiceList from '../components/ServiceList.astro';
 import Booking from '../components/Booking.astro';
 import { allServices, pick } from '../lib/content';
-import { breadcrumbNode, ids } from '../lib/schema';
+import { breadcrumbNode, ids, ownerNode } from '../lib/schema';
+import { karina } from '../data/karina';
 import { salon } from '../data/salon';
 import { cz } from '../lib/cz';
 import karinaPostava from '../assets/img/foto/karina-postava.jpg';
@@ -18,31 +19,14 @@ const url = `${salon.url}/o-mne`;
 const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'O nás', href: '/o-mne' }];
 const services = pick(await allServices(), ['permanentni-make-up', 'kosmeticke-osetreni', 'radiofrekvence', 'kura-chemicky-peeling'], 'o-mne');
 
-const cesta = [
-  { y: '2005', t: 'Beauty & Art Academy', d: 'Trvalá na řasy, mikromasáž očního okolí, modeláž nehtů gelem.' },
-  { y: '2007–2015', t: 'Yves Rocher', d: 'Kosmetička a kosmetická poradkyně. Aromatické a tradiční tělové péče, kosmetická ošetření.' },
-  { y: '2011–2012', t: 'Klinika Asklepion', d: 'Kosmetička na klinice estetické medicíny. Školení: kosmetická radiofrekvence, tělový přístroj LPG, lymfodrenáž, kryolipolýza.' },
-  { y: '2017', t: 'Asociace vizážistů a stylistů ČR', d: 'Fotomakeup a make-up na kameru.' },
-  { y: '2021', t: 'Permanentní make-up', d: 'Kurz aplikace, designu a korekcí permanentního make-upu.' },
-  { y: '2024', t: 'Fleiš Academy', d: 'Pigmentologie a teorie barev – složení pigmentů a míchání odstínů.' },
-];
+const cesta = karina.milestones;
 
 const pleti = ['hyperpigmentace', 'těžká aknózní pleť', 'růžovka', 'citlivá pleť'];
 
-const imgUrl = new URL((await getImage({ src: karinaPostava, width: 1200, format: 'jpg' })).src, Astro.site).href;
+const karinaImgUrl = new URL((await getImage({ src: karinaPortret, width: 800, format: 'jpg' })).src, Astro.site).href;
 const schema = [
   breadcrumbNode(url, crumbs),
-  {
-    '@type': 'Person',
-    '@id': ids.owner,
-    name: salon.owner.name,
-    jobTitle: salon.owner.jobTitle,
-    worksFor: { '@id': ids.salon },
-    url,
-    knowsAbout: ['Permanentní make-up', 'Pudrové obočí', 'Stínované rty', 'Oční linky', 'Péče o citlivou a problematickou pleť', 'Radiofrekvence', 'Chemický peeling'],
-    hasCredential: cesta.filter((c) => !c.y.includes('–')).map((c) => ({ '@type': 'EducationalOccupationalCredential', name: `${c.t} – ${c.d}`, dateCreated: c.y })),
-    alumniOf: [{ '@type': 'Organization', name: 'Beauty & Art Academy' }, { '@type': 'Organization', name: 'Fleiš Academy' }],
-  },
+  ownerNode(karinaImgUrl),
   {
     '@type': 'Person',
     '@id': `${salon.url}/#michaela`,

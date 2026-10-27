@@ -12,10 +12,12 @@ import Booking from '../components/Booking.astro';
 import Stipple from '../components/Stipple.astro';
 import Results from '../components/Results.astro';
 import Gallery from '../components/Gallery.astro';
+import Expert from '../components/Expert.astro';
 import { allPosts, allServices, img, pick, postsFor, rubriky, dateCz, iso, type Sluzba, type Clanek } from '../lib/content';
 import { cenik, pricesFor, kc, cenikPlatnost, fromPrice } from '../data/cenik';
 import { breadcrumbNode, serviceNode, blogPostingNode, faqNode, ownerNode } from '../lib/schema';
 import { salon } from '../data/salon';
+import karinaFoto from '../assets/img/foto/karina-portret.jpg';
 import { cz } from '../lib/cz';
 
 export async function getStaticPaths() {
@@ -40,6 +42,8 @@ const hubs: Record<string, { name: string; href: string }> = {
 };
 
 let crumbs: { name: string; href: string }[] = [{ name: 'Úvod', href: '/' }];
+let isPmu = false;
+const karinaUrl = new URL((await getImage({ src: karinaFoto, width: 800, format: 'jpg' })).src, Astro.site).href;
 let schema: object[] = [];
 let ogImage;
 
@@ -59,8 +63,10 @@ if (type === 'sluzba') {
   prices = group ? group.items : pricesFor(d.prices ?? `/${svc.id}`);
   ogImage = img(d.image);
   const imgUrl = new URL((await getImage({ src: ogImage, width: 1200, format: 'jpg' })).src, Astro.site).href;
+  isPmu = d.kind === 'pmu' || svc.id === 'permanentni-make-up';
   schema = [
-    serviceNode({ url, name: d.title, description: d.description, image: imgUrl, offers: prices.map((p: any) => ({ name: p.name, price: p.price })), category: hub?.name }),
+    serviceNode({ url, name: d.h1, description: d.description, image: imgUrl, offers: prices.map((p: any) => ({ name: p.name, price: p.price })), category: hub?.name, serviceType: d.title, wide: isPmu }),
+    ...(isPmu ? [ownerNode(karinaUrl)] : []),
     breadcrumbNode(url, crumbs),
     ...(d.faq.length ? [faqNode(url, d.faq)] : []),
   ];
@@ -82,8 +88,8 @@ if (type === 'clanek') {
   ogImage = img(d.image);
   const imgUrl = new URL((await getImage({ src: ogImage, width: 1200, format: 'jpg' })).src, Astro.site).href;
   schema = [
-    blogPostingNode({ url, headline: d.title, description: d.description, image: imgUrl, published: d.published ? iso(d.published) : undefined, modified: iso(d.updated), section: rubriky[d.category].title }),
-    ownerNode(),
+    blogPostingNode({ url, headline: d.title, description: d.description, image: imgUrl, published: d.published ? iso(d.published) : undefined, modified: iso(d.updated), section: rubriky[d.category].title, about: mainService ? `${salon.url}/${mainService.id}` : undefined }),
+    ownerNode(karinaUrl),
     breadcrumbNode(url, crumbs),
     ...(d.faq.length ? [faqNode(url, d.faq)] : []),
   ];
@@ -100,7 +106,7 @@ const from = fromPrice(prices);
 const baseCount = prices.filter((p: any) => !/^Korekce/i.test(p.name)).length;
 const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od' : 'Cena', value: kc(from) }] : []), ...d.facts] : [];
 ---
-<Base title={d.seoTitle} description={d.description} ogImage={ogImage} schema={schema} pageType={type === 'clanek' ? 'WebPage' : undefined}>
+<Base title={d.seoTitle} description={d.description} ogImage={ogImage} schema={schema} modified={iso(d.updated)} article={type === 'clanek' ? { published: d.published ? iso(d.published) : undefined, modified: iso(d.updated), section: rubriky[d.category].title } : undefined}>
 
   {type === 'sluzba' && svc && (
     <>
@@ -119,6 +125,8 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
           )}
         </div>
       </section>
+      {isPmu && <Expert topic="pmu" />}
+      {['kosmeticke-osetreni', 'kura-chemicky-peeling', 'radiofrekvence', 'pece-collagen', 'kosmeticke-sluzby'].includes(svc.id) && <Expert topic="plet" />}
       <Gallery items={d.gallery} />
       <Results items={d.results} />
       <Faq items={d.faq} />

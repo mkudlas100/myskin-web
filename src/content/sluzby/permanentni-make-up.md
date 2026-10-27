@@ -1,7 +1,7 @@
 ---
 title: Permanentní make-up
-seoTitle: Permanentní make-up Benešov – obočí, rty, linky | MySkin
-description: "Permanentní make-up v Benešově: pudrové obočí, stínované rty a oční linky s přirozeným výsledkem. Průběh, hojení, korekce, ceny a rezervace online."
+seoTitle: Permanentní make-up – obočí, rty, linky | MySkin Benešov
+description: "Permanentní make-up obočí, rtů a očních linek s přirozeným výsledkem. Dělá Karina Kudličková ve studiu v Benešově u Prahy. Ceny, průběh, hojení a korekce."
 h1: Permanentní make-up v Benešově
 perex: Permanentní make-up je jemné pigmentování svrchní vrstvy kůže, díky kterému máte obočí, rty nebo oční linky upravené od rána do večera. Dělám ho tak, aby působil přirozeně a ladil s vaším obličejem.
 kind: rozcestnik
@@ -90,6 +90,10 @@ Všechny jehly a pomůcky jsou jednorázové a otevírám je před vámi. Pracuj
 ## Na přípravě záleží
 
 Zhruba polovina úspěchu je v přípravě a péči po zákroku. Čtyři týdny předem vynechte chemický peeling, laser a botox v ošetřované oblasti, 24 hodin předem alkohol a kávu. Celý přehled je v článku [jak se připravit na permanentní make-up](/jak-se-pripravit-na-permanentni-make-up).
+
+## Kde mě najdete
+
+Studio je v Benešově u Prahy, na Pražské 380. Z Prahy se sem dostanete po dálnici D1 nebo vlakem po trati Praha – České Budějovice. Na konzultaci i zákrok se objednáte [online](https://noona.app/cs/myskin/book) nebo telefonicky, podrobnosti najdete na stránce [kontakt](/kontakt).
 
 ## Co říkají klientky
 

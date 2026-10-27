@@ -1,0 +1,42 @@
+---
+// Kdo vás ošetří: Karina jako odbornice (E-E-A-T) – fotka, praxe, kvalifikace, odkaz na O nás.
+import { Image } from 'astro:assets';
+import { karina } from '../data/karina';
+import { cz } from '../lib/cz';
+import foto from '../assets/img/foto/karina-portret.jpg';
+interface Props { topic?: 'pmu' | 'plet' }
+const { topic = 'pmu' } = Astro.props;
+const lead = topic === 'pmu'
+  ? 'Permanentní make-up dělám sama, od konzultace přes předkreslení až po korekci. Pigment volím podle znalostí z pigmentologie, ne podle odhadu.'
+  : 'Ošetření pleti přizpůsobuji typu a stavu pleti. Za sebou mám praxi ve velké kosmetické firmě i na klinice estetické medicíny.';
+---
+<section class="sec expert" aria-labelledby="h-expert">
+  <div class="wrap expert__grid">
+    <figure class="expert__img" data-reveal="clip"><Image src={foto} widths={[300, 500, 700]} sizes="(max-width: 700px) 40vw, 240px" alt={`${karina.name}, ${karina.jobTitle.toLowerCase()}`} /></figure>
+    <div>
+      <p class="expert__eyebrow" data-reveal>Kdo vás ošetří</p>
+      <h2 id="h-expert" class="h2 split">{karina.name}</h2>
+      <p class="expert__role" data-reveal style="--i: 2">{karina.jobTitle}</p>
+      <p data-reveal style="--i: 3">{cz(lead)}</p>
+      <dl class="expert__facts" data-reveal style="--i: 4">
+        {karina.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+      </dl>
+      <a class="txt-link" href="/o-mne" data-reveal style="--i: 5">Vzdělání a praxe</a>
+    </div>
+  </div>
+</section>
+<style>
+  .expert { background: var(--ink); color: var(--on-ink); }
+  .expert__grid { display: grid; grid-template-columns: clamp(160px, 18vw, 320px) minmax(0, 1fr); gap: clamp(28px, 5vw, 110px); align-items: center; }
+  .expert__img { border-radius: var(--r-img); overflow: hidden; aspect-ratio: 4 / 5; }
+  .expert__img :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+  .expert__eyebrow { font-size: var(--fs-sm); color: var(--on-ink-muted); display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .expert__eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+  .expert__role { color: var(--sand); margin: 8px 0 18px; }
+  .expert p:not(.expert__role):not(.expert__eyebrow) { color: var(--on-ink-muted); max-width: 60ch; }
+  .expert__facts { display: flex; flex-wrap: wrap; gap: 16px clamp(28px, 3vw, 64px); margin: 24px 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
+  .expert__facts dt { font-size: var(--fs-sm); color: var(--on-ink-muted); }
+  .expert__facts dd { font-weight: 600; font-size: var(--fs-md); }
+  .expert .txt-link { color: var(--on-ink); }
+  @media (max-width: 700px) { .expert__grid { grid-template-columns: minmax(0, 1fr); } .expert__img { max-width: 220px; } }
+</style>

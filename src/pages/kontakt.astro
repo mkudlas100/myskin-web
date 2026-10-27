@@ -7,6 +7,7 @@ import Faq from '../components/Faq.astro';
 import Booking from '../components/Booking.astro';
 import { breadcrumbNode, salonNode, ownerNode } from '../lib/schema';
 import { salon } from '../data/salon';
+import karinaPortretSchema from '../assets/img/foto/karina-portret.jpg';
 import logo from '../assets/img/logo.svg';
 import cekarna from '../assets/img/salon-cekarna.jpg';
 import lehatko from '../assets/img/salon-lehatko.jpg';
@@ -23,7 +24,7 @@ const faq = [
 ];
 const schema = [
   salonNode(logoUrl, salonImg),
-  ownerNode(),
+  ownerNode(new URL((await getImage({ src: karinaPortretSchema, width: 800, format: 'jpg' })).src, Astro.site).href),
   breadcrumbNode(url, crumbs),
   { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];

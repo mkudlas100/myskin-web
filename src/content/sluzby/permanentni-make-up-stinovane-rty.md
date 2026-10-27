@@ -1,7 +1,7 @@
 ---
 title: Stínované rty
-seoTitle: Stínované rty Benešov – permanentní make-up rtů | MySkin
-description: "Stínované rty v Benešově: permanentní make-up, který sjednotí barvu a obrys rtů. Výdrž 2–3 roky, cena 4 500 Kč, korekce 1 500 Kč. Průběh a hojení."
+seoTitle: Stínované rty – permanentní make-up rtů | MySkin Benešov
+description: "Stínované rty: permanentní make-up, který sjednotí barvu a obrys rtů. Výdrž 2–3 roky, cena 4 500 Kč, korekce 1 500 Kč. Průběh a hojení, Benešov u Prahy."
 h1: Stínované rty
 perex: Stínované rty jsou permanentní make-up, který rtům dodá jemnou barvu a zvýrazní jejich přirozený obrys. Vypadají upraveně i bez rtěnky a výsledek obvykle vydrží 2–3 roky.
 kind: pmu

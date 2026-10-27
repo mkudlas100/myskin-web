@@ -5,6 +5,7 @@ import Stipple from '../components/Stipple.astro';
 import Booking from '../components/Booking.astro';
 import Brands from '../components/Brands.astro';
 import { salon } from '../data/salon';
+import karinaPortretSchema from '../assets/img/foto/karina-portret.jpg';
 import { cz } from '../lib/cz';
 import { salonNode, ownerNode } from '../lib/schema';
 import { allPosts, pick } from '../lib/content';
@@ -30,7 +31,7 @@ const description = 'Kosmetické studio MySkin v Benešově: permanentní make-u
 
 const logoUrl = (await getImage({ src: logo, format: 'svg' })).src;
 const salonImg = (await getImage({ src: cekarna, width: 1200, format: 'jpg' })).src;
-const schema = [salonNode(new URL(logoUrl, Astro.site).href, new URL(salonImg, Astro.site).href), ownerNode()];
+const schema = [salonNode(new URL(logoUrl, Astro.site).href, new URL(salonImg, Astro.site).href), ownerNode(new URL((await getImage({ src: karinaPortretSchema, width: 800, format: 'jpg' })).src, Astro.site).href)];
 
 const pmu = [
   { shape: 'brow', peek: peekBrow, peekAlt: 'Detail upraveného obočí', href: '/permanentni-make-up-pudrove-oboci', name: 'Pudrové obočí', text: 'Stínované obočí s jemným přechodem od začátku ke konci. Doplní tvar, objem i hustotu, i když chloupky chybí.' },

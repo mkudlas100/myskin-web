@@ -1,7 +1,7 @@
 ---
 title: Oční linky
-seoTitle: Permanentní oční linky Benešov | MySkin
-description: "Permanentní oční linky v Benešově: výrazné oči bez denního líčení, voděodolné i při sportu. Výdrž 2–3 roky, cena 3 500 Kč, korekce 1 500 Kč."
+seoTitle: Permanentní oční linky – cena a průběh | MySkin Benešov
+description: "Permanentní oční linky v řasové linii: výrazné oči bez líčení, nerozmažou se ani při sportu. Výdrž 2–3 roky, cena 3 500 Kč. Studio v Benešově u Prahy."
 h1: Permanentní oční linky
 perex: Permanentní oční linka je jemná linie pigmentu v řasové linii, která oči zvýrazní a opticky zahustí řasy. Nerozmaže se při sportu, v dešti ani v bazénu a obvykle vydrží 2–3 roky.
 kind: pmu

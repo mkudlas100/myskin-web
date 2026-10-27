@@ -1,7 +1,7 @@
 ---
 title: Pudrové obočí
-seoTitle: Pudrové obočí Benešov – permanentní make-up | MySkin
-description: "Pudrové obočí v Benešově: stínovaná technika permanentního make-upu, výdrž 2–3 roky. Cena 4 500 Kč, korekce 1 500 Kč. Průběh, hojení a rezervace."
+seoTitle: Pudrové obočí – cena, průběh a hojení | MySkin Benešov
+description: "Pudrové obočí: stínovaná technika permanentního make-upu, výdrž 2–3 roky. Cena 4 500 Kč, korekce 1 500 Kč. Průběh a hojení den po dni. Benešov u Prahy."
 h1: Pudrové obočí
 perex: Pudrové obočí je technika permanentního make-upu, při které obočí jemně vystínuji – začátek nechám světlý a vzdušný, směrem ke konci je barva sytější. Výsledek připomíná obočí dokreslené pudrem a obvykle vydrží 2–3 roky.
 kind: pmu
