@@ -6,8 +6,8 @@ perex: Radiofrekvence je neinvazivní ošetření, které vysokofrekvenční ene
 listDescription: Jak radiofrekvence funguje, co od ní čekat, kolik sezení potřebujete a kdy ji nedělám. Vše na jednom místě.
 category: plet
 updated: 2026-10-26
-image: radiofrekvence-clanek
-imageAlt: Radiofrekvenční ošetření obličeje
+image: radiofrekvence-oblicej
+imageAlt: Radiofrekvenční ošetření obličeje ve studiu MySkin
 services:
   - radiofrekvence
   - kosmeticke-osetreni

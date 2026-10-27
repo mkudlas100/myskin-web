@@ -93,11 +93,6 @@
       "url": "https://images.unsplash.com/photo-1710839006592-4fdfc6caca80"
     },
     {
-      "file": "radiofrekvence-clanek.jpg",
-      "id": "photo-1789135840324-9d7c0e4f7b0e",
-      "url": "https://images.unsplash.com/photo-1789135840324-9d7c0e4f7b0e"
-    },
-    {
       "file": "muzi.jpg",
       "id": "photo-1728949202468-c37fdbd76856",
       "url": "https://images.unsplash.com/photo-1728949202468-c37fdbd76856"
@@ -116,11 +111,6 @@
       "file": "pece-maska.jpg",
       "id": "photo-1761718210089-ba3bb5ccb54f",
       "url": "https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f"
-    },
-    {
-      "file": "kapatko.jpg",
-      "id": "photo-1573461160327-b450ce3d8e7f",
-      "url": "https://images.unsplash.com/photo-1573461160327-b450ce3d8e7f"
     },
     {
       "file": "voda-oblicej.jpg",
@@ -201,6 +191,11 @@
       "file": "organic-lahev.jpg",
       "id": "photo-1596099832784-ffd0f966e8b8",
       "url": "https://images.unsplash.com/photo-1596099832784-ffd0f966e8b8"
+    },
+    {
+      "file": "ultrazvukova-spachtle.jpg",
+      "id": "qS8eFYwvBG4",
+      "url": "https://images.unsplash.com/photo-1761718209794-e0588aafbcc4"
     }
   ]
 }

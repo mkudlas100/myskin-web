@@ -6,8 +6,8 @@ perex: Ultrazvuková špachtle čistí pleť vysokofrekvenčním zvukem a mikrov
 listDescription: Ultrazvukovou špachtli používám skoro u každého ošetření. Jak funguje, co s pletí dělá a proč ji ocení i citlivá pleť.
 category: plet
 updated: 2026-10-26
-image: kapatko
-imageAlt: Kapátko se sérem nad pletí
+image: ultrazvukova-spachtle
+imageAlt: Čištění pleti ultrazvukovou špachtlí
 services:
   - kosmeticke-osetreni
   - kompletni-osetreni-pro-muze
