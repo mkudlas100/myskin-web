@@ -312,8 +312,8 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
 
   /* =========== péče o pleť =========== */
   .care { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); background: var(--mist-light); }
-  .care__photo { overflow: hidden; }
-  .care__photo :global(img) { width: 100%; height: 100%; min-height: clamp(560px, 50vw, 1200px); object-fit: cover; object-position: 50% 30%; }
+  .care__photo { overflow: hidden; position: relative; min-height: 360px; }
+  .care__photo :global(img) { position: absolute; inset: -6% 0; width: 100%; height: 112%; object-fit: cover; object-position: 50% 30%; }
   .care__text { padding: var(--sec) max(var(--pad), calc((100vw - 1680px) / 2)) var(--sec) clamp(40px, 5vw, 120px); }
   .care__text > * { max-width: 40rem; }
   .quote { margin: clamp(24px, 2.4vw, 48px) 0; padding-left: 24px; border-left: 3px solid var(--coral); }
@@ -411,7 +411,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
     .pmu__head { position: static; }
     .pmu__fit { grid-column: auto; }
     .care { grid-template-columns: minmax(0, 1fr); }
-    .care__photo :global(img) { min-height: 0; aspect-ratio: 4 / 3.4; }
+    .care__photo { aspect-ratio: 4 / 3; min-height: 0; }
     .care__text { padding: 64px var(--pad) 72px; }
     .blog__list { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   }

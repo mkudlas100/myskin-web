@@ -10,14 +10,14 @@ import imgNoon from '../assets/img/znacka-noon.webp';
 import imgCollin from '../assets/img/znacka-gm-collin.png';
 
 const brands = [
-  { id: 'phyts', name: 'PHYT’S', logo: logoPhyts, img: imgPhyts, imgAlt: 'Sérum PHYT’S', href: '/kosmeticke-osetreni', link: 'Ošetření s kosmetikou PHYT’S',
-    sub: 'Francouzská přírodní kosmetika pro profesionální péči',
-    text: 'Certifikovaná BIO kosmetika PHYT’S splňuje mé vysoké nároky na přírodní přípravky. Patří mezi vedoucí francouzské značky profesionální péče o pleť: pracuje s ní více než 3 000 kosmetických salonů ve 47 zemích světa.',
-    points: ['Certifikované BIO složení z rostlinných extraktů a esenciálních olejů', 'Francouzská tradice a odbornost', 'Bez parabenů, syntetických barviv a zbytečné chemie'] },
   { id: 'noon', name: 'NOON Aesthetics', logo: logoNoon, img: imgNoon, imgAlt: 'Přípravek NOON Aesthetics', href: '/kura-chemicky-peeling', link: 'Chemický peeling NOON',
     sub: 'Izraelská profesionální dermokosmetika',
     text: 'Patentovaná technologie DermShield™ umožňuje používat vysoké koncentrace účinných látek bez podráždění. Péče je účinná, a přitom šetrná i k citlivé pleti.',
     points: ['Vysoké koncentrace účinných látek', 'Izraelská preciznost a inovace', 'Bez parfemace, parabenů a zbytečné chemie'] },
+  { id: 'phyts', name: 'PHYT’S', logo: logoPhyts, img: imgPhyts, imgAlt: 'Sérum PHYT’S', href: '/kosmeticke-osetreni', link: 'Ošetření s kosmetikou PHYT’S',
+    sub: 'Francouzská přírodní kosmetika pro profesionální péči',
+    text: 'Certifikovaná BIO kosmetika PHYT’S splňuje mé vysoké nároky na přírodní přípravky. Patří mezi vedoucí francouzské značky profesionální péče o pleť: pracuje s ní více než 3 000 kosmetických salonů ve 47 zemích světa.',
+    points: ['Certifikované BIO složení z rostlinných extraktů a esenciálních olejů', 'Francouzská tradice a odbornost', 'Bez parabenů, syntetických barviv a zbytečné chemie'] },
   { id: 'collin', name: 'G.M. Collin', logo: logoCollin, img: imgCollin, imgAlt: 'Přípravky G.M. Collin', href: '/pece-collagen', link: 'Liftingový rituál G.M. Collin',
     sub: 'Kanadská dermokosmetická značka od roku 1957',
     text: 'G.M. Collin spojuje přírodní ingredience s moderními biotechnologiemi. Přípravky vznikají v laboratořích v Montrealu ve spolupráci s dermatology a vědci.',
@@ -98,5 +98,9 @@ const brands = [
   .brands__text li::before { content: ""; position: absolute; left: 0; top: .65em; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
   .brands__text .btns { gap: 24px; }
   @media (max-width: 860px) { .brands__panel { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 600px) {
+    .brands__tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; gap: 8px; }
+    .brands__tabs button { width: 100%; height: 52px; padding: 10px 12px; }
+  }
   @media (prefers-reduced-motion: reduce) { :global(.ready) .brands__panel.on { animation: none; } }
 </style>
