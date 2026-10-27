@@ -6,8 +6,8 @@ h1: Čisticí péče zad
 perex: Čisticí péče zad je hloubkové ošetření, které odstraní nečistoty, přebytečný maz a odumřelé buňky, zklidní podrážděnou pokožku a vrátí jí rovnoměrný tón. Hodí se při pupíncích a černých tečkách na zádech i jako příprava na léto.
 kind: pece
 order: 16
-image: zada
-imageAlt: Ženská záda a ramena při péči o pokožku
+image: osetreni-salon-phyts
+imageAlt: Kosmetické ošetření ve studiu MySkin
 prices: /cistici-pece-zad
 facts:
   - label: Délka

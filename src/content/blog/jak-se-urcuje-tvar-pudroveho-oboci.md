@@ -6,8 +6,8 @@ perex: Tvar pudrového obočí určuji podle tří bodů na obličeji – začá
 listDescription: Tvar pudrového obočí nikdy neurčuji od oka. Ukážu vám, jak obočí měřím a předkresluji, proč žádný obličej není souměrný a jak se na měření připravit.
 category: pmu
 updated: 2026-10-26
-image: pmu-uprava
-imageAlt: Úprava a měření obočí před permanentním make-upem
+image: oboci-rozmereni
+imageAlt: Rozměření obočí nití před permanentním make-upem
 services:
   - permanentni-make-up-pudrove-oboci
   - rasy-oboci

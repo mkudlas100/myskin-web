@@ -6,8 +6,8 @@ perex: Pudrové obočí se hodí pro většinu klientek – nejvíc pro mastnou 
 listDescription: Pudrové obočí se hodí na mastnou i zralou pleť a vydrží i aktivní život. Napsala jsem, komu tahle technika sedne nejlépe a kdy je lepší zákrok odložit.
 category: pmu
 updated: 2026-10-26
-image: oboci-svetle
-imageAlt: Detail upraveného obočí na světlé pleti
+image: oboci-vyhojene
+imageAlt: Detail vyhojeného pudrového obočí
 services:
   - permanentni-make-up-pudrove-oboci
   - rasy-oboci

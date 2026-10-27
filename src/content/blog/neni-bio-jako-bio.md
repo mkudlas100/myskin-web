@@ -6,8 +6,8 @@ perex: Přírodní kosmetika obsahuje přírodní složky, bio kosmetika navíc 
 listDescription: Natural, bio, organic, pure – slova na obalu ještě z kosmetiky přírodní neudělají. Jaký je rozdíl a jak poznat skutečně přírodní produkt.
 category: prirodni
 updated: 2026-10-26
-image: bio-olej
-imageAlt: Lahvička přírodního oleje mezi rostlinami
+image: bio-tuba-listy
+imageAlt: Tuba přírodní kosmetiky na zelených listech
 services:
   - kosmeticke-osetreni
 posts:

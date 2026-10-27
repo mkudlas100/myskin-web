@@ -6,8 +6,8 @@ perex: Alginátová maska je z mořských řas a dokáže na sebe vázat obrovsk
 listDescription: Alginátová maska váže obrovské množství vody. Proč ji ráda používám hlavně v létě a jak ji kombinuji se sérem.
 category: plet
 updated: 2026-10-26
-image: alginat
-imageAlt: Nanášení alginátové masky štětcem
+image: maska-stetec
+imageAlt: Nanášení pleťové masky štětcem
 services:
   - kosmeticke-osetreni
   - pece-collagen

@@ -6,8 +6,8 @@ perex: Microblading kreslí ručním pérkem tenké tahy, které napodobují chl
 listDescription: Microblading, nebo pudrové obočí? Obě metody vám ušetří ranní malování, liší se ale vzhledem, výdrží i tím, pro jakou pleť se hodí. Srovnala jsem je, abyste si snáz vybrala.
 category: pmu
 updated: 2026-10-26
-image: oboci-prirozene
-imageAlt: Přirozené obočí ženy s modrýma očima
+image: oboci-pudrove
+imageAlt: Detail pudrového obočí
 services:
   - permanentni-make-up-pudrove-oboci
   - permanentni-make-up

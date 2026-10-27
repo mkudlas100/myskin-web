@@ -6,8 +6,8 @@ perex: Na permanentní make-up se připravujete zhruba měsíc předem. Čtyři 
 listDescription: Polovina úspěchu permanentního make-upu záleží na přípravě. Sepsala jsem, co dělat a čemu se vyhnout v týdnech a dnech před zákrokem, aby se pigment dobře uchytil.
 category: pmu
 updated: 2026-10-26
-image: pmu-mapovani
-imageAlt: Předkreslení tvaru obočí před permanentním make-upem
+image: pmu-proces-salon
+imageAlt: Permanentní make-up obočí ve studiu MySkin
 services:
   - permanentni-make-up
   - permanentni-make-up-pudrove-oboci

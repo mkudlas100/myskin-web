@@ -20,7 +20,7 @@ import g3 from '../assets/img/stock/k-oko-3.jpg';
 import g4 from '../assets/img/stock/k-produkt-1.jpg';
 import peekBrow from '../assets/img/stock/pmu-oboci.jpg';
 import peekLips from '../assets/img/stock/pmu-rty.jpg';
-import peekLiner from '../assets/img/stock/pmu-linky.jpg';
+import peekLiner from '../assets/img/foto/rasova-linie.jpg';
 
 const title = 'Kosmetika a permanentní make-up Benešov | MySkin';
 const description = 'Kosmetické studio MySkin v Benešově: permanentní make-up obočí, rtů a linek, ošetření pleti přírodní kosmetikou Phyt\'s a radiofrekvence. Rezervace online.';
@@ -32,7 +32,7 @@ const schema = [salonNode(new URL(logoUrl, Astro.site).href, new URL(salonImg, A
 const pmu = [
   { shape: 'brow', peek: peekBrow, peekAlt: 'Detail upraveného obočí', href: '/permanentni-make-up-pudrove-oboci', name: 'Pudrové obočí', text: 'Stínované obočí s jemným přechodem od začátku ke konci. Doplní tvar, objem i hustotu, i když chloupky chybí.' },
   { shape: 'lips', peek: peekLips, peekAlt: 'Detail rtů v přirozeném odstínu', href: '/permanentni-make-up-stinovane-rty', name: 'Stínované rty', text: 'Sjednotí barvu a obrys rtů, takže vypadají upraveně i bez rtěnky.' },
-  { shape: 'liner', peek: peekLiner, peekAlt: 'Oko s oční linkou', href: '/permanentni-make-up-ocni-linky', name: 'Oční linky', text: 'Linka v řasové linii, která se nerozmaže při sportu, v sauně ani v bazénu.' },
+  { shape: 'liner', peek: peekLiner, peekAlt: 'Vyhojená oční linka', href: '/permanentni-make-up-ocni-linky', name: 'Oční linky', text: 'Linka v řasové linii, která se nerozmaže při sportu, v sauně ani v bazénu.' },
 ] as const;
 
 const care = [

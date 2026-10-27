@@ -2,10 +2,14 @@
 import type { ImageMetadata } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-const stock = import.meta.glob<{ default: ImageMetadata }>('../assets/img/stock/*.{jpg,jpeg,png,webp}', { eager: true });
+// Vlastní fotky salonu (foto/) mají přednost před ilustračními z fotobanky (stock/).
+const stock = {
+  ...import.meta.glob<{ default: ImageMetadata }>('../assets/img/stock/*.{jpg,jpeg,png,webp}', { eager: true }),
+  ...import.meta.glob<{ default: ImageMetadata }>('../assets/img/foto/*.{jpg,jpeg,png,webp}', { eager: true }),
+};
 export function img(name: string): ImageMetadata {
   const hit = Object.entries(stock).find(([p]) => p.split('/').pop()!.replace(/\.(jpe?g|png|webp)$/, '') === name.replace(/\.(jpe?g|png|webp)$/, ''));
-  if (!hit) throw new Error(`Chybí obrázek ${name} v src/assets/img/stock`);
+  if (!hit) throw new Error(`Chybí obrázek ${name} v src/assets/img/foto ani stock`);
   return hit[1].default;
 }
 

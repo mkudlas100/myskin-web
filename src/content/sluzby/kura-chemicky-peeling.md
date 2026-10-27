@@ -23,6 +23,13 @@ posts:
   - vyjimecna-cesta-ke-krasne-pleti-vyhody-certifikovaneho-bio-peelingu-phyts
   - efektivni-pece-o-mastnou-plet
   - proc-mineralni-uv-filtry
+results:
+  - image: po-peeling-pred
+    caption: "Pleť s akné před kúrou chemického peelingu"
+  - image: po-peeling-mezi
+    caption: "Během kúry"
+  - image: po-peeling-po
+    caption: "Po kúře chemického peelingu"
 faq:
   - q: Kolik ošetření chemickým peelingem potřebuji?
     a: Peeling NOON se dělá v sérii 3–5 ošetření. Pro výraznější výsledek nabízím kúru 6 ošetření za 9 600 Kč. Interval domluvíme podle stavu pleti.

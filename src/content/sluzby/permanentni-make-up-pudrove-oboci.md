@@ -25,6 +25,21 @@ posts:
   - tetovane-oboci-ktera-metoda-je-nejlepsi
   - jak-pecovat-o-permanentni-make-up
   - jak-se-pripravit-na-permanentni-make-up
+results:
+  - before: po-oboci-zakaznice-pred
+    after: po-oboci-zakaznice-po
+    caption: "Pudrové obočí – před zákrokem a po zhojení"
+  - before: po-oboci-pudrove-pred
+    after: po-oboci-pudrove-po
+    caption: "Pudrové obočí – před a po"
+  - image: po-oboci-hojeni
+    caption: "Před zákrokem, hned po zákroku a po zhojení"
+  - image: po-oboci-portret
+    caption: "Úprava tvaru obočí – před a po"
+  - image: po-oboci-dve
+    caption: "Pudrové obočí – před a po"
+  - image: po-oboci-vlasy
+    caption: "Pudrové obočí – před a po"
 faq:
   - q: Jak dlouho pudrové obočí vydrží?
     a: Obvykle 2–3 roky. Barva postupně slábne – rychleji na mastné pleti, na slunci a při používání peelingů nebo retinolu. Osvěžení doporučuji jednou za 1–2 roky.

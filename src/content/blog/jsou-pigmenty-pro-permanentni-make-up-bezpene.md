@@ -7,8 +7,8 @@ listDescription: Od roku 2022 hlídají složení pigmentů přísná pravidla E
 category: pmu
 published: 2026-10-18
 updated: 2026-10-26
-image: pigment
-imageAlt: Lahvička s pigmentem v rukou v rukavici
+image: pigmenty
+imageAlt: Lahvičky pigmentů pro permanentní make-up
 services:
   - permanentni-make-up
   - permanentni-make-up-pudrove-oboci

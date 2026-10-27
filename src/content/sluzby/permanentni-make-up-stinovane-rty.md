@@ -23,6 +23,16 @@ posts:
   - jak-se-pripravit-na-permanentni-make-up
   - pmu-na-co-se-nejcasteji-ptate
   - jsou-pigmenty-pro-permanentni-make-up-bezpene
+results:
+  - before: po-rty-1-pred
+    after: po-rty-1-po
+    caption: "Stínované rty – před a po"
+  - before: po-rty-2-pred
+    after: po-rty-2-po
+    caption: "Stínované rty – před a po"
+  - before: po-rty-3-pred
+    after: po-rty-3-po
+    caption: "Stínované rty – před a po"
 faq:
   - q: Zvětší stínované rty objem rtů?
     a: Ne. Pigment neaplikuji za hranici přirozené linie rtů, výsledek by vypadal nepřirozeně. Rty získají sytější barvu a jasnější obrys, díky čemuž opticky působí plněji. Na zvětšení rtů jsou určené výplně na klinice estetické medicíny.

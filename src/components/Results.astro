@@ -1,0 +1,54 @@
+---
+// Výsledky před a po: ukázka pro zákaznice. Dvojice se zobrazí vedle sebe se štítky Před / Po.
+import { Image } from 'astro:assets';
+import { img } from '../lib/content';
+import { cz } from '../lib/cz';
+interface Item { before?: string; after?: string; image?: string; caption: string }
+interface Props { items: Item[]; heading?: string; lead?: string }
+const { items, heading = 'Výsledky před a po', lead = 'Fotky klientek ze studia. Každá pleť se hojí jinak, výsledek proto vždy probereme na konzultaci.' } = Astro.props;
+---
+{items.length > 0 && (
+  <section class="sec res" aria-labelledby="h-vysledky">
+    <div class="wrap">
+      <div class="res__head">
+        <h2 id="h-vysledky" class="h2 split">{heading}</h2>
+        <p data-reveal style="--i: 2">{cz(lead)}</p>
+      </div>
+      <ul class:list={['res__grid', items.length === 3 && items.every((x) => x.image) && 'res__grid--3']}>
+        {items.map((it, i) => (
+          <li class:list={['res__item', it.before && it.after && 'res__item--pair']} data-reveal style={`--i: ${i % 3}`}>
+            <figure>
+              {it.before && it.after ? (
+                <div class="res__pair">
+                  <div class="res__img"><Image src={img(it.before)} widths={[320, 520, 760]} sizes="(max-width: 700px) 46vw, 22vw" alt={`Před: ${it.caption}`} /><span class="res__tag">Před</span></div>
+                  <div class="res__img"><Image src={img(it.after)} widths={[320, 520, 760]} sizes="(max-width: 700px) 46vw, 22vw" alt={`Po: ${it.caption}`} /><span class="res__tag res__tag--po">Po</span></div>
+                </div>
+              ) : (
+                <div class="res__img res__img--single"><Image src={img(it.image!)} widths={[400, 700, 1000]} sizes="(max-width: 700px) 92vw, 44vw" alt={it.caption} /></div>
+              )}
+              <figcaption>{cz(it.caption)}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+<style>
+  .res__head { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 20px clamp(40px, 6vw, 140px); align-items: end; margin-bottom: clamp(32px, 3vw, 64px); }
+  .res__head p { color: var(--graphite); max-width: 52ch; }
+  .res__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3vw, 64px) clamp(20px, 2.4vw, 48px); }
+  .res__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .res__grid--3 .res__img--single { aspect-ratio: 3 / 4; }
+  .res__grid--3 .res__img--single :global(img) { object-fit: cover; }
+  .res__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .res__img { position: relative; overflow: hidden; border-radius: var(--r-img); background: var(--mist-light); aspect-ratio: 3 / 4; }
+  .res__img--single { aspect-ratio: 4 / 3; }
+  .res__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+  .res__img--single :global(img) { object-fit: contain; background: var(--mist-light); }
+  .res__item:hover .res__img :global(img) { transform: scale(1.03); }
+  .res__tag { position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: var(--on-ink); color: var(--ink); font-size: var(--fs-xs); font-weight: 600; }
+  .res__tag--po { background: var(--ink); color: var(--on-ink); }
+  figcaption { margin-top: 14px; color: var(--graphite); font-size: var(--fs-sm); }
+  @media (max-width: 860px) { .res__head { grid-template-columns: minmax(0, 1fr); } .res__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

@@ -6,8 +6,8 @@ perex: Pudrové obočí je první dny tmavší a širší, po týdnu se strupy o
 listDescription: První den tmavé, za týden skoro neviditelné a pak zpátky. Vysvětlím, co se s pudrovým obočím při hojení děje týden po týdnu a proč se nemusíte bát.
 category: pmu
 updated: 2026-10-26
-image: oboci-detail
-imageAlt: Detail obočí a oka v teplém světle
+image: oboci-myskin
+imageAlt: Pudrové obočí krátce po zákroku
 services:
   - permanentni-make-up-pudrove-oboci
 posts:

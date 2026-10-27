@@ -6,8 +6,8 @@ h1: Permanentní make-up v Benešově
 perex: Permanentní make-up je jemné pigmentování svrchní vrstvy kůže, díky kterému máte obočí, rty nebo oční linky upravené od rána do večera. Dělám ho tak, aby působil přirozeně a ladil s vaším obličejem.
 kind: rozcestnik
 order: 1
-image: pmu-mapovani
-imageAlt: Předkreslování tvaru obočí před permanentním make-upem
+image: karina-pri-praci
+imageAlt: Karina Kudličková při permanentním make-upu ve studiu MySkin
 stipple: brow
 facts:
   - label: Výdrž
@@ -29,6 +29,17 @@ posts:
   - jsou-pigmenty-pro-permanentni-make-up-bezpene
   - tetovane-oboci-ktera-metoda-je-nejlepsi
   - pudrove-oboci-den-po-dni
+results:
+  - before: po-oboci-zakaznice-pred
+    after: po-oboci-zakaznice-po
+    caption: "Pudrové obočí – před a po zhojení"
+  - before: po-rty-1-pred
+    after: po-rty-1-po
+    caption: "Stínované rty – před a po"
+  - image: po-oboci-hojeni
+    caption: "Pudrové obočí: před, hned po zákroku a po zhojení"
+  - image: po-linka-oboci
+    caption: "Oční linka a pudrové obočí"
 faq:
   - q: Bolí permanentní make-up?
     a: Kombinuji dva druhy znecitlivujících přípravků, takže zákrok je pro většinu klientek téměř bezbolestný. Vnímáte spíš lehké šimrání nebo tlak.

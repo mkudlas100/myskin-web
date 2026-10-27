@@ -6,8 +6,8 @@ perex: Po permanentním make-upu je nejdůležitější první den a následují
 listDescription: Co dělat první dny po zákroku, jak probíhá hojení obočí i rtů a kdy přijít na korekci. Praktický návod, aby vám permanentní make-up vydržel krásný co nejdéle.
 category: pmu
 updated: 2026-10-26
-image: oboci-pece
-imageAlt: Detail obočí a oka při péči o pleť
+image: oboci-vyhojene-oko
+imageAlt: Vyhojené pudrové obočí
 services:
   - permanentni-make-up-pudrove-oboci
   - permanentni-make-up-stinovane-rty

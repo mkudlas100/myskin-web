@@ -10,6 +10,7 @@ import ServiceList from '../components/ServiceList.astro';
 import PriceTable from '../components/PriceTable.astro';
 import Booking from '../components/Booking.astro';
 import Stipple from '../components/Stipple.astro';
+import Results from '../components/Results.astro';
 import { allPosts, allServices, img, pick, postsFor, rubriky, dateCz, iso, type Sluzba, type Clanek } from '../lib/content';
 import { cenik, pricesFor, kc, cenikPlatnost, fromPrice } from '../data/cenik';
 import { breadcrumbNode, serviceNode, blogPostingNode, faqNode, ownerNode } from '../lib/schema';
@@ -117,6 +118,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
           )}
         </div>
       </section>
+      <Results items={d.results} />
       <Faq items={d.faq} />
       <PostList posts={relPosts} heading="Čtěte také" more={{ label: 'Všechny články', href: '/blog-myskin' }} id="clanky" />
       <ServiceList services={relServices} heading="Mohlo by vás zajímat" id="souvisejici" />

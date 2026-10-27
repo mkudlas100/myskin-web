@@ -15,7 +15,7 @@ const sluzby = defineCollection({
     perex: z.string(),                 // první odstavec – odpověď hned na začátku
     kind: z.enum(['pmu', 'pece', 'dalsi', 'kurz', 'rozcestnik']),
     order: z.number().default(50),
-    image: z.string(),                 // soubor v src/assets/img/stock
+    image: z.string(),                 // soubor v src/assets/img/foto (salon) nebo stock (ilustrační)
     imageAlt: z.string(),
     stipple: z.enum(['brow', 'lips', 'liner']).optional(),
     facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
@@ -23,6 +23,13 @@ const sluzby = defineCollection({
     children: z.array(z.string()).default([]),   // rozcestník: podstránky
     services: z.array(z.string()).default([]),   // související služby
     posts: z.array(z.string()).default([]),      // související články
+    // Výsledky před a po – jen jako ukázka pro zákaznice, ne jako tematická fotka.
+    results: z.array(z.object({
+      before: z.string().optional(),   // dvojice fotek před / po
+      after: z.string().optional(),
+      image: z.string().optional(),    // nebo jedna fotka (už složené před a po, nebo výsledek)
+      caption: z.string(),
+    })).default([]),
     faq,
     updated: z.coerce.date(),
   }),

@@ -6,8 +6,8 @@ perex: Po zimě bývá pleť unavená, matná a dehydratovaná. Na jaře jí pom
 listDescription: Po zimních měsících potřebuje pleť něžnou péči, aby byla připravená na slunečné dny. Jak ji na jaře probudit.
 category: prirodni
 updated: 2026-10-26
-image: jaro
-imageAlt: Jarní květy v přirozeném světle
+image: plet-rucnik
+imageAlt: Žena s ručníkem pečuje o pleť
 services:
   - kosmeticke-osetreni
   - kura-chemicky-peeling

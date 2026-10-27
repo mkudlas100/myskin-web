@@ -7,8 +7,8 @@ listDescription: Je laser škodlivý, co dělá se znaménky a proč chloupky n�
 category: telo
 published: 2026-10-19
 updated: 2026-10-26
-image: laser
-imageAlt: Přístroj pro laserovou epilaci
+image: depilace-nohy-ruzove
+imageAlt: Hladké nohy po odstranění chloupků
 services:
   - depilace
 posts:
