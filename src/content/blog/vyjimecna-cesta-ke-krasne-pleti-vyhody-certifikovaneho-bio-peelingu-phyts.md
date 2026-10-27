@@ -1,6 +1,6 @@
 ---
 title: Chemický peeling s kyselinami – jak funguje
-seoTitle: Chemický peeling s kyselinami – jak funguje a co čekat | MySkin
+seoTitle: Chemický peeling s kyselinami – jak funguje | MySkin
 description: Jak funguje chemický peeling s kyselinami, například glykolovou, s čím pomáhá a proč ve studiu v Benešově dělám chemický peeling NOON v sérii ošetření.
 perex: Chemický peeling s kyselinami, například glykolovou, rozpouští vazby mezi odumřelými buňkami na povrchu kůže. Pleť je pak hladší, přečištěná a má sjednocenější tón. Ve studiu dnes dělám chemický peeling NOON, který díky technologii DermShield™ zvládne i citlivější pleť.
 listDescription: Co kyseliny v peelingu s pletí dělají, s čím chemický peeling pomáhá a proč ve studiu pracuji s peelingem NOON.
