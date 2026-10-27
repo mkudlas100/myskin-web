@@ -20,7 +20,7 @@ const Tag = level;
         {posts.map((p, i) => (
           <li data-reveal style={`--i: ${i % 3}`}>
             <a href={`/${p.id}`}>
-              <span class="posts__img"><Image src={img(p.data.image)} widths={[360, 560, 800]} sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 30vw" alt="" /></span>
+              <span class="posts__img"><Image src={img(p.data.image)} widths={[360, 560, 800]} sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 30vw" alt={p.data.imageAlt} /></span>
               <span class="posts__cat">{rubriky[p.data.category].title}</span>
               <Tag class="posts__title">{cz(p.data.title)}</Tag>
               <span class="posts__text">{cz(p.data.listDescription)}</span>

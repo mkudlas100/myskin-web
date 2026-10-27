@@ -27,7 +27,7 @@ const from = (s: Sluzba) => {
               <span class="svc__name">{s.data.title}</span>
               <span class="svc__text">{cz(s.data.perex.split('. ')[0].replace(/\.$/, ''))}.</span>
               <span class="svc__price">{from(s)}</span>
-              <span class="peek" aria-hidden="true"><Image src={img(s.data.image)} widths={[300, 500]} sizes="260px" alt="" /></span>
+              <span class="peek" aria-hidden="true"><Image src={img(s.data.image)} widths={[300, 500]} sizes="260px" alt={s.data.imageAlt} /></span>
             </a>
           </li>
         ))}

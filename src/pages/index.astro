@@ -53,8 +53,8 @@ const timeline = [
   { y: '2007', t: 'Yves Rocher', d: 'kosmetička a poradkyně, osm let' },
   { y: '2011', t: 'Asklepion', d: 'kosmetička na klinice estetické medicíny' },
   { y: '2017', t: 'Asociace vizážistů a stylistů ČR', d: 'fotomakeup' },
-  { y: '2021', t: 'Fleiš Academy', d: 'permanentní make-up' },
-  { y: '2024', t: 'Fleiš Academy', d: 'pigmentologie a teorie barev' },
+  { y: '2021', t: 'Permanentní make-up', d: 'Fleiš Academy' },
+  { y: '2024', t: 'Pigmentologie a teorie barev', d: 'Fleiš Academy' },
 ];
 
 const more = [
@@ -95,7 +95,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
       <div class="hero__text">
         <div class="hero__brow" data-depth="6"><Stipple shape="brow" /></div>
         <h1 id="h-uvod" class="split" style="--d: 250ms">Permanentní make-up a&nbsp;péče o&nbsp;pleť v&nbsp;Benešově</h1>
-        <p class="hero__lead" data-reveal style="--i: 6">Jsem Karina Kudličková. Ve studiu na Pražské ulici dělám pudrové obočí, stínované rty a&nbsp;oční linky a&nbsp;pečuji o&nbsp;citlivou i&nbsp;problémovou pleť.</p>
+        <p class="hero__lead" data-reveal style="--i: 6">Jsem Karina Kudličková. Ve studiu na Pražské ulici v&nbsp;Benešově dělám pudrové obočí, stínované rty a&nbsp;oční linky a&nbsp;pečuji o&nbsp;citlivou i&nbsp;problémovou pleť.</p>
         <div class="btns" data-reveal style="--i: 7">
           <a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a>
           <a class="btn" href="/cenik">Ceník</a>
@@ -136,7 +136,7 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
               <Stipple shape={p.shape} class="pmu__art" amount={0.45} />
               <span class="pmu__name">{p.name}</span>
               <span class="pmu__text">{cz(p.text)}</span>
-              <span class="pmu__peek" aria-hidden="true"><Image src={p.peek} widths={[320, 520]} sizes="260px" alt="" /></span>
+              <span class="pmu__peek" aria-hidden="true"><Image src={p.peek} widths={[320, 520]} sizes="260px" alt={p.peekAlt} /></span>
             </a>
           </li>
         ))}
