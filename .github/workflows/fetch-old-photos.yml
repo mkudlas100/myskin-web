@@ -1,0 +1,21 @@
+name: Stažení fotek ze starého webu
+on:
+  workflow_dispatch:
+  push:
+    branches: [foto-stary-web]
+    paths: [scripts/old-photos.json, scripts/fetch-old-photos.mjs]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/fetch-old-photos.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add foto-stary-web
+          git diff --cached --quiet || (git commit -m "Fotky ze starého webu (automaticky staženo)" && git push)
