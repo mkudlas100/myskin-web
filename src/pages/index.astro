@@ -6,6 +6,7 @@ import Booking from '../components/Booking.astro';
 import Brands from '../components/Brands.astro';
 import Reviews from '../components/Reviews.astro';
 import { salon } from '../data/salon';
+import { google } from '../data/recenze';
 import karinaPortretSchema from '../assets/img/foto/karina-postava.jpg';
 import { cz } from '../lib/cz';
 import { salonNode, ownerNode } from '../lib/schema';
@@ -119,6 +120,16 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
         </div>
       </figure>
     </div>
+  </section>
+
+  <!-- Pruh s fakty, které MySkin odlišují (krátká tvrzení pro lidi i AI) -->
+  <section class="usp" aria-label="Proč MySkin">
+    <dl class="wrap usp__grid">
+      <div data-reveal style="--i: 0"><dt>20+ let</dt><dd>v&nbsp;kosmetice, od Yves Rocher po kliniku Asklepion</dd></div>
+      <div data-reveal style="--i: 1"><dt>Specialistka na PMU</dt><dd>pudrové obočí, rty a&nbsp;linky, pigmentologie Fleiš Academy</dd></div>
+      <div data-reveal style="--i: 2"><dt>Citlivá pleť</dt><dd>akné, růžovka a&nbsp;pigmentové skvrny</dd></div>
+      <div data-reveal style="--i: 3"><dt>{google.rating}&nbsp;★ na Googlu</dt><dd><a href={google.url}>{google.count} recenzí klientek</a></dd></div>
+    </dl>
   </section>
 
   <!-- Permanentní make-up -->
@@ -435,4 +446,13 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
   @media (max-width: 360px) {
     .btns .btn { flex: 1 1 100%; }
   }
+  /* Pruh s fakty */
+  .usp { border-block: 1px solid var(--line); padding-block: clamp(28px, 2.6vw, 56px); }
+  .usp__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px clamp(24px, 3vw, 72px); margin-block: 0; }
+  .usp__grid > div { padding-left: clamp(16px, 1.4vw, 28px); border-left: 2px solid var(--sand); }
+  .usp dt { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; color: var(--ink); }
+  .usp dd { margin: 8px 0 0; font-size: var(--fs-sm); line-height: 1.45; color: var(--graphite); max-width: 26ch; }
+  .usp dd a { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; }
+  @media (max-width: 960px) { .usp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .usp__grid { grid-template-columns: 1fr; gap: 20px; } }
 </style>
