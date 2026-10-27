@@ -1,10 +1,8 @@
 name: Stažení obsahu současného webu
 
 on:
+  # Jen ručně: od 27. 10. 2026 běží na myskin.cz nový web, data/zdroj je archiv starého webu (Brizy).
   workflow_dispatch:
-  push:
-    paths:
-      - scripts/source-urls.txt
 
 permissions:
   contents: write
