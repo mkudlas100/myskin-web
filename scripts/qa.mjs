@@ -32,6 +32,7 @@ const toUrl = (f) => {
 };
 const built = new Set(htmlFiles.map(toUrl));
 const planned = new Set([...inv.keep, ...inv.legal]);
+const hidden = new Set(inv.hidden || []); // skryté stránky: noindex, mimo sitemapu, žádný odkaz z webu
 const redirects = Object.fromEntries((vercel.redirects || []).map((r) => [r.source, r.destination]));
 
 const attr = (tag, name) => {
@@ -92,7 +93,8 @@ for (const f of htmlFiles) {
   if (ogImg && !ogImg.startsWith(SITE)) errors.push(`${where} og:image není absolutní na ${SITE}: ${ogImg}`);
 
   const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
-  if (noindex && !is404) errors.push(`${where} má noindex`);
+  if (noindex && !is404 && !hidden.has(url)) errors.push(`${where} má noindex`);
+  if (!noindex && hidden.has(url)) errors.push(`${where} skrytá stránka nemá noindex`);
   if (!noindex && is404) errors.push(`${where} 404 nemá noindex`);
 
   for (const img of html.match(/<img\b[^>]*>/g) || []) {
@@ -130,6 +132,7 @@ for (const f of htmlFiles) {
       continue;
     }
     const target = href.replace(/[?#].*$/, '').replace(/\/$/, '') || '/';
+    if (hidden.has(target) && target !== url) errors.push(`${where} odkazuje na skrytou stránku ${target}`);
     if (inv.gone.includes(target)) errors.push(`${where} odkaz na zrušenou URL ${target}`);
     else if (redirects[target]) warnings.push(`${where} odkaz na přesměrovanou URL ${target} (odkazovat rovnou na ${redirects[target]})`);
     else if (!built.has(target) && !planned.has(target) && !existsSync(path.join(DIST, target))) errors.push(`${where} odkaz na neexistující URL ${target}`);
@@ -153,6 +156,7 @@ for (const u of smUrls) {
   if (!built.has(p)) errors.push(`Sitemap obsahuje nepostavenou URL ${u}`);
   if (inv.gone.includes(p) || redirects[p]) errors.push(`Sitemap obsahuje zrušenou/přesměrovanou URL ${u}`);
   if (p === '/404') errors.push('Sitemap obsahuje 404');
+  if (hidden.has(p)) errors.push(`Sitemap obsahuje skrytou stránku ${u}`);
 }
 ok.push(`Sitemap: ${smUrls.length} URL`);
 const robots = existsSync(`${DIST}/robots.txt`) ? await readFile(`${DIST}/robots.txt`, 'utf8') : '';

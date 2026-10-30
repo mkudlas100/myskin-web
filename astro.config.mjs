@@ -12,6 +12,8 @@ for (const dir of ['sluzby', 'blog', 'stranky']) {
     if (m) lastmod[f.replace(/\.md$/, '')] = new Date(m[1]).toISOString();
   }
 }
+// Skryté stránky (data/url-inventory.json → hidden) do sitemapy nepatří.
+const hidden = JSON.parse(readFileSync('./data/url-inventory.json', 'utf8')).hidden ?? [];
 const buildDate = new Date().toISOString().slice(0, 10); // jen den, ať se lastmod nemění s každým sestavením
 
 // URL bez lomítka na konci a bez .html (Vercel: cleanUrls + trailingSlash false ve vercel.json).
@@ -23,7 +25,7 @@ export default defineConfig({
   markdown: { rehypePlugins: [rehypeCz] },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      filter: (page) => !page.includes('/404') && !hidden.some((h) => new URL(page).pathname.replace(/\/$/, '') === h),
       serialize: (item) => {
         const slug = new URL(item.url).pathname.replace(/^\/|\/$/g, '');
         return { ...item, lastmod: lastmod[slug] ?? buildDate };

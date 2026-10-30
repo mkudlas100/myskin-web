@@ -1,0 +1,317 @@
+---
+// Rádci pleti (náhled ke schválení): 1) výběr ošetření, 2) typ pleti.
+// Skrytá stránka – noindex, mimo sitemapu, žádný odkaz z webu (data/url-inventory.json → hidden).
+// Pravidla: dokument „Rádci MySkin – pravidla ke kontrole“ (30. 10. 2026), čekají na kontrolu Kariny.
+// Odpovědi se vyhodnocují jen v prohlížeči; do GA (po souhlasu) jde jen dokončení a klíč doporučené služby.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { cenik, kc, bookingUrl } from '../data/cenik';
+import { salon } from '../data/salon';
+
+const items = cenik.flatMap((g) => g.items);
+const pick = (name: string, mins?: string) => {
+  const it = items.find((i) => i.name === name);
+  if (!it) throw new Error(`Rádce: v ceníku chybí „${name}“`);
+  return { name: it.name, price: kc(it.price), duration: mins ?? it.duration?.replace(/^cca\s*/, ''), href: it.href ?? '/cenik', book: bookingUrl(it.noona) };
+};
+// Délky, které v ceníku chybí, podle Noony (30. 10. 2026).
+const S = {
+  kompletni: pick('Kompletní ošetření pleti', '90 min'),
+  hloubkove: pick('Hloubkově čisticí péče', '60 min'),
+  hydratacni: pick('Hydratační péče s kyselinou hyaluronovou'),
+  millesime: pick('Péče MILLÉSIME – mladistvost', '60 min'),
+  lifting: pick('Liftingový rituál G.M. Collin (kolagenová péče)'),
+  anti30: pick('Anti-Age 30+', '90 min'),
+  anti50: pick('Anti-Age 50+', '90 min'),
+  ritual: pick('Rituál – relaxační masáž obličeje a šíje'),
+  muzi: pick('Kompletní ošetření pleti pro muže', '90 min'),
+  peeling: pick('Chemický peeling NOON'),
+  konzultace: pick('Konzultace k chemickému peelingu'),
+  rf: pick('Kosmetické ošetření s radiofrekvencí (obličej)'),
+};
+const A = {
+  akne: { t: 'Akné v dospělosti', h: '/akne-v-dospelosti' },
+  cerne: { t: 'Jak na černé tečky', h: '/jak-na-cerne-teky' },
+  mastna: { t: 'Efektivní péče o mastnou pleť', h: '/efektivni-pece-o-mastnou-plet' },
+  pigment: { t: 'Pigmentové skvrny na obličeji', h: '/pigmentove-skvrny-na-obliceji' },
+  retinol: { t: 'Retinol, kyseliny a vitamin C', h: '/retinol-kyseliny-vitamin-c-kombinace' },
+  ctyricet: { t: 'Pleť po čtyřicítce', h: '/plet-po-ctyricitce' },
+  zcitlivela: { t: 'Citlivá, nebo zcitlivělá pleť?', h: '/citliva-nebo-zcitlivela-plet' },
+  ruzovka: { t: 'Růžovka a kuperóza', h: '/ruzovka-a-kuperoza' },
+  citliva: { t: 'Péče o citlivou pleť', h: '/pece-o-citlivou-plet' },
+  hydratace: { t: 'Hydratace pleti', h: '/hydratace-pleti' },
+  typy: { t: 'Péče o specifické typy pleti', h: '/pece-o-specificke-typy-pleti' },
+  staram: { t: 'Jak se starám o pleť', h: '/jak-se-staram-o-plet' },
+  pmuFaq: { t: 'Permanentní make-up: na co se nejčastěji ptáte', h: '/pmu-na-co-se-nejcasteji-ptate' },
+  pmuTehu: { t: 'Permanentní make-up v těhotenství a při kojení', h: '/permanentni-make-up-tehotenstvi-kojeni' },
+};
+const data = { S, A, pmu: '/permanentni-make-up', booking: salon.booking };
+
+const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'Rádce pleti', href: '/radce-pleti' }];
+
+const r1 = [
+  { id: 'kdo', q: 'Pro koho hledáte ošetření?', opts: [['zena', 'Pro sebe'], ['muz', 'Pro muže']] },
+  { id: 'trapi', q: 'Co vás na pleti nejvíc trápí?', opts: [['akne', 'Akné a pupínky'], ['cerne', 'Černé tečky, rozšířené póry, mastnota'], ['pigment', 'Pigmentové skvrny, nesjednocený tón'], ['vrasky', 'Vrásky a ztráta pevnosti'], ['citlivost', 'Citlivost a zarudnutí'], ['suchost', 'Suchost a pnutí'], ['relax', 'Chci si hlavně odpočinout'], ['pmu', 'Chci permanentní make-up'], ['nevim', 'Nevím']] },
+  { id: 'vek', q: 'Kolik je vám let?', opts: [['do30', 'Do 30'], ['30', '30–49'], ['50', '50 a více']], women: true },
+  { id: 'flags', q: 'Platí pro vás něco z toho?', multi: true, opts: [['citliva', 'Pleť snadno pálí a červená'], ['tehotna', 'Jsem těhotná nebo kojím'], ['lecba', 'Užívám léčbu akné od dermatologa'], ['opalena', 'Jsem čerstvě opálená'], ['nic', 'Nic z toho']], women: true },
+];
+const r2 = [
+  { id: 'p1', q: 'Umyjte si obličej a 2–3 hodiny nic nenanášejte. Jaká je pleť?', opts: [['S2', 'Napjatá, místy se olupuje'], ['N2', 'Příjemná, beze změny'], ['K2', 'Lesklá na čele, nose a bradě, tváře v pořádku'], ['M2', 'Lesklá po celém obličeji']] },
+  { id: 'p2', q: 'Jak vypadají vaše póry?', opts: [['S1N1', 'Skoro je nevidím'], ['K1', 'Viditelné hlavně na nose'], ['M1', 'Rozšířené na větší části obličeje']] },
+  { id: 'p3', q: 'Jak se pleť chová během dne?', opts: [['S1', 'Potřebuji se přikrémovat'], ['N1', 'Nic zvláštního'], ['K1', 'Odpoledne se leskne čelo, nos a brada'], ['M1', 'Do poledne potřebuji matovat']] },
+  { id: 'p4', q: 'Jak často máte černé tečky nebo pupínky?', opts: [['S1N1', 'Skoro nikdy'], ['K1', 'Občas na nose a bradě'], ['M1', 'Často']] },
+  { id: 'p5', q: 'Jak pleť reaguje na novou kosmetiku, slunce nebo vítr?', opts: [['C0', 'Skoro vůbec'], ['C1', 'Občas zrůžoví'], ['C2', 'Často pálí, svědí nebo červená']] },
+  { id: 'p6', q: 'Platí pro vás něco z toho?', opts: [['ruz', 'Trvale zarudlé tváře nebo viditelné žilky'], ['bar', 'Krém, který dřív nevadil, teď pálí'], ['nic', 'Nic z toho']] },
+];
+---
+<Base title="Rádce pleti – jaké ošetření a jaký typ pleti | MySkin" description="Rádce studia MySkin v Benešově: pár otázek vám pomůže vybrat vhodné kosmetické ošetření a zjistit typ pleti. Výsledek s cenou a přímou rezervací." noindex>
+  <PageHero crumbs={crumbs} h1="Rádce pleti" perex="Pár otázek vám pomůže vybrat vhodné ošetření nebo zjistit typ pleti. Odpovědi zůstávají jen ve vašem prohlížeči, nikam se neodesílají." ctas={false} />
+
+  <nav class="wrap rd-tabs" aria-label="Rádci">
+    <a class="btn" href="#osetreni">Výběr ošetření</a>
+    <a class="btn" href="#typ-pleti">Typ pleti</a>
+  </nav>
+
+  <section class="sec rd" id="osetreni" aria-labelledby="h-r1">
+    <div class="wrap rd__wrap">
+      <h2 id="h-r1">Nevíte, jaké ošetření si vybrat?</h2>
+      <p class="rd__lead">Odpovězte na 4 otázky a doporučím vám ošetření s cenou a přímou rezervací.</p>
+      <form class="rd__form" id="f1" novalidate>
+        {r1.map((f, i) => (
+          <fieldset class="rd__q" data-q={f.id} data-women={f.women ? '1' : undefined}>
+            <legend><span class="rd__n">{i + 1}</span>{f.q}{f.multi && <small> (můžete zaškrtnout víc)</small>}</legend>
+            <div class="rd__opts">
+              {f.opts.map(([v, l]) => (
+                <label class="rd__opt"><input type={f.multi ? 'checkbox' : 'radio'} name={f.id} value={v} /><span>{l}</span></label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+        <p class="rd__err" role="alert" hidden></p>
+        <button class="btn btn--primary" type="submit">Zobrazit doporučení</button>
+      </form>
+      <div class="rd__out" id="o1" aria-live="polite" tabindex="-1" hidden></div>
+    </div>
+  </section>
+
+  <section class="sec rd rd--alt" id="typ-pleti" aria-labelledby="h-r2">
+    <div class="wrap rd__wrap">
+      <h2 id="h-r2">Jaký máte typ pleti?</h2>
+      <p class="rd__lead">Šest otázek, zhruba minuta. Výsledek je orientační – typ pleti nejlépe posoudím při ošetření.</p>
+      <form class="rd__form" id="f2" novalidate>
+        {r2.map((f, i) => (
+          <fieldset class="rd__q" data-q={f.id}>
+            <legend><span class="rd__n">{i + 1}</span>{f.q}</legend>
+            <div class="rd__opts">
+              {f.opts.map(([v, l]) => (
+                <label class="rd__opt"><input type="radio" name={f.id} value={v} /><span>{l}</span></label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+        <p class="rd__err" role="alert" hidden></p>
+        <button class="btn btn--primary" type="submit">Zjistit typ pleti</button>
+      </form>
+      <div class="rd__out" id="o2" aria-live="polite" tabindex="-1" hidden></div>
+    </div>
+  </section>
+
+  <script type="application/json" id="rd-data" set:html={JSON.stringify(data)} />
+</Base>
+
+<script>
+  type Svc = { name: string; price: string; duration?: string; href: string; book: string };
+  type Art = { t: string; h: string };
+  const D = JSON.parse(document.getElementById('rd-data')!.textContent || '{}') as { S: Record<string, Svc>; A: Record<string, Art>; pmu: string; booking: string };
+  const S = D.S, A = D.A;
+
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+  const track = (name: string, params: Record<string, string>) => { try { (window as any).gtag?.('event', name, params); } catch (e) {} };
+  const NOTE = 'Jde o orientační doporučení. Před ošetřením si vaši pleť prohlédnu a postup přizpůsobím.';
+
+  const card = (s: Svc, label: string, key: string) => `
+    <div class="rd__svc">
+      <p class="rd__label">${label}</p>
+      <h3>${esc(s.name)}</h3>
+      <p class="rd__meta">${[s.duration, s.price].filter(Boolean).map((x) => esc(x!)).join(' · ')}</p>
+      <div class="btns"><a class="btn btn--primary" href="${s.book}" data-book="${key}">Rezervovat</a><a class="btn" href="${s.href}">Více o ošetření</a></div>
+    </div>`;
+  const arts = (list: Art[]) => list.length ? `<p class="rd__arts">Přečtěte si: ${list.map((a) => `<a class="txt-link" href="${a.h}">${esc(a.t)}</a>`).join(', ')}</p>` : '';
+  const warn = (t: string) => `<div class="rd__warn" role="note"><strong>Důležité:</strong> ${t}</div>`;
+
+  function show(out: HTMLElement, html: string, radce: string, key: string) {
+    out.innerHTML = html; out.hidden = false; out.focus({ preventScroll: true });
+    out.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    track('radce_vysledek', { radce, doporuceni: key });
+    out.querySelectorAll<HTMLAnchorElement>('[data-book]').forEach((a) => a.addEventListener('click', () => track('radce_rezervace', { radce, sluzba: a.dataset.book || '' })));
+  }
+  const val = (f: HTMLFormElement, n: string) => (f.querySelector<HTMLInputElement>(`input[name="${n}"]:checked`)?.value) || '';
+  const vals = (f: HTMLFormElement, n: string) => [...f.querySelectorAll<HTMLInputElement>(`input[name="${n}"]:checked`)].map((i) => i.value);
+  function missing(f: HTMLFormElement) {
+    const qs = [...f.querySelectorAll<HTMLFieldSetElement>('.rd__q')].filter((q) => !q.hidden);
+    const empty = qs.filter((q) => !q.querySelector('input:checked'));
+    qs.forEach((q) => q.classList.toggle('is-missing', empty.includes(q)));
+    const err = f.querySelector<HTMLElement>('.rd__err')!;
+    err.hidden = !empty.length;
+    err.textContent = empty.length ? `Odpovězte prosím ještě na ${empty.length === 1 ? 'otázku' : 'otázky'} ${empty.map((q) => q.querySelector('.rd__n')!.textContent).join(', ')}.` : '';
+    if (empty.length) empty[0].querySelector('input')?.focus();
+    return empty.length > 0;
+  }
+
+  // ===== Rádce 1: výběr ošetření =====
+  const f1 = document.getElementById('f1') as HTMLFormElement;
+  const o1 = document.getElementById('o1') as HTMLElement;
+  const syncWho = () => {
+    const muz = val(f1, 'kdo') === 'muz';
+    f1.querySelectorAll<HTMLFieldSetElement>('[data-women]').forEach((q) => { q.hidden = muz; q.disabled = muz; });
+    f1.querySelectorAll<HTMLElement>('.rd__q:not([hidden]) .rd__n').forEach((n, i) => (n.textContent = String(i + 1)));
+  };
+  f1.addEventListener('change', (e) => {
+    const t = e.target as HTMLInputElement;
+    if (t.name === 'kdo') syncWho();
+    if (t.name === 'flags') { // „Nic z toho“ se vylučuje s ostatními
+      const boxes = [...f1.querySelectorAll<HTMLInputElement>('input[name="flags"]')];
+      if (t.value === 'nic' && t.checked) boxes.forEach((b) => b !== t && (b.checked = false));
+      else if (t.checked) boxes.forEach((b) => b.value === 'nic' && (b.checked = false));
+    }
+    t.closest('.rd__q')?.classList.remove('is-missing');
+  });
+  f1.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (missing(f1)) return;
+    const kdo = val(f1, 'kdo'), tr = val(f1, 'trapi'), vek = val(f1, 'vek'), fl = vals(f1, 'flags');
+    const cit = fl.includes('citliva'), teh = fl.includes('tehotna'), lec = fl.includes('lecba'), opa = fl.includes('opalena');
+    let main: string | null = null, alt: string | null = null, a: Art[] = [], w: string[] = [], extra = '';
+
+    if (kdo === 'muz') {
+      main = 'muzi'; alt = tr === 'akne' || tr === 'cerne' ? 'hloubkove' : null;
+      if (tr === 'akne') a = [A.akne]; if (tr === 'cerne') a = [A.cerne];
+    } else if (tr === 'pmu') {
+      extra = `<div class="rd__svc"><p class="rd__label">Doporučuji</p><h3>Permanentní make-up</h3><p class="rd__meta">Pudrové obočí, stínované rty, oční linky</p><div class="btns"><a class="btn btn--primary" href="${D.pmu}">Vybrat permanentní make-up</a></div></div>`;
+      a = teh ? [A.pmuTehu] : [A.pmuFaq];
+      if (teh) w.push('V těhotenství a při kojení permanentní make-up nedělám. Víc vysvětluji v odkazovaném článku.');
+    } else if (tr === 'akne') {
+      a = [A.akne];
+      if (teh) { main = 'kompletni'; alt = 'hydratacni'; }
+      else if (lec) { main = 'konzultace'; alt = 'kompletni'; w.push('O léčbě mi prosím řekněte předem, ošetření naplánuji s ohledem na ni.'); }
+      else if (opa) { main = 'hloubkove'; alt = 'kompletni'; w.push('Peeling až bude pleť bez opálení. Do té doby doporučuji hloubkové čištění.'); }
+      else if (cit) { main = 'kompletni'; alt = 'konzultace'; }
+      else { main = 'konzultace'; alt = 'hloubkove'; }
+    } else if (tr === 'cerne') {
+      main = 'hloubkove'; alt = teh || lec || opa ? 'kompletni' : cit ? 'konzultace' : 'peeling';
+      a = [A.cerne, A.mastna];
+    } else if (tr === 'pigment') {
+      a = [A.pigment];
+      w.push('Skvrnu, která je nová, roste nebo mění barvu, nejdřív ukažte dermatologovi.');
+      if (teh) { main = 'kompletni'; alt = 'hydratacni'; }
+      else if (opa) { main = 'kompletni'; alt = null; w.push('Peeling až bude pleť bez opálení. Nejvhodnější je podzim a zima.'); }
+      else if (lec) { main = 'konzultace'; alt = 'kompletni'; w.push('O léčbě mi prosím řekněte předem.'); }
+      else if (cit) { main = 'kompletni'; alt = 'konzultace'; }
+      else { main = 'konzultace'; alt = 'kompletni'; }
+    } else if (tr === 'vrasky') {
+      if (vek === 'do30') { main = 'kompletni'; alt = 'hydratacni'; a = [A.retinol]; }
+      else if (vek === '30') { main = 'anti30'; alt = 'rf'; a = [A.ctyricet]; }
+      else { main = 'anti50'; alt = 'lifting'; a = [A.ctyricet]; }
+    } else if (tr === 'citlivost') {
+      main = 'kompletni'; alt = 'ritual'; a = [A.zcitlivela, A.ruzovka];
+    } else if (tr === 'suchost') {
+      if (vek === '50') { main = 'millesime'; alt = 'hydratacni'; } else { main = 'hydratacni'; alt = 'kompletni'; }
+      a = [A.hydratace];
+    } else if (tr === 'relax') {
+      main = 'ritual'; alt = 'kompletni';
+    } else {
+      main = 'kompletni'; a = [A.typy];
+      extra = `<p class="rd__arts">Nejdřív můžete zjistit <a class="txt-link" href="#typ-pleti">svůj typ pleti</a>.</p>`;
+    }
+    const gentle = main === 'kompletni' && (cit || tr === 'citlivost') ? '<p class="rd__meta">Pro citlivou pleť zvolím šetrnou péči bez peelingu.</p>' : '';
+
+    const html = `
+      <h3 class="rd__h">Doporučuji</h3>
+      ${w.map(warn).join('')}
+      ${main ? card(S[main], 'Hlavní doporučení', main).replace('</h3>', '</h3>' + gentle) : ''}
+      ${alt ? card(S[alt], 'Další možnost', alt) : ''}
+      ${extra}
+      ${arts(a)}
+      <p class="rd__note">${NOTE}</p>`;
+    show(o1, html, 'osetreni', main || tr);
+  });
+
+  // ===== Rádce 2: typ pleti =====
+  const f2 = document.getElementById('f2') as HTMLFormElement;
+  const o2 = document.getElementById('o2') as HTMLElement;
+  const TYPY: Record<string, { t: string; d: string; care: string[]; svc: string[]; art: Art }> = {
+    S: { t: 'Suchá pleť', d: 'Pleť má málo mazu, rychle ztrácí vodu a pne.', care: ['Jemné čištění bez mýdla', 'Krém s kyselinou hyaluronovou nebo glycerinem', 'SPF každý den'], svc: ['hydratacni', 'millesime'], art: A.hydratace },
+    N: { t: 'Normální pleť', d: 'Vyrovnaná pleť bez větších potíží.', care: ['Čištění ráno a večer', 'Lehká hydratace', 'SPF každý den'], svc: ['kompletni', 'ritual'], art: A.staram },
+    K: { t: 'Smíšená pleť', d: 'Čelo, nos a brada se lesknou, tváře jsou normální až suché.', care: ['Jemný čisticí gel', 'Na čelo, nos a bradu lehký matující krém, na tváře hydratační', 'SPF každý den'], svc: ['hloubkove', 'kompletni'], art: A.typy },
+    M: { t: 'Mastná pleť', d: 'Pleť tvoří hodně mazu, leskne se, má rozšířené póry a sklon k akné.', care: ['Čištění ráno a večer', 'Lehká hydratace bez olejů', 'Kyselina salicylová (BHA)'], svc: ['hloubkove', 'konzultace'], art: A.mastna },
+  };
+  f2.addEventListener('change', (e) => (e.target as HTMLElement).closest('.rd__q')?.classList.remove('is-missing'));
+  f2.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (missing(f2)) return;
+    const sc: Record<string, number> = { S: 0, N: 0, K: 0, M: 0, C: 0 };
+    ['p1', 'p2', 'p3', 'p4', 'p5'].forEach((n) => { for (const [, k, p] of val(f2, n).matchAll(/([SNKMC])(\d)/g)) sc[k] += +p; });
+    // nejvíc bodů; při rovnosti suchá > normální a smíšená > mastná (pořadí v seznamu)
+    const typ = (['S', 'K', 'N', 'M'] as const).reduce((best, k) => (sc[k] > sc[best] ? k : best), 'S' as 'S' | 'K' | 'N' | 'M');
+    const T = TYPY[typ], cit = sc.C >= 2, p6 = val(f2, 'p6');
+    const svc = cit ? ['kompletni', typ === 'M' || typ === 'K' ? 'konzultace' : 'ritual'] : T.svc;
+    const a: Art[] = [T.art]; if (cit) a.push(A.citliva);
+    const w: string[] = [];
+    if (p6 === 'ruz') { w.push('Trvale zarudlé tváře nebo žilky mohou znamenat růžovku. Ať ji posoudí dermatolog, kosmetická péče pak léčbu dobře doprovází.'); a.push(A.ruzovka); }
+    if (p6 === 'bar') { w.push('Když najednou pálí krém, který dřív nevadil, kožní bariéra může být narušená. Zjednodušte péči a vynechte kyseliny a retinol.'); a.push(A.zcitlivela); }
+    const html = `
+      <p class="rd__label">Váš typ pleti</p>
+      <h3 class="rd__type">${T.t}${cit ? ' <span>+ citlivá</span>' : ''}</h3>
+      <p>${T.d}${cit ? ' Navíc snadno reaguje, proto potřebuje šetrnou péči bez parfemace a bez domácích peelingů.' : ''}</p>
+      ${w.map(warn).join('')}
+      <h4>Domácí péče</h4>
+      <ul class="rd__care">${(cit ? ['Kosmetika bez parfemace', 'Žádné drhnutí ani domácí peelingy', 'Minerální SPF každý den'] : T.care).map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+      <h4>Ošetření v MySkin</h4>
+      ${card(S[svc[0]], 'Doporučuji', svc[0])}
+      ${svc[1] ? card(S[svc[1]], 'Další možnost', svc[1]) : ''}
+      ${arts(a)}
+      <p class="rd__note">Typ pleti se může měnit s ročním obdobím, věkem i péčí. Nejjistější je, když si vaši pleť prohlédnu při ošetření.</p>`;
+    show(o2, html, 'typ_pleti', typ + (cit ? '+C' : ''));
+  });
+</script>
+
+<style is:global>
+  .rd-tabs { display: flex; flex-wrap: wrap; gap: 12px; padding-bottom: 8px; }
+  .rd--alt { background: var(--sand-soft); }
+  .rd__wrap > * { max-width: 880px; }
+  .rd__wrap h2 { font-size: var(--fs-xl); margin-bottom: 10px; }
+  .rd__lead { color: var(--graphite); margin-bottom: clamp(24px, 2vw, 40px); }
+  .rd__form { display: grid; gap: clamp(20px, 1.6vw, 30px); }
+  .rd__q { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .rd__q[hidden] { display: none; }
+  .rd__q legend { font-weight: 600; font-size: var(--fs-base); margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+  .rd__q legend small { font-weight: 400; color: var(--graphite); }
+  .rd__n { flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--sand); display: inline-grid; place-items: center; font-size: 14px; font-weight: 700; transform: translateY(-2px); }
+  .rd__q.is-missing legend { color: #9b2c1f; }
+  .rd__opts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .rd__opt { position: relative; cursor: pointer; }
+  .rd__opt input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .rd__opt span { display: inline-block; padding: 10px 18px; border: 1.5px solid var(--line); border-radius: var(--r-pill); background: var(--paper); font-size: var(--fs-sm); line-height: 1.35; transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast); }
+  .rd__opt:hover span { border-color: var(--ink); }
+  .rd__opt input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .rd__opt input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .rd__err { color: #9b2c1f; font-weight: 600; margin: 0; }
+  .rd__form > .btn { justify-self: start; }
+  .rd__out { margin-top: clamp(28px, 2.4vw, 48px); padding: clamp(22px, 2vw, 40px); background: var(--paper); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--sh-2); display: grid; gap: 16px; }
+  .rd__out:focus { outline: none; }
+  .rd__out[hidden] { display: none; }
+  .rd__h, .rd__out h4 { font-size: var(--fs-lg); margin: 0; }
+  .rd__out h4 { font-size: var(--fs-base); margin-top: 8px; }
+  .rd__label { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--graphite); margin: 0; }
+  .rd__type { font-size: var(--fs-xl); margin: 0; }
+  .rd__type span { color: var(--graphite); font-size: .6em; }
+  .rd__svc { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+  .rd__svc h3 { font-size: var(--fs-lg); margin: 0; }
+  .rd__meta { color: var(--graphite); margin: 0; }
+  .rd__svc .btns { margin-top: 8px; }
+  .rd__arts { margin: 0; }
+  .rd__note { font-size: var(--fs-sm); color: var(--graphite); margin: 0; }
+  .rd__warn { background: var(--sand-soft); border-left: 4px solid var(--sand); padding: 14px 18px; border-radius: 6px; font-size: var(--fs-sm); }
+  .rd__care { margin: 0; padding-left: 20px; }
+  .rd__care li { margin-bottom: 4px; }
+</style>

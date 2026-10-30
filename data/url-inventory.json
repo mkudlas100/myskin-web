@@ -1,5 +1,5 @@
 {
-  "_poznamka": "Mapa URL ze skillu myskin-web (audit 26. 10. 2026). keep = zachovat stejnou adresu, redirect = 301 ve vercel.json, gone = zrušeno (404), legal = právní stránky z patičky (nebyly v sitemapě, zachovat).",
+  "_poznamka": "Mapa URL ze skillu myskin-web (audit 26. 10. 2026). keep = zachovat stejnou adresu, redirect = 301 ve vercel.json, gone = zrušeno (404), legal = právní stránky z patičky (nebyly v sitemapě, zachovat). hidden = veřejně dostupné, ale skryté stránky (noindex, mimo sitemapu, žádný odkaz z webu).",
   "keep": [
     "/",
     "/cenik",
@@ -106,6 +106,9 @@
   "notes": {
     "2026-10-26": "Nalezeny stránky mimo sitemapu (2 články, 3 rubriky blogu). Pedikúra zrušena → 301 na /kosmeticke-sluzby.",
     "2026-10-27": "Nové články o PMU: cena, těhotenství a kojení, výdrž, oprava starého PMU.",
-    "2026-10-30": "Nové články o péči o pleť: retinol a kyseliny, pigmentové skvrny, zcitlivělá pleť, pleť po čtyřicítce, složení kosmetiky, akné v dospělosti, průvodce chemickým peelingem NOON. Článek o růžovce a kuperóze."
-  }
+    "2026-10-30": "Nové články o péči o pleť: retinol a kyseliny, pigmentové skvrny, zcitlivělá pleť, pleť po čtyřicítce, složení kosmetiky, akné v dospělosti, průvodce chemickým peelingem NOON. Článek o růžovce a kuperóze. Skrytá stránka /radce-pleti (rádci, noindex, mimo sitemapu, bez odkazů z webu – čeká na schválení)."
+  },
+  "hidden": [
+    "/radce-pleti"
+  ]
 }
