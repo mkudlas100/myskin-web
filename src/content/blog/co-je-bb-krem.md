@@ -6,8 +6,8 @@ perex: BB krém spojuje hydratační krém, lehký make-up a často i ochranu SP
 listDescription: Hydratace, lehké krytí a SPF v jednom. Co BB krém umí, pro koho je a kdy jeho ochrana před sluncem nestačí.
 category: plet
 updated: 2026-10-26
-image: textura-swatch
-imageAlt: Ukázka textury tónovacího krému na kůži
+image: bb-tonovaci-pudr
+imageAlt: Tónovací pudr v odstínech pleti a malý štěteček
 services:
   - liceni
   - kosmeticke-osetreni

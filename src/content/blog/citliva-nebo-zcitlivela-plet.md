@@ -7,8 +7,8 @@ listDescription: Pálí vás krém, který dřív nevadil? Možná nemáte citli
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: k-pece-9
-imageAlt: Žena s ručníkem kolem hlavy odpočívá při ošetření pleti
+image: plet-jemne-nanaseni-kremu
+imageAlt: Žena jemně nanáší zklidňující krém na tvář
 services:
   - kosmeticke-osetreni
 posts:

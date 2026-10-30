@@ -7,8 +7,8 @@ listDescription: Aqua, parfum, CI 77491. Ukazuji, jak se v seznamu složení vyz
 category: prirodni
 published: 2026-10-30
 updated: 2026-10-30
-image: k-produkt-1
-imageAlt: Kelímek krému a lahvička séra na mramoru s eukalyptem
+image: slozeni-etiketa-obchod
+imageAlt: Zákaznice v obchodě čte etiketu se složením kosmetiky
 services:
   - kosmeticke-osetreni
 posts:

@@ -7,8 +7,8 @@ listDescription: Pupínky po třicítce? Nejste sama. Proč akné v dospělosti 
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: k-produkt-4
-imageAlt: Krémová textura nekomedogenní péče na béžovém pozadí
+image: plet-akne-dospela
+imageAlt: Žena s akné na tváři a bradě v přirozeném světle
 services:
   - kura-chemicky-peeling
   - kosmeticke-osetreni

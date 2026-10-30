@@ -7,8 +7,8 @@ listDescription: Vitamin C ráno, retinol večer a kyseliny jindy než retinol. 
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: k-produkt-2
-imageAlt: Lahvička séra s kapátkem na dřevěném podstavci
+image: plet-serum-kapatko
+imageAlt: Žena nanáší sérum s kapátkem na čelo
 services:
   - kosmeticke-osetreni
   - kura-chemicky-peeling

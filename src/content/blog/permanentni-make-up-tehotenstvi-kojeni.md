@@ -7,8 +7,8 @@ listDescription: Proč permanentní make-up nedělám těhotným a kojícím mam
 category: pmu
 published: 2026-10-27
 updated: 2026-10-27
-image: pmu-oboci
-imageAlt: Mladá žena s přirozeně upraveným obočím
+image: tehotna-zena-pole
+imageAlt: Těhotná žena v letních šatech v poli při západu slunce
 services:
   - permanentni-make-up
   - kosmeticke-osetreni
