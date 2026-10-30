@@ -15,7 +15,7 @@ import Gallery from '../components/Gallery.astro';
 import Expert from '../components/Expert.astro';
 import Reviews from '../components/Reviews.astro';
 import { allPosts, allServices, img, pick, postsFor, rubriky, dateCz, iso, type Sluzba, type Clanek } from '../lib/content';
-import { cenik, pricesFor, kc, cenikPlatnost, fromPrice } from '../data/cenik';
+import { cenik, pricesFor, kc, cenikPlatnost, fromPrice, mainBooking } from '../data/cenik';
 import { breadcrumbNode, serviceNode, blogPostingNode, faqNode, ownerNode } from '../lib/schema';
 import { salon } from '../data/salon';
 import karinaFoto from '../assets/img/foto/karina-postava.jpg';
@@ -111,7 +111,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
 
   {type === 'sluzba' && svc && (
     <>
-      <PageHero crumbs={crumbs} h1={d.h1} perex={cz(d.perex)} image={img(d.image)} imageAlt={d.imageAlt} stipple={d.stipple} facts={facts} />
+      <PageHero crumbs={crumbs} h1={d.h1} perex={cz(d.perex)} image={img(d.image)} imageAlt={d.imageAlt} stipple={d.stipple} facts={facts} booking={mainBooking(prices)} />
       {children.length > 0 && <ServiceList services={children} heading={d.kind === 'rozcestnik' ? 'Vyberte si' : 'Co nabízím'} id="podstranky" tone="grey" />}
       <section class="sec body">
         <div class="wrap body__grid">
@@ -120,7 +120,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
             <aside class="body__aside">
               <div class="aside__sticky">
                 <PriceTable items={prices} heading="Cena" id="cena" note={`Ceník platí od ${cenikPlatnost}.`} />
-                <div class="btns aside__btns"><a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a><a class="btn" href="/cenik">Celý ceník</a></div>
+                <div class="btns aside__btns"><a class="btn btn--primary" href={mainBooking(prices)}>Rezervovat termín</a><a class="btn" href="/cenik">Celý ceník</a></div>
               </div>
             </aside>
           )}
@@ -161,7 +161,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
                   <span class="aside__text">{cz(mainService.data.perex.split('. ')[0].replace(/\.$/, ''))}.</span>
                   {fromPrice(pricesFor(`/${mainService.id}`)) > 0 && <span class="aside__price">od {kc(fromPrice(pricesFor(`/${mainService.id}`)))}</span>}
                 </a>
-                <a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a>
+                <a class="btn btn--primary" href={mainBooking(pricesFor(`/${mainService.id}`))}>Rezervovat termín</a>
                 {otherServices.length > 0 && (
                   <ul class="aside__more">{otherServices.map((s) => <li><a href={`/${s.id}`}>{s.data.title}</a></li>)}</ul>
                 )}

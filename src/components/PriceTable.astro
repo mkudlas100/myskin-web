@@ -1,5 +1,5 @@
 ---
-import { kc, type PriceItem } from '../data/cenik';
+import { kc, bookingUrl, type PriceItem } from '../data/cenik';
 import { cz } from '../lib/cz';
 interface Props { items: PriceItem[]; heading?: string; note?: string; id?: string; showLinks?: boolean }
 const { items, heading = 'Ceník', note, id = 'cenik', showLinks = false } = Astro.props;
@@ -14,7 +14,7 @@ const { items, heading = 'Ceník', note, id = 'cenik', showLinks = false } = Ast
           {(it.duration || it.note) && <small>{cz([it.duration, it.note].filter(Boolean).join(', '))}</small>}
         </span>
         <span class="prices__dots" aria-hidden="true"></span>
-        <span class="prices__price">{kc(it.price)}</span>
+        <span class="prices__price">{kc(it.price)}{it.noona && <a class="prices__book" href={bookingUrl(it.noona)} aria-label={`Rezervovat: ${it.name}`}>Rezervovat</a>}</span>
       </li>
     ))}
   </ul>
@@ -30,5 +30,7 @@ const { items, heading = 'Ceník', note, id = 'cenik', showLinks = false } = Ast
   .prices__name small { display: block; font-weight: 400; font-size: var(--fs-sm); color: var(--graphite); margin-top: 2px; }
   .prices__dots { border-bottom: 2px dotted var(--mist); transform: translateY(-4px); }
   .prices__price { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .prices__book { display: block; margin-top: 4px; font-size: var(--fs-xs); font-weight: 600; text-align: right; text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .prices__book:hover { text-decoration-color: var(--ink); }
   .prices__note { margin-top: 14px; font-size: var(--fs-sm); color: var(--graphite); }
 </style>

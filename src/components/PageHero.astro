@@ -18,8 +18,9 @@ interface Props {
   ctas?: boolean;
   secondary?: { label: string; href: string };
   shape?: 'blob' | 'frame';
+  booking?: string;
 }
-const { crumbs, h1, perex, image, imageAlt = '', stipple, facts = [], ctas = true, secondary = { label: 'Ceník', href: '/cenik' }, shape = 'blob' } = Astro.props;
+const { crumbs, h1, perex, image, imageAlt = '', stipple, facts = [], ctas = true, secondary = { label: 'Ceník', href: '/cenik' }, shape = 'blob', booking = salon.booking } = Astro.props;
 
 // tečky pigmentu kolem fotky – náhoda odvozená z nadpisu, aby se při buildu neměnila
 let seed = [...h1].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 2147483647, 7) || 7;
@@ -38,7 +39,7 @@ const dust = Array.from({ length: 22 }, (_, i) => {
       <slot name="meta" />
       {ctas && (
         <div class="btns" data-reveal style="--i: 5">
-          <a class="btn btn--primary" href={salon.booking}>Rezervovat termín</a>
+          <a class="btn btn--primary" href={booking}>Rezervovat termín</a>
           <a class="btn" href={secondary.href}>{secondary.label}</a>
         </div>
       )}
