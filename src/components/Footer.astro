@@ -38,7 +38,7 @@ const year = new Date().getFullYear();
 
     <div class="legal">
       <p>Provozovatel {salon.operator}, IČO {salon.ico}, {salon.street}, {salon.postalCode} {salon.city}</p>
-      <ul>{legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <ul>{legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}<li><button type="button" class="legal__btn" data-consent-open>Nastavení cookies</button></li></ul>
       <p>© {year} {salon.name}. Design <a href="https://anfilov.cz">ANFILOV</a> a <a href="https://www.archivisual.cz/">ARCHIVISUAL</a></p>
     </div>
   </div>
@@ -62,6 +62,8 @@ const year = new Date().getFullYear();
   .legal { border-top: 1px solid rgba(243, 243, 244, .18); padding-top: 28px; font-size: var(--fs-xs); color: var(--on-ink-muted); display: grid; gap: 6px; }
   .legal ul { display: flex; flex-wrap: wrap; gap: 0 22px; }
   .legal a { display: inline-block; padding: 6px 0; }
+  .legal__btn { display: inline-block; padding: 6px 0; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
+  .legal__btn:hover { text-decoration: underline; text-underline-offset: 4px; }
   @media (max-width: 960px) { .ftr__top { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .ftr__top { grid-template-columns: 1fr; gap: 36px; } }
 </style>

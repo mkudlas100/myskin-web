@@ -5,6 +5,7 @@ import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
+import Consent from '../components/Consent.astro';
 import ogDefault from '../assets/img/og-myskin.jpg';
 import { salon } from '../data/salon';
 import { graph, webPageNode, websiteNode } from '../lib/schema';
@@ -69,6 +70,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
       <a class="fab" id="fab" href={salon.booking}><Icon name="calendar" />Rezervovat termín</a>
     </main>
     <Footer />
+    <Consent />
 
     <script>
       import '../scripts/motion';
