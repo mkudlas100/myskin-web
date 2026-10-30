@@ -7,8 +7,8 @@ listDescription: Skvrny od slunce, melasma a stopy po akné. Proč se pigment po
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: k-pece-4
-imageAlt: Nanášení masky štětcem při ošetření pigmentových skvrn
+image: plet-pigmentove-skvrny
+imageAlt: Detail zralé pleti s pigmentovými skvrnami od slunce kolem oka a na tváři
 services:
   - kura-chemicky-peeling
   - kosmeticke-osetreni

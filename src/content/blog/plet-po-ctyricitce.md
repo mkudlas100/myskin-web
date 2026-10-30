@@ -7,8 +7,8 @@ listDescription: Sušší, tenčí a méně pružná pleť nebo nečekané pupí
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: kosmetika-maska-collin
-imageAlt: Kosmetička jemně masíruje obličej klientky při anti-age ošetření
+image: plet-zrala-zena
+imageAlt: Přirozený portrét ženy po čtyřicítce s jemnými vráskami kolem očí
 services:
   - kosmeticke-osetreni
   - radiofrekvence
