@@ -73,4 +73,4 @@ Celé ošetření trvá zhruba hodinu.
 
 Peeling se dělá v sérii 3–5 ošetření, pro výraznější výsledek nabízím kúru 6 ošetření. Interval domluvíme podle stavu pleti. Nejvhodnější je podzim a zima, kdy je slunce nejméně. Fotky pleti před kúrou a po ní a ceny najdete na stránce [chemický peeling NOON](/kura-chemicky-peeling).
 
-Nevíte, jestli je peeling pro vaši pleť to pravé? Začněte [kosmetickým ošetřením](/kosmeticke-osetreni), pleť si prohlédnu a doporučím, co jí pomůže nejvíc. Termín si můžete [rezervovat online](https://noona.app/cs/myskin/book).
+Nevíte, jestli je peeling pro vaši pleť to pravé? Přijďte nejdřív na [konzultaci zdarma](https://noona.app/cs/myskin/book?eventTypeIds=tb0NtY66KcXXBPkfNdXdy5oE). Za 15 minut si pleť prohlédnu a doporučím, jestli peeling, nebo jiné [kosmetické ošetření](/kosmeticke-osetreni).

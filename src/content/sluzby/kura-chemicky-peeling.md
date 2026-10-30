@@ -31,6 +31,8 @@ results:
   - image: po-peeling-po
     caption: "Po kúře chemického peelingu"
 faq:
+  - q: Můžu si nejdřív domluvit konzultaci?
+    a: Ano. Konzultace k chemickému peelingu je zdarma a trvá 15 minut. Prohlédnu pleť a doporučím, jestli a jak peeling dělat.
   - q: Kolik ošetření chemickým peelingem potřebuji?
     a: Peeling NOON se dělá v sérii 3–5 ošetření. Pro výraznější výsledek nabízím kúru 6 ošetření za 9 600 Kč. Interval domluvíme podle stavu pleti.
   - q: Je chemický peeling vhodný pro citlivou pleť?
@@ -50,6 +52,10 @@ updated: 2026-10-26
 - je účinný, ale šetrný i k citlivější pokožce.
 
 Kosmetika NOON Aesthetics je izraelská profesionální dermokosmetika. Patentovaná technologie DermShield™ umožňuje používat vysoké koncentrace kyselin bez zbytečného podráždění.
+
+## Nevíte, jestli je peeling pro vás?
+
+Přijďte nejdřív na **konzultaci zdarma**. Za 15 minut si prohlédnu vaši pleť, probereme domácí péči, léky a citlivost a řeknu vám, jestli je peeling vhodný a kolik ošetření dává smysl. Konzultaci si můžete [rezervovat online](https://noona.app/cs/myskin/book?eventTypeIds=tb0NtY66KcXXBPkfNdXdy5oE).
 
 ## Jak ošetření probíhá
 

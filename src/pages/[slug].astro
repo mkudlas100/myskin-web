@@ -104,7 +104,7 @@ if (type === 'stranka') {
 
 const d = entry.data;
 const from = fromPrice(prices);
-const baseCount = prices.filter((p: any) => !/^Korekce/i.test(p.name)).length;
+const baseCount = prices.filter((p: any) => !/^Korekce/i.test(p.name) && p.price > 0).length;
 const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od' : 'Cena', value: kc(from) }] : []), ...d.facts] : [];
 ---
 <Base title={d.seoTitle} description={d.description} ogImage={ogImage} schema={schema} modified={iso(d.updated)} article={type === 'clanek' ? { published: d.published ? iso(d.published) : undefined, modified: iso(d.updated), section: rubriky[d.category].title } : undefined}>

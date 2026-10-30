@@ -32,15 +32,15 @@ Nejde vždy o výrazné líčení – klíčem je přirozenost. Každá tvář j
 
 ### Svatební líčení
 
-Váš velký den si zaslouží vzhled, který vydrží od obřadu po poslední tanec. Součástí je zkouška v salonu, na které spolu vyladíme styl, odstíny i drobnosti. V den svatby počítejte zhruba se dvěma hodinami.
+Váš velký den si zaslouží vzhled, který vydrží od obřadu po poslední tanec. Součástí je zkouška v salonu, na které spolu vyladíme styl, odstíny i drobnosti. V den svatby počítejte zhruba s hodinou a půl.
 
 ### Večerní a plesové líčení
 
-Pro plesy, firemní večírky a společenské události, kde chcete zazářit. Trvá zhruba 40 minut.
+Pro plesy, firemní večírky a společenské události, kde chcete zazářit. Trvá zhruba hodinu.
 
 ### Denní líčení
 
-Přirozené, svěží a lehké. Zvýrazní vaši krásu nenápadně – do práce, na schůzku nebo jen pro radost. Trvá zhruba 20 minut.
+Přirozené, svěží a lehké. Zvýrazní vaši krásu nenápadně – do práce, na schůzku nebo jen pro radost. Trvá zhruba 45 minut.
 
 ## Chcete se naučit líčit sama?
 

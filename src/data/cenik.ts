@@ -1,5 +1,6 @@
 import { salon } from './salon';
 // Ceník – jediný zdroj cen pro celý web (stránka /cenik, stránky služeb, schema Offer).
+// Ceny a délky ověřeny proti Nooně 30. 10. 2026 (platí Noona: radiofrekvence obličej 1 490 Kč, délky líčení).
 // Převzato z myskin.cz/cenik a stránek služeb 26. 10. 2026 (oční linky jen na stránce služby), ceník platný od 1. 4. 2026. Pedikúra zrušena (26. 10. 2026).
 // noona = ID služby v rezervačním systému Noona (eventTypeId) – odkaz „Rezervovat“ vede rovnou na ni.
 // ID převzata z https://noona.app/cs/myskin/book 30. 10. 2026. Položka bez noona = obecná rezervace.
@@ -36,12 +37,13 @@ export const cenik: PriceGroup[] = [
       { name: 'Kompletní ošetření pleti pro muže', price: 1490, href: '/kompletni-osetreni-pro-muze', noona: 'g2z0wrurX6KQardo65dbOjY1' },
       { name: 'Chemický peeling NOON', price: 1600, duration: 'cca 60 min', href: '/kura-chemicky-peeling', noona: 'pc9VLZLAY8fprlyu75jLgV1c' },
       { name: 'Kúra chemických peelingů (6 ošetření)', price: 9600, href: '/kura-chemicky-peeling' },
+      { name: 'Konzultace k chemickému peelingu', price: 0, duration: '15 min', note: 'posouzení pleti před peelingem', href: '/kura-chemicky-peeling', noona: 'tb0NtY66KcXXBPkfNdXdy5oE' },
     ],
   },
   {
     id: 'radiofrekvence', title: 'Radiofrekvence', href: '/radiofrekvence',
     items: [
-      { name: 'Kosmetické ošetření s radiofrekvencí (obličej)', price: 1500, duration: '60 min', href: '/radiofrekvence#oblicej', noona: 'irUsvcaC55qYVg17XvYqq1sl' },
+      { name: 'Kosmetické ošetření s radiofrekvencí (obličej)', price: 1490, duration: '60 min', href: '/radiofrekvence#oblicej', noona: 'irUsvcaC55qYVg17XvYqq1sl' },
       { name: 'Břicho', price: 990, href: '/radiofrekvence#bricho', noona: '51nMWsKVaIkI1oDcyqHSnU3R' },
       { name: 'Hýždě', price: 1490, href: '/radiofrekvence#hyzde', noona: 'JCU6E4kDEy9EcnNOfL8ciGHD' },
       { name: 'Paže', price: 990, duration: '30 min', href: '/radiofrekvence#paze', noona: 'rAxJIZOB3pxnoNQvH6Ku9Oyp' },
@@ -59,9 +61,9 @@ export const cenik: PriceGroup[] = [
   {
     id: 'liceni', title: 'Líčení', href: '/liceni',
     items: [
-      { name: 'Denní líčení', price: 500, duration: 'cca 20 min', href: '/liceni', noona: 'ee55rPDWGqCiD6qqu' },
-      { name: 'Večerní a plesové líčení', price: 800, duration: 'cca 40 min', href: '/liceni', noona: 'TgZDqWWd8ecAxXJKm' },
-      { name: 'Svatební líčení', price: 5500, duration: 'cca 120 min', note: 'včetně zkoušky v salonu', href: '/liceni', noona: 'tfdMjPsNwqHsD6uce' },
+      { name: 'Denní líčení', price: 500, duration: 'cca 45 min', href: '/liceni', noona: 'ee55rPDWGqCiD6qqu' },
+      { name: 'Večerní a plesové líčení', price: 800, duration: 'cca 60 min', href: '/liceni', noona: 'TgZDqWWd8ecAxXJKm' },
+      { name: 'Svatební líčení', price: 5500, duration: 'cca 90 min', note: 'včetně zkoušky v salonu', href: '/liceni', noona: 'tfdMjPsNwqHsD6uce' },
     ],
   },
   {
@@ -91,17 +93,17 @@ export const cenik: PriceGroup[] = [
 export const bookingUrl = (noona?: string) => (noona ? `${salon.booking}?eventTypeIds=${noona}` : salon.booking);
 /** Hlavní rezervace stránky: když má stránka právě jednu základní službu v Noone, vede rovnou na ni. */
 export const mainBooking = (items: PriceItem[]) => {
-  const base = items.filter((i) => !/^(Korekce|Kúra)/i.test(i.name) && i.noona);
+  const base = items.filter((i) => !/^(Korekce|Kúra)/i.test(i.name) && i.price > 0 && i.noona);
   const ids = [...new Set(base.map((i) => i.noona))];
   return bookingUrl(ids.length === 1 ? ids[0] : undefined);
 };
 
-export const kc = (n: number) => `${n.toLocaleString('cs-CZ').replace(/ /g, ' ')} Kč`;
+export const kc = (n: number) => n === 0 ? 'zdarma' : `${n.toLocaleString('cs-CZ').replace(/ /g, ' ')} Kč`;
 export const pricesFor = (href: string) => cenik.flatMap((g) => g.items).filter((i) => i.href?.split('#')[0] === href);
 
 /** Nejnižší cena služby bez korekcí (korekce není samostatná služba). */
 export const fromPrice = (items: PriceItem[]) => {
-  const base = items.filter((i) => !/^Korekce/i.test(i.name));
+  const base = items.filter((i) => !/^Korekce/i.test(i.name) && i.price > 0);
   const list = (base.length ? base : items).map((i) => i.price);
   return list.length ? Math.min(...list) : 0;
 };
