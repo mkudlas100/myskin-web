@@ -7,8 +7,8 @@ listDescription: Pro koho je chemický peeling NOON, jak se na něj připravit, 
 category: plet
 published: 2026-10-30
 updated: 2026-10-30
-image: salon-osetrovna-karina
-imageAlt: Karina při ošetření klientky v ošetřovně studia MySkin v Benešově
+image: peeling-stetec-oblicej
+imageAlt: Nanášení chemického peelingu štětcem na obličej klientky
 services:
   - kura-chemicky-peeling
   - kosmeticke-osetreni
