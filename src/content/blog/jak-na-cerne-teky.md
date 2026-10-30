@@ -6,8 +6,8 @@ perex: Černé tečky jsou ucpané póry, ve kterých se smíchal maz, odumřel�
 listDescription: Černé tečky nejsou špína, ale ucpané póry. Vysvětlím, proč vznikají, co na ně funguje doma a proč je lepší nechat hloubkové čištění na kosmetičce.
 category: plet
 updated: 2026-10-26
-image: maska-platynkova
-imageAlt: Žena s plátýnkovou pleťovou maskou
+image: cerne-tecky-cistici-pena
+imageAlt: Pleť s čisticí pěnou při hloubkovém čištění proti černým tečkám
 services:
   - kosmeticke-osetreni
   - cistici-pece-zad

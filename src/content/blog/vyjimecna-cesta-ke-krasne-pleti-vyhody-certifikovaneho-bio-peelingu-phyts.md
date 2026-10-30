@@ -6,8 +6,8 @@ perex: Chemický peeling s kyselinami, například glykolovou, rozpouští vazby
 listDescription: Co kyseliny v peelingu s pletí dělají, s čím chemický peeling pomáhá a proč ve studiu pracuji s peelingem NOON.
 category: plet
 updated: 2026-10-27
-image: serum-kvety
-imageAlt: Sérum v lahvičce mezi květy
+image: peeling-kyseliny-stetec
+imageAlt: Kosmetička nanáší chemický peeling štětcem na obličej klientky
 services:
   - kura-chemicky-peeling
   - kosmeticke-osetreni
