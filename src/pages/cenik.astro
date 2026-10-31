@@ -52,7 +52,7 @@ const schema = [
         </div>
       ))}
     </div>
-    <p class="wrap cenik__note">Ceník je platný od {cenikPlatnost}. Termín si rezervujete <a href={salon.booking}>online</a> nebo na <a href={`tel:${salon.phoneHref}`}>{salon.phone}</a>.</p>
+    <p class="wrap cenik__note">Ceník je platný od {cenikPlatnost}. Termín si rezervujete <a href={salon.booking} target="_blank" rel="noopener">online</a> nebo na <a href={`tel:${salon.phoneHref}`}>{salon.phone}</a>.</p>
   </section>
   <HelperCta variant="inline" />
   <Faq items={faq} />

@@ -67,7 +67,7 @@ const jsonLd = graph([websiteNode(), webPageNode({ url: canonical, name: title, 
     <Header />
     <main id="obsah">
       <slot />
-      <a class="fab" id="fab" href={salon.booking}><Icon name="calendar" />Rezervovat termín</a>
+      <a class="fab" id="fab" href={salon.booking} target="_blank" rel="noopener"><Icon name="calendar" />Rezervovat termín</a>
     </main>
     <Footer />
     <Consent />

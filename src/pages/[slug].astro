@@ -123,7 +123,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
             <aside class="body__aside">
               <div class="aside__sticky">
                 <PriceTable items={prices} heading="Cena" id="cena" note={`Ceník platí od ${cenikPlatnost}.`} />
-                <div class="btns aside__btns"><a class="btn btn--primary" href={mainBooking(prices)}>Rezervovat termín</a><a class="btn" href="/cenik">Celý ceník</a></div>
+                <div class="btns aside__btns"><a class="btn btn--primary" href={mainBooking(prices)} target="_blank" rel="noopener">Rezervovat termín</a><a class="btn" href="/cenik">Celý ceník</a></div>
               </div>
             </aside>
           )}
@@ -165,7 +165,7 @@ const facts = type === 'sluzba' ? [...(from ? [{ label: baseCount > 1 ? 'Cena od
                   <span class="aside__text">{cz(mainService.data.perex.split('. ')[0].replace(/\.$/, ''))}.</span>
                   {fromPrice(pricesFor(`/${mainService.id}`)) > 0 && <span class="aside__price">od {kc(fromPrice(pricesFor(`/${mainService.id}`)))}</span>}
                 </a>
-                <a class="btn btn--primary" href={mainBooking(pricesFor(`/${mainService.id}`))}>Rezervovat termín</a>
+                <a class="btn btn--primary" href={mainBooking(pricesFor(`/${mainService.id}`))} target="_blank" rel="noopener">Rezervovat termín</a>
                 {otherServices.length > 0 && (
                   <ul class="aside__more">{otherServices.map((s) => <li><a href={`/${s.id}`}>{s.data.title}</a></li>)}</ul>
                 )}

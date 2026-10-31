@@ -14,7 +14,7 @@ const { items, heading = 'Ceník', note, id = 'cenik', showLinks = false } = Ast
           {(it.duration || it.note) && <small>{cz([it.duration, it.note].filter(Boolean).join(', '))}</small>}
         </span>
         <span class="prices__dots" aria-hidden="true"></span>
-        <span class="prices__price">{kc(it.price)}{it.noona && <a class="prices__book" href={bookingUrl(it.noona)} aria-label={`Rezervovat: ${it.name}`}>Rezervovat</a>}</span>
+        <span class="prices__price">{kc(it.price)}{it.noona && <a class="prices__book" href={bookingUrl(it.noona)} target="_blank" rel="noopener" aria-label={`Rezervovat: ${it.name}`}>Rezervovat</a>}</span>
       </li>
     ))}
   </ul>

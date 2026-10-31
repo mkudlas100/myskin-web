@@ -39,7 +39,7 @@ const dust = Array.from({ length: 22 }, (_, i) => {
       <slot name="meta" />
       {ctas && (
         <div class="btns" data-reveal style="--i: 5">
-          <a class="btn btn--primary" href={booking}>Rezervovat termín</a>
+          <a class="btn btn--primary" href={booking} target="_blank" rel="noopener">Rezervovat termín</a>
           <a class="btn" href={secondary.href}>{secondary.label}</a>
         </div>
       )}

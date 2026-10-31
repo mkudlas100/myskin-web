@@ -49,7 +49,8 @@ const typ = `${base}#typ-pleti`;
 <style>
   .hc-band { background: var(--sand); padding-block: clamp(48px, 5vw, 96px); }
   .hc-band__grid { display: grid; grid-template-columns: clamp(120px, 12vw, 180px) minmax(0, 1.4fr) auto; gap: clamp(24px, 4vw, 72px); align-items: center; }
-  :global(.hc-band__face) { background: #fff; border-radius: 50%; padding: 14px 18px 0; overflow: hidden; aspect-ratio: 1; align-content: start; }
+  :global(.hc-band__face) { background: #fff; border-radius: 50%; overflow: hidden; aspect-ratio: 1; align-content: end; justify-items: center; }
+  :global(.hc-band__face svg) { width: 78%; margin-bottom: -2%; }
   .hc-band__h { font-size: var(--fs-xl); margin-bottom: 12px; }
   .hc-band p { max-width: 40rem; margin: 0; }
   .hc-inline { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; justify-content: space-between; padding-block: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-block: clamp(8px, 1vw, 16px); }

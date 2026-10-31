@@ -46,7 +46,7 @@ const schema = [
           <div><dt>Provozovatel</dt><dd>{salon.operator}, IČO {salon.ico}</dd></div>
         </dl>
         <div class="btns">
-          <a class="btn btn--primary" href={salon.booking}>Rezervovat online</a>
+          <a class="btn btn--primary" href={salon.booking} target="_blank" rel="noopener">Rezervovat online</a>
           <a class="btn" href={`tel:${salon.phoneHref}`}>Zavolat</a>
         </div>
         <ul class="nap__social">

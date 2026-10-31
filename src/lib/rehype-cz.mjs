@@ -7,6 +7,8 @@ export const czText = (s) => s.replace(num, '$1 ').replace(unit, '$1 ').replac
 export default function rehypeCz() {
   const walk = (node, inCode) => {
     if (node.type === 'text' && !inCode) node.value = czText(node.value);
+    // Rezervace v Nooně vždy v novém okně (rozhodnutí 31. 10. 2026).
+    if (node.tagName === 'a' && /^https:\/\/noona\.app\//.test(node.properties?.href || '')) Object.assign(node.properties, { target: '_blank', rel: ['noopener'] });
     if (node.children) node.children.forEach((c) => walk(c, inCode || node.tagName === 'code' || node.tagName === 'pre'));
   };
   return (tree) => walk(tree, false);

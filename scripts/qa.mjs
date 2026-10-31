@@ -127,6 +127,7 @@ for (const f of htmlFiles) {
   // Interní odkazy
   for (const a of html.match(/<a\b[^>]*>/g) || []) {
     const href = attr(a, 'href');
+    if (href && href.startsWith('https://noona.app/') && attr(a, 'target') !== '_blank') errors.push(`${where} odkaz do Noony se neotevírá v novém okně`);
     if (!href || href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) {
       if (href && href.startsWith('#') && href.length > 1 && !html.includes(`id="${href.slice(1)}"`)) errors.push(`${where} kotva ${href} nemá cíl`);
       continue;

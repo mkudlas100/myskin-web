@@ -147,7 +147,7 @@ const r2 = [
       <p class="rd__label">${label}</p>
       <h3>${esc(s.name)}</h3>
       <p class="rd__meta">${[s.duration, s.price].filter(Boolean).map((x) => esc(x!)).join(' · ')}</p>
-      <div class="btns"><a class="btn btn--primary" href="${s.book}" data-book="${key}">Rezervovat</a><a class="btn" href="${s.href}">Více o ošetření</a></div>
+      <div class="btns"><a class="btn btn--primary" href="${s.book}" target="_blank" rel="noopener" data-book="${key}">Rezervovat</a><a class="btn" href="${s.href}">Více o ošetření</a></div>
     </div>`;
   const arts = (list: Art[]) => list.length ? `<p class="rd__arts">Přečtěte si: ${list.map((a) => `<a class="txt-link" href="${a.h}">${esc(a.t)}</a>`).join(', ')}</p>` : '';
   const warn = (t: string) => `<div class="rd__warn" role="note"><strong>Důležité:</strong> ${t}</div>`;
