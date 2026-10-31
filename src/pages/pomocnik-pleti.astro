@@ -1,7 +1,7 @@
 ---
-// Rádci pleti (náhled ke schválení): 1) výběr ošetření, 2) typ pleti.
-// Skrytá stránka – noindex, mimo sitemapu, žádný odkaz z webu (data/url-inventory.json → hidden).
-// Pravidla: dokument „Rádci MySkin – pravidla ke kontrole“ (30. 10. 2026), čekají na kontrolu Kariny.
+// Pomocník s výběrem (zveřejněno 31. 10. 2026): 1) výběr ošetření, 2) typ pleti.
+// Pravidla: dokument „Rádci MySkin – pravidla ke kontrole“ (30. 10. 2026); úpravy pravidel jen po dohodě s Karinou.
+// Odkaz s parametrem ?trapi=<klic>#osetreni předvybere odpověď (např. z článků).
 // Odpovědi se vyhodnocují jen v prohlížeči; do GA (po souhlasu) jde jen dokončení a klíč doporučené služby.
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
@@ -11,7 +11,7 @@ import { salon } from '../data/salon';
 const items = cenik.flatMap((g) => g.items);
 const pick = (name: string, mins?: string) => {
   const it = items.find((i) => i.name === name);
-  if (!it) throw new Error(`Rádce: v ceníku chybí „${name}“`);
+  if (!it) throw new Error(`Pomocník: v ceníku chybí „${name}“`);
   return { name: it.name, price: kc(it.price), duration: mins ?? it.duration?.replace(/^cca\s*/, ''), href: it.href ?? '/cenik', book: bookingUrl(it.noona) };
 };
 // Délky, které v ceníku chybí, podle Noony (30. 10. 2026).
@@ -47,7 +47,7 @@ const A = {
 };
 const data = { S, A, pmu: '/permanentni-make-up', booking: salon.booking };
 
-const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'Rádce pleti', href: '/radce-pleti' }];
+const crumbs = [{ name: 'Úvod', href: '/' }, { name: 'Pomocník s výběrem', href: '/pomocnik-pleti' }];
 
 const r1 = [
   { id: 'kdo', q: 'Pro koho hledáte ošetření?', opts: [['zena', 'Pro sebe'], ['muz', 'Pro muže']] },
@@ -64,12 +64,12 @@ const r2 = [
   { id: 'p6', q: 'Platí pro vás něco z toho?', opts: [['ruz', 'Trvale zarudlé tváře nebo viditelné žilky'], ['bar', 'Krém, který dřív nevadil, teď pálí'], ['nic', 'Nic z toho']] },
 ];
 ---
-<Base title="Rádce pleti – jaké ošetření a jaký typ pleti | MySkin" description="Rádce studia MySkin v Benešově: pár otázek vám pomůže vybrat vhodné kosmetické ošetření a zjistit typ pleti. Výsledek s cenou a přímou rezervací." noindex>
-  <PageHero crumbs={crumbs} h1="Rádce pleti" perex="Pár otázek vám pomůže vybrat vhodné ošetření nebo zjistit typ pleti. Odpovědi zůstávají jen ve vašem prohlížeči, nikam se neodesílají." ctas={false} />
+<Base title="Jaký mám typ pleti a jaké ošetření vybrat | MySkin" description="Krátký test typu pleti a pomocník s výběrem kosmetického ošetření od studia MySkin v Benešově. Výsledek s cenou, délkou a přímou rezervací.">
+  <PageHero crumbs={crumbs} h1="Pomocník s výběrem péče" perex="Nevíte, jaké ošetření si vybrat, nebo jaký máte typ pleti? Pár otázek vám poradí za minutu. Odpovědi zůstávají jen ve vašem prohlížeči, nikam se neodesílají." ctas={false} />
 
-  <nav class="wrap rd-tabs" aria-label="Rádci">
-    <a class="btn" href="#osetreni">Výběr ošetření</a>
-    <a class="btn" href="#typ-pleti">Typ pleti</a>
+  <nav class="wrap rd-tabs" aria-label="Pomocníci">
+    <a class="btn" href="#osetreni">Najít vhodné ošetření</a>
+    <a class="btn" href="#typ-pleti">Zjistit typ pleti</a>
   </nav>
 
   <section class="sec rd" id="osetreni" aria-labelledby="h-r1">
@@ -142,8 +142,8 @@ const r2 = [
   function show(out: HTMLElement, html: string, radce: string, key: string) {
     out.innerHTML = html; out.hidden = false; out.focus({ preventScroll: true });
     out.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    track('radce_vysledek', { radce, doporuceni: key });
-    out.querySelectorAll<HTMLAnchorElement>('[data-book]').forEach((a) => a.addEventListener('click', () => track('radce_rezervace', { radce, sluzba: a.dataset.book || '' })));
+    track('pomocnik_vysledek', { pomocnik: radce, doporuceni: key });
+    out.querySelectorAll<HTMLAnchorElement>('[data-book]').forEach((a) => a.addEventListener('click', () => track('pomocnik_rezervace', { pomocnik: radce, sluzba: a.dataset.book || '' })));
   }
   const val = (f: HTMLFormElement, n: string) => (f.querySelector<HTMLInputElement>(`input[name="${n}"]:checked`)?.value) || '';
   const vals = (f: HTMLFormElement, n: string) => [...f.querySelectorAll<HTMLInputElement>(`input[name="${n}"]:checked`)].map((i) => i.value);
@@ -158,7 +158,7 @@ const r2 = [
     return empty.length > 0;
   }
 
-  // ===== Rádce 1: výběr ošetření =====
+  // ===== Pomocník 1: výběr ošetření =====
   const f1 = document.getElementById('f1') as HTMLFormElement;
   const o1 = document.getElementById('o1') as HTMLElement;
   const syncWho = () => {
@@ -232,11 +232,12 @@ const r2 = [
       ${alt ? card(S[alt], 'Další možnost', alt) : ''}
       ${extra}
       ${arts(a)}
-      <p class="rd__note">${NOTE}</p>`;
+      <p class="rd__note">${NOTE}</p>
+      <p class="rd__more"><a class="txt-link" href="#typ-pleti">Zjistit typ pleti</a> <button type="button" class="rd__again" data-again="f1">Začít znovu</button></p>`;
     show(o1, html, 'osetreni', main || tr);
   });
 
-  // ===== Rádce 2: typ pleti =====
+  // ===== Pomocník 2: typ pleti =====
   const f2 = document.getElementById('f2') as HTMLFormElement;
   const o2 = document.getElementById('o2') as HTMLElement;
   const TYPY: Record<string, { t: string; d: string; care: string[]; svc: string[]; art: Art }> = {
@@ -270,9 +271,28 @@ const r2 = [
       ${card(S[svc[0]], 'Doporučuji', svc[0])}
       ${svc[1] ? card(S[svc[1]], 'Další možnost', svc[1]) : ''}
       ${arts(a)}
-      <p class="rd__note">Typ pleti se může měnit s ročním obdobím, věkem i péčí. Nejjistější je, když si vaši pleť prohlédnu při ošetření.</p>`;
+      <p class="rd__note">Typ pleti se může měnit s ročním obdobím, věkem i péčí. Nejjistější je, když si vaši pleť prohlédnu při ošetření.</p>
+      <p class="rd__more"><a class="txt-link" href="#osetreni">Najít vhodné ošetření</a> <button type="button" class="rd__again" data-again="f2">Začít znovu</button></p>`;
     show(o2, html, 'typ_pleti', typ + (cit ? '+C' : ''));
   });
+
+  // Začít znovu: vymazat odpovědi a výsledek, vrátit se na první otázku.
+  document.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-again]');
+    if (!b) return;
+    const f = document.getElementById(b.dataset.again!) as HTMLFormElement;
+    f.reset(); f.querySelectorAll('.is-missing').forEach((q) => q.classList.remove('is-missing'));
+    const out = f.nextElementSibling as HTMLElement; out.hidden = true; out.innerHTML = '';
+    if (f === f1) syncWho();
+    f.querySelector('input')?.focus({ preventScroll: true });
+    f.scrollIntoView({ behavior: 'auto', block: 'start' });
+  });
+  // Předvyplnění z odkazu: /pomocnik-pleti?trapi=akne#osetreni
+  try {
+    const t = new URLSearchParams(location.search).get('trapi');
+    const inp = t && f1.querySelector<HTMLInputElement>(`input[name="trapi"][value="${CSS.escape(t)}"]`);
+    if (inp) inp.checked = true;
+  } catch (e) {}
 </script>
 
 <style is:global>
@@ -311,6 +331,9 @@ const r2 = [
   .rd__svc .btns { margin-top: 8px; }
   .rd__arts { margin: 0; }
   .rd__note { font-size: var(--fs-sm); color: var(--graphite); margin: 0; }
+  .rd__more { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; margin: 0; padding-top: 12px; border-top: 1px solid var(--line); }
+  .rd__again { background: none; border: 0; padding: 4px 0; font: inherit; font-weight: 600; color: var(--graphite); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+  .rd__again:hover { color: var(--ink); }
   .rd__warn { background: var(--sand-soft); border-left: 4px solid var(--sand); padding: 14px 18px; border-radius: 6px; font-size: var(--fs-sm); }
   .rd__care { margin: 0; padding-left: 20px; }
   .rd__care li { margin-bottom: 4px; }

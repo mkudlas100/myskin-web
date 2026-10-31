@@ -1,0 +1,46 @@
+---
+// Odkaz na Pomocníka s výběrem (/pomocnik-pleti). Nevyskakuje, nic neotravuje – jen nabízí pomoc tam, kde se vybírá.
+// variant "band" = pás na úvodu, "inline" = rámeček na stránce služby, "aside" = řádek v postranním boxu článku.
+// trapi = předvybraná odpověď „Co vás trápí“ (akne, cerne, pigment, vrasky, citlivost, suchost, relax).
+interface Props { variant?: 'band' | 'inline' | 'aside'; trapi?: string }
+const { variant = 'inline', trapi } = Astro.props;
+const base = '/pomocnik-pleti';
+const osetreni = `${base}${trapi ? `?trapi=${trapi}` : ''}#osetreni`;
+const typ = `${base}#typ-pleti`;
+---
+{variant === 'band' && (
+  <section class="hc-band" aria-labelledby="h-helper">
+    <div class="wrap hc-band__grid">
+      <div>
+        <h2 id="h-helper" class="hc-band__h" data-reveal>Nevíte, co si vybrat?</h2>
+        <p data-reveal style="--i: 1">Odpovězte na pár otázek a doporučím vám vhodné ošetření s cenou a přímou rezervací. Nebo si zjistěte, jaký máte typ pleti. Zabere to minutu.</p>
+      </div>
+      <div class="btns" data-reveal style="--i: 2">
+        <a class="btn btn--primary" href={osetreni}>Najít vhodné ošetření</a>
+        <a class="btn" href={typ}>Zjistit typ pleti</a>
+      </div>
+    </div>
+  </section>
+)}
+{variant === 'inline' && (
+  <aside class="wrap hc-inline" aria-label="Pomocník s výběrem">
+    <p><strong>Nevíte, které ošetření je pro vás?</strong> Pár otázek vám poradí za minutu.</p>
+    <p class="hc-inline__links"><a class="txt-link" href={osetreni}>Najít vhodné ošetření</a><a class="txt-link" href={typ}>Zjistit typ pleti</a></p>
+  </aside>
+)}
+{variant === 'aside' && (
+  <p class="hc-aside">Nevíte, co si vybrat? <a href={osetreni}>Pomocník s výběrem</a></p>
+)}
+
+<style>
+  .hc-band { background: var(--sand); padding-block: clamp(48px, 5vw, 96px); }
+  .hc-band__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) auto; gap: clamp(24px, 4vw, 80px); align-items: center; }
+  .hc-band__h { font-size: var(--fs-xl); margin-bottom: 12px; }
+  .hc-band p { max-width: 40rem; margin: 0; }
+  .hc-inline { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; justify-content: space-between; padding-block: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-block: clamp(8px, 1vw, 16px); }
+  .hc-inline p { margin: 0; }
+  .hc-inline__links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .hc-aside { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: var(--fs-sm); color: var(--graphite); }
+  .hc-aside a { font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  @media (max-width: 860px) { .hc-band__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

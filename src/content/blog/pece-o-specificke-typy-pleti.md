@@ -5,7 +5,7 @@ description: "Jak pečovat o suchou, mastnou, citlivou a smíšenou pleť: jaké
 perex: Každý typ pleti potřebuje jinou péči. Suchá pleť chce hodně hydratace a málo exfoliace, mastná lehké krémy a čisticí přípravky, citlivá jemné hypoalergenní produkty a smíšená kombinaci obojího. Pokud si typem své pleti nejste jistá, poradím vám při ošetření.
 listDescription: Suchá, mastná, citlivá, nebo smíšená? Přehled, co který typ pleti potřebuje, jaké přípravky vybírat a čemu se vyhnout.
 category: plet
-updated: 2026-10-26
+updated: 2026-10-31
 image: krem-oko
 imageAlt: Krém nanesený na prstu u oka
 services:
@@ -22,7 +22,7 @@ faq:
     a: Ano. Pleť se mění s věkem, hormony, ročním obdobím i péčí. Proto je dobré péči jednou za čas přehodnotit.
 ---
 
-Péče o pleť funguje, jen když odpovídá tomu, co pleť skutečně potřebuje. Tady je stručný přehled pro čtyři nejčastější typy.
+Péče o pleť funguje, jen když odpovídá tomu, co pleť skutečně potřebuje. Tady je stručný přehled pro čtyři nejčastější typy. Nejste si jistá, jaký typ máte? Zkuste krátký [test typu pleti](/pomocnik-pleti#typ-pleti).
 
 ## Suchá pleť
 

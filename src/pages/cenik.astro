@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero.astro';
 import PriceTable from '../components/PriceTable.astro';
 import Faq from '../components/Faq.astro';
 import Booking from '../components/Booking.astro';
+import HelperCta from '../components/HelperCta.astro';
 import { cenik, cenikPlatnost } from '../data/cenik';
 import { breadcrumbNode } from '../lib/schema';
 import { salon } from '../data/salon';
@@ -53,6 +54,7 @@ const schema = [
     </div>
     <p class="wrap cenik__note">Ceník je platný od {cenikPlatnost}. Termín si rezervujete <a href={salon.booking}>online</a> nebo na <a href={`tel:${salon.phoneHref}`}>{salon.phone}</a>.</p>
   </section>
+  <HelperCta variant="inline" />
   <Faq items={faq} />
   <Booking />
 </Base>

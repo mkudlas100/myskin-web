@@ -20,6 +20,7 @@ export const menu: NavItem[] = [
       { label: 'Chemický peeling', href: '/kura-chemicky-peeling' },
       { label: 'Péče o citlivou pleť', href: '/pece-o-citlivou-plet' },
       { label: 'Ošetření pro muže', href: '/kompletni-osetreni-pro-muze' },
+      { label: 'Pomocník s výběrem', href: '/pomocnik-pleti' },
     ],
   },
   {
@@ -48,6 +49,7 @@ export const footerServices = [
 
 export const footerMore = [
   { label: 'Ceník', href: '/cenik' },
+  { label: 'Pomocník s výběrem', href: '/pomocnik-pleti' },
   { label: 'Blog', href: '/blog-myskin' },
   { label: 'Kurzy', href: '/kurzy-a-workshopy' },
   { label: 'E-shop', href: 'https://eshop.myskin.cz' },

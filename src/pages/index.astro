@@ -5,6 +5,7 @@ import Stipple from '../components/Stipple.astro';
 import Booking from '../components/Booking.astro';
 import Brands from '../components/Brands.astro';
 import Reviews from '../components/Reviews.astro';
+import HelperCta from '../components/HelperCta.astro';
 import { salon } from '../data/salon';
 import { google } from '../data/recenze';
 import karinaPortretSchema from '../assets/img/foto/karina-postava.jpg';
@@ -182,6 +183,9 @@ const posts = pick(await allPosts(), ['jak-se-pripravit-na-permanentni-make-up',
       <a class="txt-link" href="/kosmeticke-sluzby" data-reveal style="--i: 9">Všechny kosmetické služby</a>
     </div>
   </section>
+
+  <!-- Pomocník s výběrem ošetření a typu pleti -->
+  <HelperCta variant="band" />
 
   <!-- Kosmetika, se kterou pracuji -->
   <Brands />
