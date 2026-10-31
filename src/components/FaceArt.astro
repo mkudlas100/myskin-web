@@ -3,12 +3,14 @@
 // zavřené oči, jemný úsměv. Vrstvy se zapínají třídou na kořeni (.f-tzone, .f-acne, …) –
 // ovládá je skript stránky nebo najetí na tlačítko v pásu na úvodu. Dekorace: aria-hidden,
 // stav se čtenářům sděluje textem pod ilustrací.
-interface Props { id?: string; class?: string; caption?: boolean }
-const { id, class: cls, caption = false } = Astro.props;
+// variant: 'color' (barevná), 'line' (liniová), 'blob' (linka na pískovém tvaru), 'dots' (tečková).
+export type FaceVariant = 'color' | 'line' | 'blob' | 'dots';
+interface Props { id?: string; class?: string; caption?: boolean; variant?: FaceVariant }
+const { id, class: cls, caption = false, variant = 'color' } = Astro.props;
 const u = id ?? 'face';
 const FACE = 'M150 74c-48 0-72 38-71 86 1 50 26 100 71 116 45-16 70-66 71-116 1-48-23-86-71-86z';
 ---
-<figure class:list={['face', cls]} id={id} data-face>
+<figure class:list={['face', `face--${variant}`, cls]} id={id} data-face>
   <svg viewBox="0 0 300 330" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id={`${u}-skin`} cx="50%" cy="42%" r="62%">
@@ -36,21 +38,24 @@ const FACE = 'M150 74c-48 0-72 38-71 86 1 50 26 100 71 116 45-16 70-66 71-116 1-
       <clipPath id={`${u}-clip`}><path d={FACE} /></clipPath>
     </defs>
 
+    <!-- pískový organický tvar (varianta blob) -->
+    <path class="face__blob" d="M150 18c62 0 118 34 124 102 6 66-20 132-72 168-40 28-98 30-140 2C12 256-6 186 16 122 36 60 92 18 150 18z" />
     <!-- ramena a krk -->
     <path class="face__body" d="M60 330c4-34 30-50 62-56l6-20h44l6 20c32 6 58 22 62 56z" />
-    <path d="M128 238v30c6 10 38 10 44 0v-30z" fill={`url(#${u}-neck)`} />
+    <path class="face__neck" d="M128 238v30c6 10 38 10 44 0v-30z" fill={`url(#${u}-neck)`} />
+    <path class="face__body-line" d="M60 330c4-34 30-50 62-56l6-20M240 330c-4-34-30-50-62-56l-6-20" />
     <!-- vlasy: drdol a vlasy za hlavou -->
     <circle class="face__hair" cx="150" cy="40" r="26" />
     <path class="face__hair" d="M150 50c-58 0-86 44-82 104 6-30 18-52 40-64 14 8 70 8 84 0 22 12 34 34 40 64 4-60-24-104-82-104z" />
     <!-- uši -->
     <path class="face__ear" d="M82 158c-12-4-16 10-12 22 3 9 10 14 15 12M218 158c12-4 16 10 12 22-3 9-10 14-15 12" />
     <!-- tvář -->
-    <path d={FACE} fill={`url(#${u}-skin)`} />
+    <path class="face__skin" d={FACE} fill={`url(#${u}-skin)`} />
 
     <g clip-path={`url(#${u}-clip)`}>
       <!-- jemné líčko vždy (živější výraz) -->
-      <ellipse cx="108" cy="198" rx="24" ry="16" fill={`url(#${u}-rose)`} opacity=".45" />
-      <ellipse cx="192" cy="198" rx="24" ry="16" fill={`url(#${u}-rose)`} opacity=".45" />
+      <g class="face__cheek"><ellipse cx="108" cy="198" rx="24" ry="16" fill={`url(#${u}-rose)`} opacity=".45" />
+      <ellipse cx="192" cy="198" rx="24" ry="16" fill={`url(#${u}-rose)`} opacity=".45" /></g>
       <!-- lesk T-zóny -->
       <g class="L L-tzone">
         <ellipse cx="150" cy="128" rx="42" ry="14" fill={`url(#${u}-gloss)`} />
@@ -165,5 +170,30 @@ const FACE = 'M150 74c-48 0-72 38-71 86 1 50 26 100 71 116 45-16 70-66 71-116 1-
   .f-pmu .face__brow { stroke: #4E3A32; stroke-width: 4.4; }
   .f-pmu .face__liner { opacity: 1; }
   .f-pmu .face__lips { fill: #D98777; }
+  .face__blob, .face__body-line { display: none; }
+  /* varianty: liniová, na pískovém tvaru, tečková */
+  .face--line .face__skin, .face--blob .face__skin, .face--dots .face__skin,
+  .face--line .face__hair, .face--blob .face__hair, .face--dots .face__hair,
+  .face--line .face__band, .face--blob .face__band, .face--dots .face__band,
+  .face--line .face__ear, .face--blob .face__ear, .face--dots .face__ear { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; }
+  .face--line .face__body, .face--blob .face__body, .face--dots .face__body,
+  .face--line .face__neck, .face--blob .face__neck, .face--dots .face__neck,
+  .face--line .face__cheek, .face--blob .face__cheek, .face--dots .face__cheek,
+  .face--line .face__band-line, .face--blob .face__band-line, .face--dots .face__band-line,
+  .face--line .face__jaw, .face--blob .face__jaw, .face--dots .face__jaw { display: none; }
+  .face--line .face__body-line, .face--blob .face__body-line, .face--dots .face__body-line { display: block; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; }
+  .face--line .face__brow, .face--blob .face__brow, .face--dots .face__brow,
+  .face--line .face__nose, .face--blob .face__nose, .face--dots .face__nose,
+  .face--line .face__smile, .face--blob .face__smile, .face--dots .face__smile,
+  .face--line .face__eye path, .face--blob .face__eye path, .face--dots .face__eye path { stroke: var(--ink); }
+  .face--line .face__lips, .face--blob .face__lips, .face--dots .face__lips { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+  .f-pmu.face--line .face__lips, .f-pmu.face--blob .face__lips, .f-pmu.face--dots .face__lips { fill: #E8A090; }
+  .face--blob .face__blob { display: block; fill: var(--sand); opacity: .65; }
+  .face--line .L-tzone ellipse, .face--line .L-cheeks ellipse, .face--dots .L-tzone ellipse, .face--dots .L-cheeks ellipse { fill: #EFD19F; opacity: .55; filter: blur(5px); }
+  .face--blob .L-tzone ellipse, .face--blob .L-cheeks ellipse { fill: #FFFDF6; opacity: .85; filter: blur(5px); }
+  .face--line .spark, .face--dots .spark { fill: #E2B66E; }
+  .face--dots .face__skin, .face--dots .face__hair, .face--dots .face__band, .face--dots .face__ear, .face--dots .face__body-line,
+  .face--dots .face__nose, .face--dots .face__eye path:not(.lash) { stroke-width: 2.6; stroke-dasharray: 0 5.5; stroke-linecap: round; }
+  .face--dots .face__hair { stroke: #5B4136; }
   @media (prefers-reduced-motion: reduce) { .face .L, .face__brow, .face__lips, .face__liner { transition: none; } }
 </style>
