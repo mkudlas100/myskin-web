@@ -1,0 +1,134 @@
+---
+// Interaktivní ilustrace obličeje pro Pomocníka s výběrem. Vrstvy se zapínají třídou na kořeni
+// (např. .f-tzone, .f-acne) – ovládá je skript stránky nebo hover v pásu na úvodu.
+// Dekorace: aria-hidden, stav se čtenářům sděluje textem pod ilustrací.
+interface Props { id?: string; class?: string; caption?: boolean }
+const { id, class: cls, caption = false } = Astro.props;
+const uid = id ?? 'face';
+---
+<figure class:list={['face', cls]} id={id} data-face>
+  <svg viewBox="0 0 300 360" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id={`${uid}-gloss`} cx="50%" cy="40%" r="60%">
+        <stop offset="0" stop-color="#FFF6E6" stop-opacity=".95" />
+        <stop offset=".55" stop-color="#EFD19F" stop-opacity=".75" />
+        <stop offset="1" stop-color="#EFD19F" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id={`${uid}-blush`} cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#FF9C86" stop-opacity=".7" />
+        <stop offset="1" stop-color="#FF9C86" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id={`${uid}-red`} cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#E8735D" stop-opacity=".85" />
+        <stop offset="1" stop-color="#E8735D" stop-opacity="0" />
+      </radialGradient>
+      <clipPath id={`${uid}-skin`}><path d="M150 52c-58 0-92 44-92 104 0 34 8 64 24 88 18 27 42 46 68 46s50-19 68-46c16-24 24-54 24-88 0-60-34-104-92-104z" /></clipPath>
+    </defs>
+
+    <!-- vlasy vzadu (dlouhé, ke ramenům) -->
+    <path class="face__hair" d="M150 34c-66 0-104 50-100 124 2 52-8 104-30 146 36 18 80 12 100-10V210h60v84c20 22 64 28 100 10-22-42-32-94-30-146 4-74-34-124-100-124z" />
+    <!-- podklad: pleť -->
+    <path class="face__skin" d="M150 52c-58 0-92 44-92 104 0 34 8 64 24 88 18 27 42 46 68 46s50-19 68-46c16-24 24-54 24-88 0-60-34-104-92-104z" />
+
+    <g clip-path={`url(#${uid}-skin)`}>
+      <!-- lesk: čelo, nos, brada (T-zóna) -->
+      <g class="L L-tzone">
+        <ellipse cx="150" cy="96" rx="66" ry="30" fill={`url(#${uid}-gloss)`} />
+        <ellipse cx="150" cy="178" rx="20" ry="46" fill={`url(#${uid}-gloss)`} />
+        <ellipse cx="150" cy="268" rx="34" ry="20" fill={`url(#${uid}-gloss)`} />
+        <path class="spark" d="M128 86l3 7 7 3-7 3-3 7-3-7-7-3 7-3z M156 160l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />
+      </g>
+      <!-- lesk: tváře -->
+      <g class="L L-cheeks">
+        <ellipse cx="94" cy="196" rx="34" ry="30" fill={`url(#${uid}-gloss)`} />
+        <ellipse cx="206" cy="196" rx="34" ry="30" fill={`url(#${uid}-gloss)`} />
+      </g>
+      <!-- suchost: šupinky -->
+      <g class="L L-dry ink-soft">
+        <path d="M84 186l8-2M98 200l7 1M80 206l6-3M210 184l8 1M200 202l7-2M218 210l6 2M120 84l7-2M170 80l8 1M146 72l6 2" />
+      </g>
+      <!-- citlivost: začervenání -->
+      <g class="L L-blush">
+        <ellipse cx="96" cy="204" rx="38" ry="28" fill={`url(#${uid}-blush)`} />
+        <ellipse cx="204" cy="204" rx="38" ry="28" fill={`url(#${uid}-blush)`} />
+      </g>
+      <!-- růžovka: silnější zarudnutí + žilky -->
+      <g class="L L-rosacea">
+        <ellipse cx="96" cy="200" rx="40" ry="30" fill={`url(#${uid}-red)`} />
+        <ellipse cx="204" cy="200" rx="40" ry="30" fill={`url(#${uid}-red)`} />
+        <ellipse cx="150" cy="196" rx="20" ry="22" fill={`url(#${uid}-red)`} />
+        <path class="vein" d="M82 198c6-4 10 2 16-2M206 196c6 4 10-2 16 2M90 212c4-2 8 1 12-1" />
+      </g>
+      <!-- akné -->
+      <g class="L L-acne dots-red">
+        <circle cx="132" cy="262" r="3.4" /><circle cx="168" cy="270" r="3" /><circle cx="150" cy="282" r="2.6" />
+        <circle cx="92" cy="214" r="3" /><circle cx="104" cy="226" r="2.5" /><circle cx="208" cy="218" r="3.2" /><circle cx="196" cy="230" r="2.4" />
+        <circle cx="132" cy="92" r="2.6" /><circle cx="172" cy="100" r="2.4" />
+      </g>
+      <!-- černé tečky a póry -->
+      <g class="L L-pores dots-ink">
+        <circle cx="143" cy="200" r="1.4" /><circle cx="150" cy="206" r="1.4" /><circle cx="157" cy="200" r="1.4" /><circle cx="146" cy="214" r="1.2" /><circle cx="155" cy="214" r="1.2" />
+        <circle cx="139" cy="270" r="1.2" /><circle cx="160" cy="268" r="1.2" /><circle cx="150" cy="262" r="1.2" />
+      </g>
+      <!-- pigmentové skvrny -->
+      <g class="L L-pigment dots-brown">
+        <ellipse cx="96" cy="182" rx="9" ry="6" /><ellipse cx="112" cy="196" rx="5" ry="4" /><ellipse cx="206" cy="186" rx="8" ry="6" />
+        <ellipse cx="194" cy="174" rx="4" ry="3" /><ellipse cx="168" cy="84" rx="7" ry="5" /><ellipse cx="124" cy="96" rx="4" ry="3" />
+      </g>
+      <!-- vrásky -->
+      <g class="L L-wrinkles ink-soft">
+        <path d="M108 78c28-6 56-6 84 0M114 92c24-5 48-5 72 0" />
+        <path d="M70 158c-6 2-9 6-10 10M72 168c-6 1-9 4-11 8M230 158c6 2 9 6 10 10M228 168c6 1 9 4 11 8" />
+        <path d="M118 236c-6 8-8 16-6 24M182 236c6 8 8 16 6 24" />
+      </g>
+    </g>
+
+    <!-- vlasy -->
+    <path class="face__hair" d="M58 156c-6-70 30-118 92-118s98 48 92 118c-8-30-18-52-34-66-30 10-72 12-112 2-20 14-32 36-38 64z" />
+    <!-- obrys a krk -->
+    <path class="face__line" d="M150 52c-58 0-92 44-92 104 0 34 8 64 24 88 18 27 42 46 68 46s50-19 68-46c16-24 24-54 24-88 0-60-34-104-92-104z" />
+    <path class="face__line" d="M118 286v40c-20 6-44 14-60 30M182 286v40c20 6 44 14 60 30" />
+    <!-- obočí (PMU zvýrazní) -->
+    <path class="face__brow" d="M92 132c14-10 32-12 46-6M162 126c14-6 32-4 46 6" />
+    <!-- oči -->
+    <g class="face__eyes-open">
+      <path class="face__line" d="M96 152c10-8 28-8 38 0-10 7-28 7-38 0zM166 152c10-8 28-8 38 0-10 7-28 7-38 0z" />
+      <circle class="face__iris" cx="115" cy="152" r="5" /><circle class="face__iris" cx="185" cy="152" r="5" />
+    </g>
+    <g class="face__eyes-closed"><path class="face__line" d="M96 154c10 6 28 6 38 0M166 154c10 6 28 6 38 0" /></g>
+    <!-- nos a ústa -->
+    <path class="face__line" d="M150 164v36c-4 6-12 8-14 4M150 200c4 6 12 8 14 4" />
+    <path class="face__lips" d="M126 240c8-6 16-6 24-2 8-4 16-4 24 2-8 10-40 10-48 0z" />
+  </svg>
+  {caption && <figcaption class="face__cap" aria-live="polite"></figcaption>}
+</figure>
+
+<style is:global>
+  .face { margin: 0; display: grid; justify-items: center; gap: 12px; }
+  .face svg { width: 100%; height: auto; overflow: visible; }
+  .face__skin { fill: #F8E9DD; }
+  .face__hair { fill: #3A302C; }
+  .face__line { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .face__iris { fill: var(--ink); }
+  .face__brow { fill: none; stroke: #6D5A52; stroke-width: 3.2; stroke-linecap: round; transition: stroke-width var(--t) var(--ease), stroke var(--t) var(--ease); }
+  .face__lips { fill: #E7B3A6; stroke: var(--ink); stroke-width: 1.6; transition: fill var(--t) var(--ease); }
+  .face__eyes-closed { opacity: 0; }
+  .face .L { opacity: 0; transition: opacity var(--t) var(--ease); }
+  .face .spark { fill: #fff; }
+  .face .ink-soft path, .face .ink-soft { fill: none; stroke: #8C7B73; stroke-width: 1.6; stroke-linecap: round; }
+  .face .vein { fill: none; stroke: #C4513F; stroke-width: 1; opacity: .7; }
+  .face .dots-red circle { fill: #D9604C; }
+  .face .dots-ink circle { fill: #3A302C; }
+  .face .dots-brown ellipse { fill: #B88A66; opacity: .75; }
+  .face__cap { font-size: var(--fs-sm); color: var(--graphite); text-align: center; min-height: 1.5em; margin: 0; }
+  .face__cap strong { color: var(--ink); }
+  /* stavy */
+  .f-tzone .L-tzone, .f-cheeks .L-cheeks, .f-dry .L-dry, .f-blush .L-blush, .f-rosacea .L-rosacea,
+  .f-acne .L-acne, .f-pores .L-pores, .f-pigment .L-pigment, .f-wrinkles .L-wrinkles { opacity: 1; }
+  .f-tzone-half .L-tzone { opacity: .5; }
+  .f-relax .face__eyes-open { opacity: 0; }
+  .f-relax .face__eyes-closed { opacity: 1; }
+  .f-pmu .face__brow { stroke: #4A3832; stroke-width: 5.2; }
+  .f-pmu .face__lips { fill: #D98C80; }
+  @media (prefers-reduced-motion: reduce) { .face .L, .face__brow, .face__lips { transition: none; } }
+</style>

@@ -5,6 +5,7 @@
 // Odpovědi se vyhodnocují jen v prohlížeči; do GA (po souhlasu) jde jen dokončení a klíč doporučené služby.
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import FaceArt from '../components/FaceArt.astro';
 import { cenik, kc, bookingUrl } from '../data/cenik';
 import { salon } from '../data/salon';
 
@@ -68,12 +69,13 @@ const r2 = [
   <PageHero crumbs={crumbs} h1="Pomocník s výběrem péče" perex="Nevíte, jaké ošetření si vybrat, nebo jaký máte typ pleti? Pár otázek vám poradí za minutu. Odpovědi zůstávají jen ve vašem prohlížeči, nikam se neodesílají." ctas={false} />
 
   <nav class="wrap rd-tabs" aria-label="Pomocníci">
-    <a class="btn" href="#osetreni">Najít vhodné ošetření</a>
-    <a class="btn" href="#typ-pleti">Zjistit typ pleti</a>
+    <a class="rd-tab" href="#osetreni"><span class="rd-tab__n">1</span><span><strong>Najít vhodné ošetření</strong><small>4 otázky · doporučení s cenou a rezervací</small></span></a>
+    <a class="rd-tab" href="#typ-pleti"><span class="rd-tab__n">2</span><span><strong>Zjistit typ pleti</strong><small>6 otázek · typ pleti a domácí péče</small></span></a>
   </nav>
 
   <section class="sec rd" id="osetreni" aria-labelledby="h-r1">
-    <div class="wrap rd__wrap">
+    <div class="wrap rd__grid">
+     <div class="rd__main">
       <h2 id="h-r1">Nevíte, jaké ošetření si vybrat?</h2>
       <p class="rd__lead">Odpovězte na 4 otázky a doporučím vám ošetření s cenou a přímou rezervací.</p>
       <form class="rd__form" id="f1" novalidate>
@@ -91,11 +93,17 @@ const r2 = [
         <button class="btn btn--primary" type="submit">Zobrazit doporučení</button>
       </form>
       <div class="rd__out" id="o1" aria-live="polite" tabindex="-1" hidden></div>
+     </div>
+     <aside class="rd__side" aria-label="Průběh">
+      <FaceArt id="face1" caption />
+      <div class="rd__prog" data-prog="f1"><span></span><i></i></div>
+     </aside>
     </div>
   </section>
 
   <section class="sec rd rd--alt" id="typ-pleti" aria-labelledby="h-r2">
-    <div class="wrap rd__wrap">
+    <div class="wrap rd__grid">
+     <div class="rd__main">
       <h2 id="h-r2">Jaký máte typ pleti?</h2>
       <p class="rd__lead">Šest otázek, zhruba minuta. Výsledek je orientační – typ pleti nejlépe posoudím při ošetření.</p>
       <form class="rd__form" id="f2" novalidate>
@@ -113,6 +121,11 @@ const r2 = [
         <button class="btn btn--primary" type="submit">Zjistit typ pleti</button>
       </form>
       <div class="rd__out" id="o2" aria-live="polite" tabindex="-1" hidden></div>
+     </div>
+     <aside class="rd__side" aria-label="Průběh">
+      <FaceArt id="face2" caption />
+      <div class="rd__prog" data-prog="f2"><span></span><i></i></div>
+     </aside>
     </div>
   </section>
 
@@ -276,6 +289,48 @@ const r2 = [
     show(o2, html, 'typ_pleti', typ + (cit ? '+C' : ''));
   });
 
+  // ===== Ilustrace obličeje a průběh – mění se s odpověďmi =====
+  const FACE_CLS = ['f-tzone', 'f-tzone-half', 'f-cheeks', 'f-dry', 'f-blush', 'f-rosacea', 'f-acne', 'f-pores', 'f-pigment', 'f-wrinkles', 'f-relax', 'f-pmu'];
+  const setFace = (id: string, cls: string[], cap: string) => {
+    const el = document.getElementById(id); if (!el) return;
+    el.classList.remove(...FACE_CLS); el.classList.add(...cls);
+    const c = el.querySelector('.face__cap'); if (c) c.innerHTML = cap;
+  };
+  const progress = (f: HTMLFormElement) => {
+    const qs = [...f.querySelectorAll<HTMLFieldSetElement>('.rd__q')].filter((q) => !q.hidden);
+    const done = qs.filter((q) => q.querySelector('input:checked')).length;
+    const box = document.querySelector<HTMLElement>(`[data-prog="${f.id}"]`); if (!box) return;
+    box.querySelector('span')!.textContent = `Zodpovězeno ${done} z ${qs.length}`;
+    box.querySelector('i')!.style.setProperty('--p', String(qs.length ? done / qs.length : 0));
+  };
+  const CONCERN: Record<string, [string[], string]> = {
+    akne: [['f-acne'], 'Akné a pupínky'], cerne: [['f-pores', 'f-tzone-half'], 'Černé tečky a mastnota'],
+    pigment: [['f-pigment'], 'Pigmentové skvrny'], vrasky: [['f-wrinkles'], 'Vrásky a ztráta pevnosti'],
+    citlivost: [['f-blush'], 'Citlivost a zarudnutí'], suchost: [['f-dry'], 'Suchost a pnutí'],
+    relax: [['f-relax'], 'Hledáte: <strong>chvíli odpočinku</strong>'], pmu: [['f-pmu'], 'Hledáte: <strong>permanentní make-up</strong>'], nevim: [[], 'Zatím nevíte, co vybrat? To nevadí.'],
+  };
+  const face1 = () => {
+    const tr = val(f1, 'trapi'), fl = vals(f1, 'flags');
+    const [cls, label] = CONCERN[tr] ?? [[], ''];
+    const extra = fl.includes('citliva') && !cls.includes('f-blush') ? ['f-blush'] : [];
+    setFace('face1', [...cls, ...extra], !label ? 'Vyberte, co vás trápí, a obrázek se změní.' : label.includes('<') || tr === 'nevim' ? label : `Trápí vás: <strong>${label}</strong>`);
+    progress(f1);
+  };
+  const TYP4 = { S: 'suchou', N: 'normální', K: 'smíšenou', M: 'mastnou' } as const;
+  const face2 = () => {
+    const sc: Record<string, number> = { S: 0, N: 0, K: 0, M: 0, C: 0 };
+    ['p1', 'p2', 'p3', 'p4', 'p5'].forEach((n) => { for (const [, k, p] of val(f2, n).matchAll(/([SNKMC])(\d)/g)) sc[k] += +p; });
+    const any = sc.S + sc.N + sc.K + sc.M > 0;
+    const typ = (['S', 'K', 'N', 'M'] as const).reduce((b, k) => (sc[k] > sc[b] ? k : b), 'S' as 'S' | 'K' | 'N' | 'M');
+    const cls: string[] = [];
+    if (any) { if (typ === 'K') cls.push('f-tzone'); if (typ === 'M') cls.push('f-tzone', 'f-cheeks'); if (typ === 'S') cls.push('f-dry'); }
+    if (sc.C >= 1) cls.push('f-blush');
+    const p6 = val(f2, 'p6'); if (p6 === 'ruz') cls.push('f-rosacea'); if (p6 === 'bar' && !cls.includes('f-blush')) cls.push('f-blush');
+    setFace('face2', cls, any ? `Zatím to vypadá na <strong>${TYP4[typ]}${sc.C >= 2 ? ' a citlivou' : ''} pleť</strong>` : 'Odpovídejte a uvidíte, jak se obrázek mění.');
+    progress(f2);
+  };
+  f1.addEventListener('change', face1); f2.addEventListener('change', face2);
+
   // Začít znovu: vymazat odpovědi a výsledek, vrátit se na první otázku.
   document.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-again]');
@@ -284,6 +339,7 @@ const r2 = [
     f.reset(); f.querySelectorAll('.is-missing').forEach((q) => q.classList.remove('is-missing'));
     const out = f.nextElementSibling as HTMLElement; out.hidden = true; out.innerHTML = '';
     if (f === f1) syncWho();
+    face1(); face2();
     f.querySelector('input')?.focus({ preventScroll: true });
     f.scrollIntoView({ behavior: 'auto', block: 'start' });
   });
@@ -293,13 +349,33 @@ const r2 = [
     const inp = t && f1.querySelector<HTMLInputElement>(`input[name="trapi"][value="${CSS.escape(t)}"]`);
     if (inp) inp.checked = true;
   } catch (e) {}
+  face1(); face2();
 </script>
 
 <style is:global>
-  .rd-tabs { display: flex; flex-wrap: wrap; gap: 12px; padding-bottom: 8px; }
+  .rd-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 430px)); gap: 16px; padding-bottom: 8px; }
+  .rd-tab { display: flex; gap: 16px; align-items: center; padding: 18px 22px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--paper); transition: border-color var(--t-fast), transform var(--t) var(--ease), box-shadow var(--t) var(--ease); }
+  .rd-tab:hover { border-color: var(--ink); box-shadow: var(--sh-2); transform: translateY(-2px); }
+  .rd-tab__n { flex: 0 0 40px; height: 40px; border-radius: 50%; background: var(--sand); display: grid; place-items: center; font-weight: 700; }
+  .rd-tab strong { display: block; font-size: var(--fs-base); }
+  .rd-tab small { display: block; color: var(--graphite); font-size: var(--fs-sm); }
+  .rd__grid { display: grid; grid-template-columns: minmax(0, 880px) minmax(240px, 340px); gap: clamp(32px, 5vw, 96px); align-items: start; }
+  .rd__side { position: sticky; top: 110px; display: grid; gap: 18px; padding: 24px; background: var(--paper); border-radius: 18px; box-shadow: var(--sh-2); }
+  .rd--alt .rd__side { background: #fff; }
+  .rd__prog { display: grid; gap: 8px; font-size: var(--fs-xs); color: var(--graphite); }
+  .rd__prog i { display: block; height: 4px; border-radius: 4px; background: var(--mist); overflow: hidden; position: relative; }
+  .rd__prog i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform var(--t) var(--ease); }
+  @media (max-width: 1060px) {
+    .rd__grid { grid-template-columns: minmax(0, 1fr); }
+    .rd__side { position: static; order: -1; grid-template-columns: 120px minmax(0, 1fr); align-items: center; padding: 16px; }
+    .rd__side .face { grid-row: span 2; }
+    .rd__side .face__cap { text-align: left; }
+  }
+  @media (max-width: 1060px) { .rd__side .face { display: contents; } .rd__side .face svg { width: 120px; grid-row: span 2; } }
+  @media (max-width: 560px) { .rd-tabs { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .rd-tab, .rd__prog i::after { transition: none; } .rd-tab:hover { transform: none; } }
   .rd--alt { background: var(--sand-soft); }
-  .rd__wrap > * { max-width: 880px; }
-  .rd__wrap h2 { font-size: var(--fs-xl); margin-bottom: 10px; }
+  .rd__main h2 { font-size: var(--fs-xl); margin-bottom: 10px; }
   .rd__lead { color: var(--graphite); margin-bottom: clamp(24px, 2vw, 40px); }
   .rd__form { display: grid; gap: clamp(20px, 1.6vw, 30px); }
   .rd__q { border: 0; padding: 0; margin: 0; min-width: 0; }

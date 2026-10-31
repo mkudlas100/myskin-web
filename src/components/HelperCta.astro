@@ -2,6 +2,7 @@
 // Odkaz na Pomocníka s výběrem (/pomocnik-pleti). Nevyskakuje, nic neotravuje – jen nabízí pomoc tam, kde se vybírá.
 // variant "band" = pás na úvodu, "inline" = rámeček na stránce služby, "aside" = řádek v postranním boxu článku.
 // trapi = předvybraná odpověď „Co vás trápí“ (akne, cerne, pigment, vrasky, citlivost, suchost, relax).
+import FaceArt from './FaceArt.astro';
 interface Props { variant?: 'band' | 'inline' | 'aside'; trapi?: string }
 const { variant = 'inline', trapi } = Astro.props;
 const base = '/pomocnik-pleti';
@@ -11,16 +12,29 @@ const typ = `${base}#typ-pleti`;
 {variant === 'band' && (
   <section class="hc-band" aria-labelledby="h-helper">
     <div class="wrap hc-band__grid">
+      <FaceArt id="face-band" class="hc-band__face" />
       <div>
         <h2 id="h-helper" class="hc-band__h" data-reveal>Nevíte, co si vybrat?</h2>
         <p data-reveal style="--i: 1">Odpovězte na pár otázek a doporučím vám vhodné ošetření s cenou a přímou rezervací. Nebo si zjistěte, jaký máte typ pleti. Zabere to minutu.</p>
       </div>
       <div class="btns" data-reveal style="--i: 2">
-        <a class="btn btn--primary" href={osetreni}>Najít vhodné ošetření</a>
-        <a class="btn" href={typ}>Zjistit typ pleti</a>
+        <a class="btn btn--primary" href={osetreni} data-face-hover="f-pigment f-blush">Najít vhodné ošetření</a>
+        <a class="btn" href={typ} data-face-hover="f-tzone f-cheeks">Zjistit typ pleti</a>
       </div>
     </div>
   </section>
+)}
+{variant === 'band' && (
+  <script>
+    // Najetí na tlačítko jemně změní ilustraci (jen dekorace, bez blikání).
+    const face = document.getElementById('face-band');
+    document.querySelectorAll<HTMLElement>('[data-face-hover]').forEach((b) => {
+      const on = () => face?.classList.add(...b.dataset.faceHover!.split(' '));
+      const off = () => face?.classList.remove(...b.dataset.faceHover!.split(' '));
+      b.addEventListener('mouseenter', on); b.addEventListener('focus', on);
+      b.addEventListener('mouseleave', off); b.addEventListener('blur', off);
+    });
+  </script>
 )}
 {variant === 'inline' && (
   <aside class="wrap hc-inline" aria-label="Pomocník s výběrem">
@@ -34,7 +48,8 @@ const typ = `${base}#typ-pleti`;
 
 <style>
   .hc-band { background: var(--sand); padding-block: clamp(48px, 5vw, 96px); }
-  .hc-band__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) auto; gap: clamp(24px, 4vw, 80px); align-items: center; }
+  .hc-band__grid { display: grid; grid-template-columns: clamp(120px, 12vw, 180px) minmax(0, 1.4fr) auto; gap: clamp(24px, 4vw, 72px); align-items: center; }
+  :global(.hc-band__face) { background: #fff; border-radius: 50%; padding: 14px 18px 0; overflow: hidden; aspect-ratio: 1; align-content: start; }
   .hc-band__h { font-size: var(--fs-xl); margin-bottom: 12px; }
   .hc-band p { max-width: 40rem; margin: 0; }
   .hc-inline { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; justify-content: space-between; padding-block: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-block: clamp(8px, 1vw, 16px); }
@@ -42,5 +57,6 @@ const typ = `${base}#typ-pleti`;
   .hc-inline__links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
   .hc-aside { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: var(--fs-sm); color: var(--graphite); }
   .hc-aside a { font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-  @media (max-width: 860px) { .hc-band__grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 860px) { .hc-band__grid { grid-template-columns: 96px minmax(0, 1fr); } .hc-band__grid .btns { grid-column: 1 / -1; } }
+  @media (max-width: 480px) { .hc-band__grid { grid-template-columns: minmax(0, 1fr); } :global(.hc-band__face) { width: 120px; } }
 </style>
